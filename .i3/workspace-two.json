@@ -1,0 +1,72 @@
+[
+    {
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": null,
+    "rect": {
+       "height": 682,
+       "width": 682,
+       "x": 959,
+       "y": 188
+    },
+    "type": "floating_con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "user_on",
+            "geometry": {
+               "height": 680,
+               "width": 680,
+               "x": 0,
+               "y": 0
+            },
+            "name": "cdk@cdk-lappy: ~",
+            "percent": 1,
+            "swallows": [
+               {
+                "class": "^Alacritty$",
+                "instance": "^Alacritty$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+},
+{
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": null,
+    "rect": {
+       "height": 682,
+       "width": 682,
+       "x": 259,
+       "y": 188
+    },
+    "type": "floating_con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "user_on",
+            "geometry": {
+               "height": 680,
+               "width": 680,
+               "x": 0,
+               "y": 0
+            },
+            "name": "i3-save-tree --workspace 1 > ~/.i3/workspace-two.json",
+            "percent": 1,
+            "swallows": [
+               {
+                "class": "^Alacritty$",
+                "instance": "^Alacritty$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
