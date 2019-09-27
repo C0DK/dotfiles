@@ -6,7 +6,7 @@
 [colors]
 
 	bar_bg = ${xrdb:background}
-	bar_fg = ${xrdb:color7}
+	bar_fg = ${xrdb:foreground}
 
 	border_col = ${xrdb:background}
 
@@ -44,7 +44,7 @@
 	bottom = false
 
 	background = ${xrdb:background}
-	foreground = ${xrdb:color7}
+	foreground = ${xrdb:foreground}
 
 	border-bottom-size  = 0
 	border-top-size     = 0
@@ -57,7 +57,6 @@
 
 	border-left-color = ${xrdb:background}
 	border-right-colo = ${xrdb:background}
-	tray-position = right
 	spacing            = 0
 	padding-left       = 1
 	padding-right      = 1
@@ -68,14 +67,21 @@
 
 	modules-left   = workspaces
 	modules-center = xwindow
-	modules-right  = essid volume battery date
+	modules-right  = bluetooth essid volume battery date
 
 	fixed-center = true
 
 ;--------------------------------------------
 ; modules                                   ;
 ;--------------------------------------------
-
+[module/bluetooth]
+	type = custom/script
+	exec = ~/.config/polybar/bluetooth.sh 
+	interval = 2
+	click-left = exec blueman-manager 
+	format-padding = 1
+	format-background = ${xrdb:background}
+	format-foreground = ${xrdb:foreground}
 [module/network]
 	type          = internal/network
 	interface     = wlp1s0
@@ -91,16 +97,12 @@
 [module/date]
 	type     = internal/date
 	interval = 1.0
-	time     = "%a %H:%M "
-	label    = "%time% "
+	time     = "%H:%M"
+	label    = "   %time%"
 
 	format         = <label>
 	format-padding = 0
 
-	format-prefix            = " "
-	format-prefix-background = ${xrdb:background}
-	format-prefix-foreground = ${xrdb:foreground}
-	format-prefix-padding    = 1
 
 	label-background = ${xrdb:background}
 	label-foreground = ${xrdb:foreground}
@@ -108,7 +110,7 @@
 
 [module/battery]
 	type          = internal/battery
-	full-at       = 95
+	full-at       = 98
 	battery       = BAT0
 	adapter       = AC0
 	poll-interval = 5
@@ -117,7 +119,7 @@
 
 	format-charging-prefix            = "⚡"
 	format-charging-prefix-background = ${xrdb:background}
-	format-charging-prefix-foreground = ${xrdb:foreground}
+	format-charging-prefix-foreground = ${xrdb:color3}
 	format-charging-prefix-padding    = 1
 
 	label-charging            = "%percentage%% "
@@ -125,9 +127,8 @@
 	label-charging-foreground = ${xrdb:foreground}
 	label-charging-padding    = 1
 
-	format-discharging = <label-discharging>
+	format-discharging = <ramp-capacity> <label-discharging>
 
-	format-discharging-prefix            = ""
 	format-discharging-prefix-background = ${xrdb:background}
 	format-discharging-prefix-foreground = ${xrdb:foreground}
 	format-discharging-prefix-padding    = 1
@@ -136,6 +137,13 @@
 	label-discharging-background = ${xrdb:background}
 	label-discharging-foreground = ${xrdb:foreground}
 	label-discharging-padding    = 1
+	ramp-capacity-0 = 
+	ramp-capacity-1 = 
+	ramp-capacity-2 = 
+	ramp-capacity-3 = 
+	ramp-capacity-4 = 
+	ramp-capacity-0-foreground = ${xrdb:color1}
+	ramp-capacity-1-foreground = ${xrdb:color1}
 
 	format-full = <label-full>
 
@@ -148,19 +156,18 @@
 	label-full-background = ${xrdb:background}
 	label-full-foreground = ${xrdb:foreground}
 	label-full-padding    = 1
-
 [module/volume]
 	type          = internal/alsa
 	format-volume = <label-volume>
 
-	label-volume            = " %percentage%"
+	label-volume            = "%{A1:pavucontrol:} %percentage%%{A}"
 	label-volume-background = ${xrdb:background}
 	label-volume-foreground = ${xrdb:foreground}
 	label-volume-padding    = 3
 
 	format-muted = <label-muted>
 
-	label-muted            = " 0"
+	label-muted            = "%{A1:pavucontrol:} 0%{A}"
 	label-muted-background = ${xrdb:background}
 	label-muted-foreground = ${xrdb:foreground}
 	label-muted-padding    = 3
@@ -207,12 +214,12 @@
 
 	format-connected = <label-connected>
 
-	format-connected-prefix            = " "
+	format-connected-prefix            = ""
 	format-connected-prefix-padding    = 1
 	format-connected-prefix-background = ${xrdb:background}
-	format-connected-prefix-foreground = ${xrdb:foreground}
+	format-connected-prefix-foreground = ${xrdb:color2}
 
-	label-connected            = "%essid% "
+	label-connected            = "%{A1:nm-connection-editor:}%essid%%{A}"
 	label-connected-background = ${xrdb:background}
 	label-connected-foreground = ${xrdb:foreground}
 	label-connected-padding    = 1
@@ -227,11 +234,11 @@
 	format-disconnected-prefix            = ""
 	format-disconnected-prefix-padding    = 1
 	format-disconnected-prefix-background = ${xrdb:background}
-	format-disconnected-prefix-foreground = ${xrdb:color7}
+	format-disconnected-prefix-foreground = ${xrdb:foreground}
 
-	label-disconnected            = "DISCONNECTED "
+	label-disconnected            = "%{A1:nm-connection-editor:}DISCONNECTED%{A}"
 	label-disconnected-background = ${xrdb:background}
-	label-disconnected-foreground = ${xrdb:color7}
+	label-disconnected-foreground = ${xrdb:foreground}
 	label-disconnected-padding    = 1
 
 
