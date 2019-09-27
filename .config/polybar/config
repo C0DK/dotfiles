@@ -37,7 +37,7 @@
 [bar/base]
 	dpi      = 192
 	width    = 100%
-	height   = 32
+	height   = 20
 	offset-x = 0
 	offset-y = 0
 
@@ -91,7 +91,7 @@
 [module/date]
 	type     = internal/date
 	interval = 1.0
-	time     = "%a %I:%M %p "
+	time     = "%a %H:%M "
 	label    = "%time% "
 
 	format         = <label>
