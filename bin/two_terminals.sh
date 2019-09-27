@@ -1,5 +1,6 @@
 #!/bin/sh
 killall compton
+i3-msg [workspace="1:"] kill
 sleep 0.1
 i3-msg append_layout ~/.i3/workspace-two.json
 sleep 0.1

@@ -1,0 +1,340 @@
+; vim:ft=cfg
+;--------------------------------------------
+; colors                                    ;
+;--------------------------------------------
+
+[colors]
+
+	bar_bg = ${xrdb:background}
+	bar_fg = ${xrdb:color7}
+
+	border_col = ${xrdb:background}
+
+	modules_bg = ${xrdb:color7}
+	modules_fg = ${xrdb:color0}
+
+	mod_bg = ${xrdb:color7}
+
+	modules_prefix_bg = ${xrdb:color7}
+	modules_prefix_fg = ${xrdb:color0}
+
+	urgent_bg  = ${xrdb:color1}
+	focused_bg = ${xrdb:color10}
+
+	essid_p_bg   = ${xrdb:color6}
+	down_p_bg    = #5e606c
+	cpu_p_bg     = ${xrdb:color5}
+	ram_p_bg     = ${xrdb:color11}
+	vol_p_bg     = #637b81
+	bright_p_bg  = #c29f6f
+	battery_p_bg = ${xrdb:color9}
+	time_p_bg    = ${xrdb:color10}
+
+;--------------------------------------------
+; bars                                      ;
+;--------------------------------------------
+
+[bar/base]
+	dpi      = 192
+	width    = 100%
+	height   = 32
+	offset-x = 0
+	offset-y = 0
+
+	bottom = false
+
+	background = ${xrdb:background}
+	foreground = ${xrdb:color7}
+
+	border-bottom-size  = 0
+	border-top-size     = 0
+
+	border-left-size  = 0
+	border-right-size = 0
+
+	border-bottom-color = ${xrdb:background}
+	border-top-color    = ${xrdb:background}
+
+	border-left-color = ${xrdb:background}
+	border-right-colo = ${xrdb:background}
+	tray-position = right
+	spacing            = 0
+	padding-left       = 1
+	padding-right      = 1
+	module-margin-left = 0
+
+	font-N = <fontconfig pattern>;<vertical offset>
+	font-0 = SauceCodePro Nerd Font:size=4;2
+
+	modules-left   = workspaces
+	modules-center = xwindow
+	modules-right  = essid volume battery date
+
+	fixed-center = true
+
+;--------------------------------------------
+; modules                                   ;
+;--------------------------------------------
+
+[module/network]
+	type          = internal/network
+	interface     = wlp1s0
+	ping-interval = 3
+
+[module/xwindow]
+	y-offset      = 10
+	type          = internal/xwindow
+	format        = <label>
+	label         = %title:0:50:%
+	label-padding = 1
+
+[module/date]
+	type     = internal/date
+	interval = 1.0
+	time     = "%a %I:%M %p "
+	label    = "%time% "
+
+	format         = <label>
+	format-padding = 0
+
+	format-prefix            = " "
+	format-prefix-background = ${xrdb:background}
+	format-prefix-foreground = ${xrdb:foreground}
+	format-prefix-padding    = 1
+
+	label-background = ${xrdb:background}
+	label-foreground = ${xrdb:foreground}
+	label-padding    = 0
+
+[module/battery]
+	type          = internal/battery
+	full-at       = 95
+	battery       = BAT0
+	adapter       = AC0
+	poll-interval = 5
+
+	format-charging = <label-charging>
+
+	format-charging-prefix            = "⚡"
+	format-charging-prefix-background = ${xrdb:background}
+	format-charging-prefix-foreground = ${xrdb:foreground}
+	format-charging-prefix-padding    = 1
+
+	label-charging            = "%percentage%% "
+	label-charging-background = ${xrdb:background}
+	label-charging-foreground = ${xrdb:foreground}
+	label-charging-padding    = 1
+
+	format-discharging = <label-discharging>
+
+	format-discharging-prefix            = ""
+	format-discharging-prefix-background = ${xrdb:background}
+	format-discharging-prefix-foreground = ${xrdb:foreground}
+	format-discharging-prefix-padding    = 1
+
+	label-discharging            = "%percentage%% "
+	label-discharging-background = ${xrdb:background}
+	label-discharging-foreground = ${xrdb:foreground}
+	label-discharging-padding    = 1
+
+	format-full = <label-full>
+
+	format-full-prefix            = ""
+	format-full-prefix-background = ${xrdb:background}
+	format-full-prefix-foreground = ${xrdb:foreground}
+	format-full-prefix-padding    = 1
+
+	label-full            = "%percentage%% "
+	label-full-background = ${xrdb:background}
+	label-full-foreground = ${xrdb:foreground}
+	label-full-padding    = 1
+
+[module/volume]
+	type          = internal/alsa
+	format-volume = <label-volume>
+
+	label-volume            = " %percentage%"
+	label-volume-background = ${xrdb:background}
+	label-volume-foreground = ${xrdb:foreground}
+	label-volume-padding    = 3
+
+	format-muted = <label-muted>
+
+	label-muted            = " 0"
+	label-muted-background = ${xrdb:background}
+	label-muted-foreground = ${xrdb:foreground}
+	label-muted-padding    = 3
+
+	format-volume-padding = 0
+	format-muted-padding  = 0
+
+	ramp-headphones-0 = 
+
+[module/cpu]
+	type             = internal/cpu
+	interval         = 0.5
+	format           = <label>
+	label            = %percentage%%
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding    = 1
+
+	format-prefix =  
+
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.cpu_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+[module/ram]
+	type     = internal/memory
+	interval = 3
+
+	format           = <label>
+	label            = "%percentage_used%%"
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding    = 1
+
+	format-prefix = 
+
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.ram_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+
+[module/essid]
+	inherit = module/network
+
+	format-connected = <label-connected>
+
+	format-connected-prefix            = " "
+	format-connected-prefix-padding    = 1
+	format-connected-prefix-background = ${xrdb:background}
+	format-connected-prefix-foreground = ${xrdb:foreground}
+
+	label-connected            = "%essid% "
+	label-connected-background = ${xrdb:background}
+	label-connected-foreground = ${xrdb:foreground}
+	label-connected-padding    = 1
+
+	ramp-signal-background    = ${xrdb:background}
+	ramp-signal-foreground    = ${xrdb:foreground}
+	ramp-connected-foreground = ${xrdb:foreground}
+	ramp-signal-padding       = 1
+
+	format-disconnected = <label-disconnected>
+
+	format-disconnected-prefix            = ""
+	format-disconnected-prefix-padding    = 1
+	format-disconnected-prefix-background = ${xrdb:background}
+	format-disconnected-prefix-foreground = ${xrdb:color7}
+
+	label-disconnected            = "DISCONNECTED "
+	label-disconnected-background = ${xrdb:background}
+	label-disconnected-foreground = ${xrdb:color7}
+	label-disconnected-padding    = 1
+
+
+[module/down]
+	inherit = module/network
+
+	format-connected = <label-connected>
+
+	format-connected-prefix            = 
+	format-connected-prefix-background = ${colors.down_p_bg}
+	format-connected-prefix-foreground = ${colors.modules_prefix_fg}
+	format-connected-prefix-padding    = 1
+
+	label-connected               = %{T2}%downspeed:7%%{T-}
+	label-connected-background    = ${colors.modules_bg}
+	label-connected-foreground    = ${colors.modules_fg}
+	label-connected-padding-right = 1
+
+[module/padding]
+	type               = custom/text
+	content            = |
+	content-foreground = ${colors.bg}
+	content-background = ${colors.bg}
+
+[module/paddinglite]
+	type               = custom/text
+	content            = |
+	content-foreground = #000f0f0f
+	content-background = #000f0f0f
+
+[module/workspaces]
+
+	type            = internal/i3
+	format          = <label-state> <label-mode>
+	index-sort      = true
+	wrapping-scroll = false
+	strip-wsnumbers = true
+
+	label-mode-background = ${xrdb:color7}
+	label-mode-foreground = ${xrdb:background}
+	label-mode-padding    = 2
+
+	label-focused            = %name%
+	label-focused-background = ${xrdb:background}
+	label-focused-foreground = ${xrdb:foreground}
+	label-focused-padding    = 2
+
+	label-unfocused            = %name%
+	label-unfocused-background = ${xrdb:background}
+	label-unfocused-foreground = ${xrdb:color7}
+	label-unfocused-padding    = 2
+
+	label-visible            = %name%
+	label-visible-background = ${xrdb:background}
+	label-visible-foreground = ${xrdb:color7}
+	label-visible-padding    = 2
+
+	label-urgent            = %name%
+	label-urgent-background = ${xrdb:background}
+	label-urgent-foreground = ${xrdb:color1}
+	label-urgent-padding    = 2
+
+
+[module/openbox]
+	type                      = internal/xworkspaces
+	pin-workspaces            = true
+	enable-click              = false
+	enable-scroll             = false
+	format                    = <label-state>
+	label-monitor             = %name%
+	label-active              = %icon%%name%
+	label-active-foreground   = ${colors.obfg}
+	label-active-background   = ${colors.obbg}
+	label-active-underline    = #fba922
+	label-active-padding      = 1
+	label-occupied            = %name%
+	label-occupied-background = ${colors.obbg}
+	label-occupied-padding    = 1
+	label-urgent              = %index%
+	label-urgent-foreground   = #000000
+	label-urgent-background   = #bd2c40
+	label-urgent-underline    = #9b0a20
+	label-empty               = %name%
+	label-empty-padding       = 1
+	label-empty-background    = ${colors.obibg}
+	label-empty-foreground    = ${colors.obifg}
+
+[module/backlight]
+	type = internal/backlight
+
+	output = LVDS-1
+
+	card          = acpi_video0
+	enable-scroll = false
+
+	format        = <label>
+	format-prefix = 
+
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.cpu_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+	label            = %percentage%%
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding    = 1
