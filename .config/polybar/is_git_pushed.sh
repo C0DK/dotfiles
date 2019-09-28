@@ -15,5 +15,7 @@ isSync ~/dev/ark36
 if [ ! -z "$repos" ]
 then
 	echo "$repos"
+else
+	echo ""
 fi
 
