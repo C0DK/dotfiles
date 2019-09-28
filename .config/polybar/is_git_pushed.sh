@@ -11,6 +11,7 @@ isSync() {
 
 isSync ~/.dotfiles
 isSync ~/dev/ark36
+isSync ~/Documents
 
 if [ ! -z "$repos" ]
 then
