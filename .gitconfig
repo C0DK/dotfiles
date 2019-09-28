@@ -10,6 +10,7 @@
 	st = status
 	aa = add -A .
 	cm = commit -m
+	acm = git aa && git commit -m
 	aacm = !git add -A . && git commit -m
 	cp = cherry-pick
 	amend = commit --amend --no-edit
