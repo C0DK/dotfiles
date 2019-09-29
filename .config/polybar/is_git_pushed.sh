@@ -11,6 +11,9 @@ isSync() {
 
 isSync ~/.dotfiles
 isSync ~/dev/ark36
+isSync ~/itu/pcpp
+isSync ~/itu/security
+isSync ~/itu/algorithm_design/algdes-labs
 isSync ~/Documents
 
 if [ ! -z "$repos" ]
