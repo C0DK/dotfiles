@@ -200,14 +200,13 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
 # assign [class="Alacritty"] $ws1
-assign [class="jetbrains-pycharm"] $ws2
-assign [class="jetbrains-webstorm"] $ws2
-assign [class="jetbrains-idea-ce"] $ws2
 assign [class="Skype"] $ws4
 assign [class="Slack"] $ws4
 assign [class="Thunderbird"] $ws4
-#assign [class="Blueman-manager"] $ws5
-assign [class="spotify"] $ws5
+assign [class="Keybase"] $ws4
+# assign [class="Spotify"] $ws5 # doesn't work so workaround
+for_window [class="Spotify"] move to workspace $ws5
+for_window [class="jetbrains"] move to workspace $ws2
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
