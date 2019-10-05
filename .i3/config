@@ -78,7 +78,7 @@ bindsym $mod+Shift+p exec --no-startup-id flameshot gui
 # Focus stuff
 focus_follows_mouse no
 no_focus [window_role=".*"]
-focus_on_window_activation urgent
+focus_on_window_activation no
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
