@@ -8,17 +8,17 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 workspace_layout tabbed
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window none
-new_float normal
 
-default border pixel 1
+default_border pixel 5
 
 # Hide borders
 hide_edge_borders none
 
+title_align center
+
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y border pixel 1
+bindsym $mod+y border pixel 50
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -60,8 +60,6 @@ bindsym $mod+Ctrl+m exec alacritty -e 'alsamixer'
 
 # Start Applications
 bindsym $mod+Ctrl+b exec alacritty -e 'bmenu'
-bindsym $mod+F2 exec firefox 
-bindsym $mod+F3 exec pcmanfm
 bindsym $mod+F4 exec blueman-manager
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
@@ -219,7 +217,7 @@ for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Alacritty"] [workspace=$ws1] floating disable border none
+for_window [class="Alacritty"] floating disable border pixel 1
 #for_window [class="Spotify"] floating enable border none 
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
@@ -273,10 +271,10 @@ mode "$mode_system" {
 }
 
 #bindsym $mod+Shift+w exec /home/cdk/bin/two_terminals.sh
-bindsym $mod+Shift+w mode "$mode_system"
-set $mode_system Amount of terminals: (2), (3), (4)
+bindsym $mod+Shift+w mode "$mode_term"
+set $mode_term Amount of terminals: (2), (3), (4)
 
-mode "$mode_system" {
+mode "$mode_term" {
     bindsym 2 exec --no-startup-id /home/cdk/bin/two_terminals.sh, mode "default"
     bindsym 3 exec --no-startup-id /home/cdk/bin/three_terminals.sh, mode "default"
     bindsym 4 exec --no-startup-id /home/cdk/bin/four_terminals.sh, mode "default"
@@ -369,10 +367,10 @@ set_from_resource $color15    color15
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
   client.focused          $color7 $background $foreground $color8
-  client.focused_inactive $background $background $color7 #454948
-  client.unfocused        $background $background $color7 #454948
-  client.urgent           $color8  $background $foreground #268BD2
-  client.placeholder      $color10 $background $foreground #000000 
+  client.focused_inactive $color7 $background $color7 $color7
+  client.unfocused        $background $background $color7 $color7
+  client.urgent           $color8  $background $foreground $color7
+  client.placeholder      $color10 $background $foreground $color7 
 
   client.background       $background
 
