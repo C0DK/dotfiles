@@ -11,6 +11,7 @@ isSync() {
 
 isSync ~/.dotfiles
 isSync ~/dev/ark36
+isSync ~/dev/kbtui
 isSync ~/dev/smalldickbot
 isSync ~/itu/pcpp
 isSync ~/itu/security

@@ -1,0 +1,109 @@
+[
+{
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": null,
+    "rect": {
+       "height": 1020,
+       "width": 730,
+       "x": 210,
+       "y": 29
+    },
+    "type": "floating_con",
+    "nodes": [
+        {
+            "border": "none",
+            "current_border_width": 0,
+            "floating": "user_on",
+            "geometry": {
+               "height": 680,
+               "width": 680,
+               "x": 0,
+               "y": 0
+            },
+            "name": "workspace-two.json (~/.dotfiles/.i3) - VIM",
+            "percent": 1,
+            "swallows": [
+               {
+               "class": "^Alacritty$",
+               "instance": "^Alacritty$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+},
+
+{
+    "border": "none",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": null,
+    "rect": {
+       "height": 450,
+       "width": 680,
+       "x": 960,
+       "y": 600
+    },
+    "type": "floating_con",
+    "nodes": [
+        {
+            "border": "none",
+            "current_border_width": 0,
+            "floating": "user_on",
+            "geometry": {
+               "height": 680,
+               "width": 680,
+               "x": 0,
+               "y": 0
+            },
+            "name": "cdk@cdk-lappy: ~",
+            "percent": 1,
+            "swallows": [
+               {
+               "class": "^Alacritty$",
+                "instance": "^Alacritty$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+},
+
+{
+    "border": "none",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": null,
+    "rect": {
+       "height": 560,
+       "width": 680,
+       "x": 960,
+       "y": 30
+    },
+    "type": "floating_con",
+    "nodes": [
+        {
+            "border": "none",
+            "current_border_width": 0,
+            "floating": "user_on",
+            "geometry": {
+               "height": 680,
+               "width": 680,
+               "x": 0,
+               "y": 0
+            },
+            "name": "i3-save-tree --workspace 1 > ~/.i3/workspace-three.json",
+            "percent": 1,
+            "swallows": [
+               {
+                "class": "^Alacritty$",
+                "instance": "^Alacritty$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

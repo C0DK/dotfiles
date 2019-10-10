@@ -29,7 +29,6 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec alacritty -e sh -c "neofetch && zsh"
 bindsym $mod+Shift+h exec alacritty -e htop
-bindsym $mod+Shift+w exec /home/cdk/bin/two_terminals.sh
 
 # kill focused window
 bindsym $mod+q kill
@@ -199,7 +198,6 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
-# assign [class="Alacritty"] $ws1
 assign [class="Skype"] $ws4
 assign [class="Slack"] $ws4
 assign [class="Thunderbird"] $ws4
@@ -219,7 +217,7 @@ for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Alacritty"] floating enable border none 
+for_window [class="Alacritty"] [workspace=$ws1] floating disable border none
 #for_window [class="Spotify"] floating enable border none 
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
@@ -242,7 +240,7 @@ for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 
 # switch to workspace with urgent window automatically
-for_window [urgent=latest] focus
+# for_window [urgent=latest] focus
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -252,6 +250,8 @@ bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+Ctrl+c focus parent,kill 
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
@@ -264,6 +264,20 @@ mode "$mode_system" {
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
     bindsym r exec --no-startup-id i3exit reboot, mode "default"
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+#bindsym $mod+Shift+w exec /home/cdk/bin/two_terminals.sh
+bindsym $mod+Shift+w mode "$mode_system"
+set $mode_system Amount of terminals: (2), (3), (4)
+
+mode "$mode_system" {
+    bindsym 2 exec --no-startup-id /home/cdk/bin/two_terminals.sh, mode "default"
+    bindsym 3 exec --no-startup-id /home/cdk/bin/three_terminals.sh, mode "default"
+    bindsym 4 exec --no-startup-id /home/cdk/bin/four_terminals.sh, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -301,7 +315,9 @@ bindsym $mod+9 exec --no-startup-id blurlock
 exec --no-startup-id flameshot
 exec --no-startup-id redshift
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+#exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+#exec --no-startup-id sleep 5; compton -b
+exec --no-startup-id nitrogen --restore
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
@@ -309,7 +325,7 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
+#exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
@@ -350,7 +366,7 @@ set_from_resource $color15    color15
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          $background $background $foreground $color8
+  client.focused          $color7 $background $foreground $color8
   client.focused_inactive $background $background $color7 #454948
   client.unfocused        $background $background $color7 #454948
   client.urgent           $color8  $background $foreground #268BD2
@@ -363,57 +379,12 @@ set_from_resource $color15    color15
 #############################
 
 # Set inner/outer gaps
-gaps inner 8
-gaps outer 4
-
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-# gaps inner|outer current|all set|plus|minus <px>
-# gaps inner all set 10
-# gaps outer all plus 5
-
-# Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+gaps inner 0
+gaps outer 0
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
-
-# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
 
 
 ## Auto EXEC
