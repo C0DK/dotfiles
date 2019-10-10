@@ -63,6 +63,7 @@ source ~/.virtualenv-autodetect.sh
 
 
 alias sudoman="sudo pacman"
+alias gimme="sudo pacman -S"
 alias yao="yaourt"
 alias py="python"
 alias py2="python2"
