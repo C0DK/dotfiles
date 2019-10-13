@@ -391,5 +391,6 @@ smart_borders on
 exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/firefox'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/thunderbird'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/slack'
+exec --no-startup-id i3-msg 'workspace $ws4; exec alacritty -e "kbtui"'
 exec --no-startup-id i3-msg 'workspace $ws5; exec /usr/bin/spotify'
 exec --no-startup-id i3-msg 'workspace $ws1; exec /home/cdk/bin/two_terminals.sh' 

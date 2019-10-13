@@ -66,8 +66,8 @@
 	font-1 = SauceCodePro Nerd Font:size=4;2
 	font-0 = Source Code Pro:size=4;2
 
-	modules-left   = workspaces gitPushed
-	modules-center = xwindow
+	modules-left   = workspaces
+	modules-center = gitPushed newUpdates
 	modules-right  = bluetooth essid volume battery date
 
 	fixed-center = true
@@ -75,6 +75,13 @@
 ;--------------------------------------------
 ; modules                                   ;
 ;--------------------------------------------
+[module/newUpdates]
+	type = custom/script
+	exec = ~/.config/polybar/any_updates.sh
+	interval = 1
+	format-padding = 1
+	format-foreground = ${xrdb:color1}
+	format-background = ${xrdb:background}
 [module/gitPushed]
 	type = custom/script
 	exec = ~/.config/polybar/is_git_pushed.sh 
