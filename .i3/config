@@ -12,13 +12,13 @@ workspace_layout tabbed
 default_border pixel 5
 
 # Hide borders
-hide_edge_borders none
+hide_edge_borders both
 
 title_align center
 
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y border pixel 50
+bindsym $mod+y border pixel 5
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -368,9 +368,9 @@ set_from_resource $color15    color15
 # class                   border  backgr. text    indic.   child_border
   client.focused          $color7 $background $foreground $color8
   client.focused_inactive $color7 $background $color7 $color7
-  client.unfocused        $background $background $color7 $color7
+  client.unfocused        $background $background $color8 $color7
   client.urgent           $color8  $background $foreground $color7
-  client.placeholder      $color10 $background $foreground $color7 
+  client.placeholder      $color10 $color10 $foreground $color7 
 
   client.background       $background
 
