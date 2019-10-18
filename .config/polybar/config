@@ -78,7 +78,7 @@
 [module/newUpdates]
 	type = custom/script
 	exec = ~/.config/polybar/any_updates.sh
-	interval = 1
+	interval = 60
 	format-padding = 1
 	format-foreground = ${xrdb:color1}
 	format-background = ${xrdb:background}

@@ -48,6 +48,7 @@ bindsym $mod+z exec --no-startup-id morc_menu
 exec --no-startup-id volumeicon
 exec --no-startup-id ~/.config/polybar/launch.sh
 bindsym $mod+Ctrl+m exec alacritty -e 'alsamixer'
+bindsym $mod+Ctrl+e exec emacs
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
 #bindsym $mod+Ctrl+m exec pavucontrol
@@ -369,7 +370,7 @@ set_from_resource $color15    color15
   client.focused          $color7 $background $foreground $color8
   client.focused_inactive $color7 $background $color7 $color7
   client.unfocused        $background $background $color8 $color7
-  client.urgent           $color8  $background $foreground $color7
+  client.urgent           $color1  $background $foreground $color7
   client.placeholder      $color10 $color10 $foreground $color7 
 
   client.background       $background

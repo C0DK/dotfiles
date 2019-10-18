@@ -40,6 +40,7 @@ XTerm*selectToClipboard: true
 *.color7:     #6272a4
 *.color15:    #E6E6E6
 
+
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
 
