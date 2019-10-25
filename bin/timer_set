@@ -1,0 +1,7 @@
+#/bin/sh
+
+
+d=$(date -d "now + $*")
+
+echo $d > ~/.timer 
+echo "Timer set for: $d"

@@ -68,7 +68,7 @@
 
 	modules-left   = workspaces
 	modules-center = gitPushed newUpdates
-	modules-right  = bluetooth essid volume battery date
+	modules-right  = timer bluetooth essid volume battery date
 
 	fixed-center = true
 
@@ -81,6 +81,13 @@
 	interval = 600
 	format-padding = 1
 	format-foreground = ${xrdb:color1}
+	format-background = ${xrdb:background}
+[module/timer]
+	type = custom/script
+	exec = ~/bin/timer_read
+	interval = 600
+	format-padding = 1
+	format-foreground = ${xrdb:color5}
 	format-background = ${xrdb:background}
 [module/gitPushed]
 	type = custom/script
