@@ -8,4 +8,6 @@ diff=$(( ($then - $now) / 60 ))
 if [ $diff -gt -5 ]
 then
 	 echo "$diff minutes"
+else
+	echo ""
 fi

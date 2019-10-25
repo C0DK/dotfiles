@@ -85,7 +85,7 @@
 [module/timer]
 	type = custom/script
 	exec = ~/bin/timer_read
-	interval = 600
+	interval = 1
 	format-padding = 1
 	format-foreground = ${xrdb:color5}
 	format-background = ${xrdb:background}
