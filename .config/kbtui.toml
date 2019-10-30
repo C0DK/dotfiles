@@ -23,12 +23,12 @@ time_format = "15:04"
 [colors]
 	 [colors.channels]
 		  [colors.channels.basic]
-		  foreground = "normal"
+		  foreground = "grey"
 		  [colors.channels.header]
-		  foreground = "magenta"
+		  foreground = "grey"
 		  bold = true
 		  [colors.channels.unread]
-		  foreground = "green"
+		  foreground = "yellow"
 		  italic = true
 
 	 [colors.message]
@@ -42,9 +42,9 @@ time_format = "15:04"
 		  italic = true
 		  bold = true
 		  [colors.message.id]
-		  foreground = "yellow"
+		  foreground = "grey"
 		  [colors.message.time]
-		  foreground = "magenta"
+		  foreground = "grey"
 		  [colors.message.sender_default]
 		  foreground = "cyan"
 		  bold = true
