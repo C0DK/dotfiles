@@ -51,8 +51,7 @@ time_format = "15:04"
 		  [colors.message.sender_device]
 		  foreground = "cyan"
 		  [colors.message.attachment]
-		  foreground = "normal"
-		  background = "yellow"
+		  foreground = "magenta"
 		  [colors.message.link_url]
 		  foreground = "yellow"
 		  [colors.message.link_keybase]
@@ -60,8 +59,10 @@ time_format = "15:04"
 		  [colors.message.reaction]
 		  foreground = "magenta"
 		  bold = true
+		  [colors.message.quote]
+		  foreground = "green"
 		  [colors.message.code]
-		  foreground = "cyan"
+		  foreground = "green"
 		  background = "grey"
 	 [colors.feed]
 		  [colors.feed.basic]
