@@ -8,10 +8,10 @@ cmd_prefix = "/"
 
 [formatting]
 # BASH-like PS1 variable equivalent
-output_format = "$ID $TIME $USER  $MSG"
-output_stream_format = "$ID $TIME $USER  $MSG"
-output_mention_format = "$ID $TIME $USER [ IN $TEAM ]  $MSG"
-pm_format = "$ID $TIME $USER [ IN $USER ]  $MSG"
+output_format = "$ID $TIME $USER$TAGS  $MSG"
+output_stream_format = "$ID $TIME $USER$TAGS  $MSG"
+output_mention_format = "$ID $TIME $USER$TAGS [ IN $TEAM ]  $MSG"
+pm_format = "$ID $TIME $USER$TAGS [ IN $USER ]  $MSG"
 
 # 02 = Day, Jan = Month, 06 = Year
 date_format = "02Jan06"
@@ -19,6 +19,8 @@ date_format = "02Jan06"
 # 15 = hours, 04 = minutes, 05 = seconds
 time_format = "15:04"
 
+icon_following_user = " "
+icon_indirect_following_user = " "
 
 [colors]
 	 [colors.channels]
