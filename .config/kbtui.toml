@@ -71,3 +71,5 @@ icon_indirect_following_user = " "
 		  foreground = "grey"
 		  [colors.feed.error]
 		  foreground = "red"
+		  [colors.feed.success]
+		  foreground = "green"
