@@ -310,7 +310,7 @@
 
 	label-unfocused            = %name%
 	label-unfocused-background = ${xrdb:background}
-	label-unfocused-foreground = ${xrdb:color7}
+	label-unfocused-foreground = ${xrdb:color0}
 	label-unfocused-padding    = 2
 
 	label-visible            = %name%
