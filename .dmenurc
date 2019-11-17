@@ -8,16 +8,16 @@
 DMENU_FN="Noto-10.5"
 
 ## background colour for unselected menu-items
-DMENU_NB="#282a36"
+DMENU_NB="#2E3440"
 
 ## textcolour for unselected menu-items
-DMENU_NF="#f8f8f2"
+DMENU_NF="#ECEFF4"
 
 ## background colour for selected menu-items
-DMENU_SB="#44475a"
+DMENU_SB="#434C5E"
 
 ## textcolour for selected menu-items
-DMENU_SF="#f8f8f2"
+DMENU_SF="#D8DEE9"
 
 ## command for the terminal application to be used:
 TERMINAL_CMD="terminal -e"
