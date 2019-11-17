@@ -1,0 +1,8 @@
+elpa/
+elpy/
+rpc-venv/
+auto-save-list/
+ac-comphist.dat
+.cache/
+snippets/
+history

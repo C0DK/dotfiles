@@ -29,6 +29,24 @@ Xft.lcdfilter: lcddefault
 *fading: 35
 *fadeColor: nord3
 
+
+*.nord0: nord0
+*.nord1: nord1
+*.nord2: nord2
+*.nord3: nord3
+*.nord4: nord4
+*.nord5: nord5
+*.nord6: nord6
+*.nord7: nord7
+*.nord8: nord8
+*.nord9: nord9
+*.nord10: nord10
+*.nord11: nord11
+*.nord12: nord12
+*.nord13: nord13
+*.nord14: nord14
+*.nord15: nord15
+
 *.color0: nord1
 *.color1: nord11
 *.color2: nord14

@@ -265,11 +265,14 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 bindsym $mod+o mode "$mode_settings"
-set $mode_settings (b)luetooth, (p)ulse audio, (s)talone
+set $mode_settings (b)luetooth, (p)ulse audio, (s)talone, (l)xappearance, (n)itrogen
 mode "$mode_settings" {
 	 bindsym b exec blueman-manager, mode "default"
 	 bindsym p exec pavucontrol, mode "default"
 	 bindsym s exec stalonetray, mode "default"
+	 bindsym l exec lxappearance, mode "default"
+	 bindsym n exec nitrogen, mode "default"
+	 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -392,8 +395,10 @@ smart_borders on
 
 
 ## Auto EXEC
+exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/alacritty' 
+exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/emacs' 
 exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/firefox'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/thunderbird'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/slack'
+# TODO open keybase on startup
 exec --no-startup-id i3-msg 'workspace $ws5; exec /usr/bin/spotify'
-exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/alacritty' 
