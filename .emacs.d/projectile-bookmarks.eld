@@ -1,0 +1,1 @@
+("~/itu/algorithm_design/algdes-labs/" "~/dev/ark36/")

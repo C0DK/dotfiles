@@ -64,8 +64,7 @@ icon_indirect_following_user = " "
 		  [colors.message.quote]
 		  foreground = "green"
 		  [colors.message.code]
-		  foreground = "green"
-		  background = "grey"
+		  inverse = true
 	 [colors.feed]
 		  [colors.feed.basic]
 		  foreground = "grey"
