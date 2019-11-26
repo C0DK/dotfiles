@@ -144,6 +144,7 @@
   :init
   (elpy-enable))
 
+;; (add-hook 'elpy-mode (lambda()):
 (add-to-list 'load-path "~/.emacs.d/scripts/")
 (require 'blacken)
 (add-hook 'python-mode-hook 'blacken-mode)
