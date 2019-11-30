@@ -57,7 +57,7 @@ icon_indirect_following_user = " "
 		  [colors.message.link_url]
 		  foreground = "yellow"
 		  [colors.message.link_keybase]
-		  foreground = "yellow"
+		  foreground = "cyan"
 		  [colors.message.reaction]
 		  foreground = "magenta"
 		  bold = true

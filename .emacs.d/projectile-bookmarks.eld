@@ -1,1 +1,1 @@
-("~/dev/ark36/" "~/.dotfiles/" "~/itu/func_programming/" "~/itu/algorithm_design/algdes-labs/")
+("~/dev/ark36/" "~/dev/kbtui/" "~/.dotfiles/" "~/itu/algorithm_design/algdes-labs/" "~/itu/func_programming/")
