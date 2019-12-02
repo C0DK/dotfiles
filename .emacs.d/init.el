@@ -164,15 +164,50 @@
 (show-paren-mode 1)
 ;; history
 (savehist-mode 1)
+;; ORG
+(setq org-agenda-files '("~/Documents/org/inbox.org"
+                         "~/Documents/org/gtd.org"
+                         "~/Documents/org/wishlist.org"
+                         "~/Documents/org/tickler.org"))
+
+(setq org-refile-targets '(("~/Documents/org/gtd.org" :maxlevel . 3)
+                           ("~/Documents/org/someday.org" :level . 1)
+                           ("~/Documents/org/wishlist.org" :level . 1)
+                           ("~/Documents/org/tickler.org" :maxlevel . 2)))
+(setq org-default-notes-file (concat org-directory "~/Documents/org/notes.org"))
+
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c f") (lambda() (interactive)(find-file "~/Documents/org")))
+(defun org-summary-todo (n-done n-not-done)
+  "Switch entry to DONE when all subentries are done, to TODO otherwise."
+  (let (org-log-done org-log-states)   ; turn off logging
+    (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+
+(add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+;; org capture
+(setq org-capture-templates '(("t" "Todo [inbox]" entry
+                               (file+headline "~/Documents/org/inbox.org" "Tasks")
+                               "* TODO %i%?")
+                              ("n" "Note" entry
+                               (file+headline "~/Documents/org/notes.org" "Notes")
+                               "* %U \n%i%?")
+                              ("f" "Frida Journal" entry
+                               (file+headline "~/Documents/org/frida.org" "Fridas dagbog")
+                               "* %U \n%i%?")
+                              ("w" "Wish" entry
+                               (file+headline "~/Documents/org/wishlist.org" "Wishlist")
+                               "* %i%?")
+                              ("T" "Tickler" entry
+                               (file+headline "~/Documents/org/tickler.org" "Tickler")
+                               " %i%? \n %U")))
 
 ;; line numbers
 (when (version<= "26.0.50" emacs-version )
   (global-display-line-numbers-mode))
 (setq display-line-numbers-type 'absolute)
 
-(when window-system
-(load-theme 'xresources t)
-)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -182,6 +217,7 @@
  '(custom-safe-themes
 	(quote
 	 ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "82358261c32ebedfee2ca0f87299f74008a2e5ba5c502bde7aaa15db20ee3731" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "5034d4b3ebd327bbdc1bbf925b6bf7e4dfbe4f3f84ee4d21e154143f128c6e04" default)))
+ '(org-agenda-files (quote ("~/Documents/org/gtd.org")))
  '(package-selected-packages
 	(quote
 	 (projectile hl-todo nord-theme rjsx-mode neotree impatient-mode ## prettier-js web-mode php-mode toml-mode elpy use-package smart-mode-line powerline-evil godoctor go-guru go-eldoc flycheck evil-collection dracula-theme auto-complete)))
