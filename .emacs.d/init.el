@@ -56,7 +56,7 @@
 (defun web-mode-init-hook ()
   "Hooks for Web mode.  Adjust indent."
   (setq web-mode-markup-indent-offset 4))
-  
+
 (add-hook 'web-mode-hook  'web-mode-init-hook)
 
 (setq-default flycheck-disabled-checkers
@@ -154,10 +154,10 @@
 
 
 ;; markdown
-  (defun markdown-html (buffer)
+(defun markdown-html (buffer)
   (princ (with-current-buffer buffer
-          (format "<!DOCTYPE html><html><title>Impatient Markdown</title><xmp theme=\"united\" style=\"display:none;\"> %s  </xmp><script src=\"http://strapdownjs.com/v/0.2/strapdown.js\"></script></html>" (buffer-substring-no-properties (point-min) (point-max))))
-        (current-buffer)))
+			  (format "<!DOCTYPE html><html><title>Impatient Markdown</title><xmp theme=\"united\" style=\"display:none;\"> %s  </xmp><script src=\"http://strapdownjs.com/v/0.2/strapdown.js\"></script></html>" (buffer-substring-no-properties (point-min) (point-max))))
+			(current-buffer)))
 
 (global-hl-todo-mode)
 
@@ -165,6 +165,8 @@
 ;; history
 (savehist-mode 1)
 ;; ORG
+(add-hook 'org-mode-hook 'org-indent-mode)
+
 (setq org-agenda-files '("~/Documents/org/inbox.org"
                          "~/Documents/org/gtd.org"
                          "~/Documents/org/wishlist.org"
@@ -174,12 +176,13 @@
                            ("~/Documents/org/someday.org" :level . 1)
                            ("~/Documents/org/wishlist.org" :level . 1)
                            ("~/Documents/org/tickler.org" :maxlevel . 2)))
-(setq org-default-notes-file (concat org-directory "~/Documents/org/notes.org"))
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c f") (lambda() (interactive)(find-file "~/Documents/org")))
+
+;; Auto finis when all supparts are finished
 (defun org-summary-todo (n-done n-not-done)
   "Switch entry to DONE when all subentries are done, to TODO otherwise."
   (let (org-log-done org-log-states)   ; turn off logging
@@ -227,7 +230,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(org-level-1 ((t (:foreground "#8fbcbb" :weight extra-bold))))
+ '(org-level-2 ((t (:foreground "#88C0D0" :weight bold))))
+ '(org-level-3 ((t (:foreground "#81a1c1" :weight semi-bold))))
+ '(org-level-4 ((t (:foreground "#5e81ac" :weight normal))))
+ '(org-level-5 ((t (:inherit org-level-4))))
+ '(org-level-6 ((t (:inherit org-level-4))))
+ '(org-level-7 ((t (:inherit org-level-4))))
+ '(org-level-8 ((t (:inherit org-level-2)))))
 
 
 ;;; init.el ends here
