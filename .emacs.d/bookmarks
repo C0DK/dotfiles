@@ -13,8 +13,8 @@
  (rear-context-string . "s from Org mode\n")
  (position . 1041))
 ("org-capture-last-stored"
- (filename . "~/Documents/org/frida.org")
- (front-context-string . "** [2019-12-02 M")
- (rear-context-string . "skriver senere!\n")
- (position . 21829))
+ (filename . "~/Documents/org/inbox.org")
+ (front-context-string . "** TODO Start us")
+ (rear-context-string)
+ (position . 9))
 )

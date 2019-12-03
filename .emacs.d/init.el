@@ -223,7 +223,7 @@
  '(org-agenda-files (quote ("~/Documents/org/gtd.org")))
  '(package-selected-packages
 	(quote
-	 (projectile hl-todo nord-theme rjsx-mode neotree impatient-mode ## prettier-js web-mode php-mode toml-mode elpy use-package smart-mode-line powerline-evil godoctor go-guru go-eldoc flycheck evil-collection dracula-theme auto-complete)))
+	 (ox-twbs projectile hl-todo nord-theme rjsx-mode neotree impatient-mode ## prettier-js web-mode php-mode toml-mode elpy use-package smart-mode-line powerline-evil godoctor go-guru go-eldoc flycheck evil-collection dracula-theme auto-complete)))
  '(pyvenv-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
