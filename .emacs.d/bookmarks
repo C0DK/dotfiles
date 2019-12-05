@@ -9,12 +9,12 @@
  (position . 260))
 ("org-refile-last-stored"
  (filename . "~/Documents/org/gtd.org")
- (front-context-string . "** TODO Move all")
- (rear-context-string . "s from Org mode\n")
- (position . 1041))
+ (front-context-string . "** TODO Start us")
+ (rear-context-string . "T_preonic_grid \n")
+ (position . 2504))
 ("org-capture-last-stored"
  (filename . "~/Documents/org/inbox.org")
- (front-context-string . "** TODO Start us")
- (rear-context-string)
- (position . 9))
+ (front-context-string . "** TODO install ")
+ (rear-context-string . " missing maybe?\n")
+ (position . 601))
 )

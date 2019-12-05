@@ -205,6 +205,15 @@
                               ("T" "Tickler" entry
                                (file+headline "~/Documents/org/tickler.org" "Tickler")
                                " %i%? \n %U")))
+;; Org projects
+
+(setq org-publish-project-alist
+      '(("KBP"
+         :base-directory "~/Documents/org/kb_public"
+         :publishing-directory "/keybase/public/cabang/"
+         :publishing-function org-twbs-publish-to-html
+         :section-numbers nil
+         :table-of-contents nil)))
 
 ;; line numbers
 (when (version<= "26.0.50" emacs-version )
@@ -223,7 +232,7 @@
  '(org-agenda-files (quote ("~/Documents/org/gtd.org")))
  '(package-selected-packages
 	(quote
-	 (ox-twbs projectile hl-todo nord-theme rjsx-mode neotree impatient-mode ## prettier-js web-mode php-mode toml-mode elpy use-package smart-mode-line powerline-evil godoctor go-guru go-eldoc flycheck evil-collection dracula-theme auto-complete)))
+	 (which-key ox-twbs projectile hl-todo nord-theme rjsx-mode neotree impatient-mode ## prettier-js web-mode php-mode toml-mode elpy use-package smart-mode-line powerline-evil godoctor go-guru go-eldoc flycheck evil-collection dracula-theme auto-complete)))
  '(pyvenv-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
