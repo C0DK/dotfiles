@@ -83,7 +83,7 @@ alias notelist='ls ~/Documents/Notes'
 alias listnote='notelist'
 alias listnotes='notelist'
 alias noteslist='notelist'
-alias kb='keybase'
+#alias kb='keybase'
 alias clearofetch='clear && neofetch'
 alias neofetch_long='clear && neofetch --config ~/.config/neofetch/config_long.conf'
 alias jrnl=' jrnl'
@@ -101,6 +101,11 @@ note() {
 	fi
 
 }
+kb() {
+	 keybase "${@:1}" | less
+	
+}
+
 
 # Default browser
 BROWSER=/usr/bin/firefox

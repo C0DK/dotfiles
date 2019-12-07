@@ -13,8 +13,8 @@
  (rear-context-string . "T_preonic_grid \n")
  (position . 2504))
 ("org-capture-last-stored"
- (filename . "~/Documents/org/inbox.org")
- (front-context-string . "** TODO install ")
- (rear-context-string . " missing maybe?\n")
- (position . 601))
+ (filename . "~/Documents/org/notes.org")
+ (front-context-string . "** [2019-12-05 T")
+ (rear-context-string . "ount accounts. \n")
+ (position . 322))
 )
