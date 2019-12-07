@@ -187,14 +187,15 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c f") (lambda() (interactive)(find-file "~/Documents/org")))
+(global-set-key (kbd "C-c g") (lambda() (interactive)(find-file "~/Documents/org/gtd.org")))
+(global-set-key (kbd "C-c i") (lambda() (interactive)(find-file "~/Documents/org/inbox.org")))
 
 ;; Auto finis when all supparts are finished
 (defun org-summary-todo (n-done n-not-done)
   "Switch entry to DONE when all subentries are done, to TODO otherwise."
   (let (org-log-done org-log-states)   ; turn off logging
     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
-
+(setq org-agenda-todo-list-sublevels 1)
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 ;; org capture
 (setq org-capture-templates '(("t" "Todo [inbox]" entry
@@ -219,9 +220,9 @@
          :base-directory "~/Documents/org/kbp"
          :publishing-directory "/keybase/public/cabang/"
          :publishing-function org-twbs-publish-to-html
-         :section-numbers nil
+         ;;:section-numbers nil
 			:with-headline-numbers nil
-      ;;   :table-of-contents nil
+			;;:table-of-contents nil
 			)))
 
 ;; line numbers
@@ -238,7 +239,16 @@
  '(custom-safe-themes
 	(quote
 	 ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "82358261c32ebedfee2ca0f87299f74008a2e5ba5c502bde7aaa15db20ee3731" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "5034d4b3ebd327bbdc1bbf925b6bf7e4dfbe4f3f84ee4d21e154143f128c6e04" default)))
- '(org-agenda-files (quote ("~/Documents/org/gtd.org")))
+ '(org-agenda-files
+	(quote
+	 ("~/dev/gitbase-bot/gtd.org" "~/Documents/org/gtd.org")))
+ '(org-agenda-prefix-format
+	(quote
+	 ((agenda . " %i %-12:c%?-12t% s")
+	  (todo . "%l %i %-6:c")
+	  (tags . " %i %-12:c")
+	  (search . " %i %-12:c"))))
+ '(org-agenda-remove-times-when-in-prefix nil)
  '(package-selected-packages
 	(quote
 	 (which-key ox-twbs projectile hl-todo nord-theme rjsx-mode neotree impatient-mode ## prettier-js web-mode php-mode toml-mode elpy use-package smart-mode-line powerline-evil godoctor go-guru go-eldoc flycheck evil-collection dracula-theme auto-complete)))
