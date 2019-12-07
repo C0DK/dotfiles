@@ -13,6 +13,7 @@ isSync ~/.dotfiles
 isSync ~/dev/ark36
 isSync ~/dev/kbtui
 isSync ~/dev/smalldickbot
+isSync ~/dev/gitbase-bot
 isSync ~/itu/pcpp
 isSync ~/itu/security
 isSync ~/itu/algorithm_design/algdes-labs

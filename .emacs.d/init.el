@@ -220,7 +220,9 @@
          :publishing-directory "/keybase/public/cabang/"
          :publishing-function org-twbs-publish-to-html
          :section-numbers nil
-         :table-of-contents nil)))
+			:with-headline-numbers nil
+      ;;   :table-of-contents nil
+			)))
 
 ;; line numbers
 (when (version<= "26.0.50" emacs-version )
