@@ -14,7 +14,7 @@
  (position . 2504))
 ("org-capture-last-stored"
  (filename . "~/Documents/org/inbox.org")
- (front-context-string . "** TODO keybase ")
- (rear-context-string . "mmands on kbtui\n")
- (position . 777))
+ (front-context-string . "** TODO Use [[ht")
+ (rear-context-string . " Grand lan 2021\n")
+ (position . 245))
 )

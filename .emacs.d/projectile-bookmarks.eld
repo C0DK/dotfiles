@@ -1,1 +1,1 @@
-("~/dev/ark36/" "~/Documents/" "~/dev/gitbase-bot/" "~/.dotfiles/" "~/itu/func_programming/" "~/dev/botContainer/" "~/dev/goBotExample/" "~/dev/kbtui/" "~/itu/algorithm_design/algdes-labs/")
+("~/.dotfiles/" "~/Documents/" "~/dev/gitbase-bot/" "~/dev/ark36/" "~/itu/func_programming/" "~/dev/botContainer/" "~/dev/goBotExample/" "~/dev/kbtui/" "~/itu/algorithm_design/algdes-labs/")
