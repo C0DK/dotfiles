@@ -14,7 +14,7 @@
  (position . 2504))
 ("org-capture-last-stored"
  (filename . "~/Documents/org/inbox.org")
- (front-context-string . "** TODO Use [[ht")
- (rear-context-string . " Grand lan 2021\n")
- (position . 245))
+ (front-context-string . "** TODO setup em")
+ (rear-context-string . "g]] for emacs  \n")
+ (position . 463))
 )
