@@ -49,23 +49,36 @@
   :ensure t
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
+
 ;; web-mode
+;; based on, partially: https://gist.github.com/CodyReichert/9dbc8bd2a104780b64891d8736682cea
 (require 'prettier-js)
 (add-hook 'js2-mode-hook 'prettier-js-mode)
 (add-hook 'rjsx-mode-hook 'prettier-js-mode)
 (add-hook 'web-mode-hook 'prettier-js-mode)
+(add-hook 'tide-mode-hook 'prettier-js-mode)
+(add-hook 'javascript-hook 'prettier-js-mode)
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'" . web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "jsx" (file-name-extension buffer-file-name))
+              (tide-mode))))
+;; configure jsx-tide checker to run after your default jsx checker
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+;; (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
+
+(use-package tide
+  :ensure t
+  :after (typescript-mode flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
 ;; react mode (rjsx-mode)
-(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
+;; (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
 
-(defun web-mode-init-hook ()
-  "Hooks for Web mode.  Adjust indent."
-  (setq web-mode-markup-indent-offset 4))
-
-(add-hook 'web-mode-hook  'web-mode-init-hook)
-
-(setq-default flycheck-disabled-checkers
-              (append flycheck-disabled-checkers
-                      '(javascript-jshint json-jsonlist)))
 ;; golang stuff
 ;; https://github.com/mdempsky/gocode
 ;; https://github.com/emacsmirror/godoctor
@@ -181,6 +194,7 @@
 
 (setq org-refile-targets '(("~/Documents/org/gtd.org" :maxlevel . 3)
                            ("~/Documents/org/someday.org" :level . 1)
+                           ("~/Documents/org/archive.org" :level . 1)
                            ("~/Documents/org/wishlist.org" :level . 1)
                            ("~/Documents/org/tickler.org" :maxlevel . 2)))
 
@@ -242,7 +256,7 @@
 	 ("d6c5b8dc6049f2e9dabdfcafa9ef2079352640e80dffe3e6cc07c0f89cbf9748" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "82358261c32ebedfee2ca0f87299f74008a2e5ba5c502bde7aaa15db20ee3731" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "5034d4b3ebd327bbdc1bbf925b6bf7e4dfbe4f3f84ee4d21e154143f128c6e04" default)))
  '(org-agenda-files
 	(quote
-	 ("~/dev/gitbase-bot/gtd.org" "~/Documents/org/gtd.org")) t)
+	 ("~/dev/gitbase-bot/gtd.org" "~/Documents/org/gtd.org")))
  '(org-agenda-prefix-format
 	(quote
 	 ((agenda . " %i %-12:c%?-12t% s")
@@ -252,7 +266,7 @@
  '(org-agenda-remove-times-when-in-prefix nil)
  '(package-selected-packages
 	(quote
-	 (which-key ox-twbs projectile hl-todo nord-theme rjsx-mode neotree impatient-mode ## prettier-js web-mode php-mode toml-mode elpy use-package smart-mode-line powerline-evil godoctor go-guru go-eldoc flycheck evil-collection dracula-theme auto-complete)))
+	 (tide add-node-modules-path which-key ox-twbs projectile hl-todo nord-theme rjsx-mode neotree impatient-mode ## prettier-js web-mode php-mode toml-mode elpy use-package smart-mode-line powerline-evil godoctor go-guru go-eldoc flycheck evil-collection dracula-theme auto-complete)))
  '(pyvenv-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
