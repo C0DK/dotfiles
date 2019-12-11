@@ -124,10 +124,10 @@
   :hook (scala-mode . lsp)
   :config (setq lsp-prefer-flymake nil))
 
-(use-package lsp-ui)
+;; (use-package lsp-ui)
 
 ;; Add company-lsp backend for metals
-(use-package company-lsp)
+;; (use-package company-lsp)
 
 ;; use ssh instead of scp for tramp
 (setq tramp-default-method "ssh")
@@ -239,7 +239,7 @@
  '(custom-enabled-themes (quote (nord)))
  '(custom-safe-themes
 	(quote
-	 ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "82358261c32ebedfee2ca0f87299f74008a2e5ba5c502bde7aaa15db20ee3731" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "5034d4b3ebd327bbdc1bbf925b6bf7e4dfbe4f3f84ee4d21e154143f128c6e04" default)))
+	 ("d6c5b8dc6049f2e9dabdfcafa9ef2079352640e80dffe3e6cc07c0f89cbf9748" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "82358261c32ebedfee2ca0f87299f74008a2e5ba5c502bde7aaa15db20ee3731" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "5034d4b3ebd327bbdc1bbf925b6bf7e4dfbe4f3f84ee4d21e154143f128c6e04" default)))
  '(org-agenda-files
 	(quote
 	 ("~/dev/gitbase-bot/gtd.org" "~/Documents/org/gtd.org")) t)
