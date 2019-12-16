@@ -15,6 +15,6 @@
 ("org-capture-last-stored"
  (filename . "~/Documents/org/inbox.org")
  (front-context-string . "** TODO setup pr")
- (rear-context-string . "e for config]] \n")
- (position . 229))
+ (rear-context-string . "ctile configs  \n")
+ (position . 264))
 )
