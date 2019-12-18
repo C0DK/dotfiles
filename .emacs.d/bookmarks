@@ -9,12 +9,12 @@
  (position . 260))
 ("org-refile-last-stored"
  (filename . "~/Documents/org/gtd.org")
- (front-context-string . "** TODO [[https:")
- (rear-context-string . "run on startup \n")
- (position . 3271))
-("org-capture-last-stored"
- (filename . "~/Documents/org/inbox.org")
  (front-context-string . "** TODO setup pr")
- (rear-context-string . "ctile configs  \n")
- (position . 264))
+ (rear-context-string . "p=5323][this]] \n")
+ (position . 3417))
+("org-capture-last-stored"
+ (filename . "~/Documents/org/notes.org")
+ (front-context-string . "** [2019-12-16 M")
+ (rear-context-string . "going on jesus.\n")
+ (position . 1913))
 )
