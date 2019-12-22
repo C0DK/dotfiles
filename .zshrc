@@ -1,7 +1,7 @@
 
 # If you come from bash you might have to change your $PATH.
 export GOPATH=$HOME/go
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOPATH/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.emacs.d/bin/:$PATH
 
 
 # Path to your oh-my-zsh installation.
