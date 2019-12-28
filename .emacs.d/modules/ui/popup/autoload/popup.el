@@ -13,26 +13,27 @@
 (defun +popup--kill-buffer (buffer ttl)
   "Tries to kill BUFFER, as was requested by a transient timer. If it fails, eg.
 the buffer is visible, then set another timer and try again later."
-  (when (buffer-live-p buffer)
-    (let ((inhibit-quit t)
-          (kill-buffer-hook (remq '+popup-kill-buffer-hook-h kill-buffer-hook)))
-      (cond ((get-buffer-window buffer t)
+  (let ((inhibit-quit t))
+    (cond ((not (buffer-live-p buffer)))
+          ((not (get-buffer-window buffer t))
+           (with-demoted-errors "Error killing transient buffer: %s"
+             (with-current-buffer buffer
+               (let ((kill-buffer-hook (remq '+popup-kill-buffer-hook-h kill-buffer-hook))
+                     confirm-kill-processes)
+                 (when-let (process (get-buffer-process buffer))
+                   (kill-process process))
+                 (let (kill-buffer-query-functions)
+                   ;; HACK The debugger backtrace buffer, when killed, called
+                   ;;      `top-level'. This causes jumpiness when the popup
+                   ;;      manager tries to clean it up.
+                   (cl-letf (((symbol-function #'top-level) #'ignore))
+                     (kill-buffer buffer)))))))
+          ((let ((ttl (if (= ttl 0)
+                          (or (plist-get +popup-defaults :ttl) 3)
+                        ttl)))
              (with-current-buffer buffer
                (setq +popup--timer
-                     (run-at-time ttl nil #'+popup--kill-buffer buffer ttl))))
-            ((eq ttl 0)
-             (kill-buffer buffer))
-            ((with-demoted-errors "Error killing transient buffer: %s"
-               (with-current-buffer buffer
-                 (let (confirm-kill-processes)
-                   (when-let (process (get-buffer-process buffer))
-                     (kill-process process))
-                   (let (kill-buffer-query-functions)
-                     ;; HACK The debugger backtrace buffer, when killed, called
-                     ;;      `top-level'. This causes jumpiness when the popup
-                     ;;      manager tries to clean it up.
-                     (cl-letf (((symbol-function #'top-level) #'ignore))
-                       (kill-buffer buffer)))))))))))
+                     (run-at-time ttl nil #'+popup--kill-buffer buffer ttl))))))))
 
 (defun +popup--delete-window (window)
   "Do housekeeping before destroying a popup window.
@@ -393,8 +394,8 @@ This window parameter is ignored if FORCE-P is non-nil."
 
 ;;;###autoload
 (defun +popup/toggle ()
-  "If popups are open, close them. If they aren't, restore the last one or open
-the message buffer in a popup window."
+  "Toggle any visible popups.
+If no popups are available, display the *Messages* buffer in a popup window."
   (interactive)
   (let ((+popup--inhibit-transient t))
     (cond ((+popup-windows) (+popup/close-all t))

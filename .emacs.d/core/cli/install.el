@@ -46,20 +46,16 @@ DOOMDIR environment variable. e.g.
                   (print! (success "Done!")))))
             '(("init.el" .
                (lambda ()
-                 (insert-file-contents (doom-path doom-emacs-dir "init.example.el"))))
+                 (insert-file-contents
+                  (doom-path doom-emacs-dir "init.example.el"))))
               ("config.el" .
                (lambda ()
-                 (insert! ";;; %sconfig.el -*- lexical-binding: t; -*-\n\n"
-                          ";; Place your private configuration here\n"
-                          ((relpath doom-private-dir)))))
+                 (insert-file-contents
+                  (doom-path doom-core-dir "templates/config.example.el"))))
               ("packages.el" .
                (lambda ()
-                 (insert! ";; -*- no-byte-compile: t; -*-\n;;; %spackages.el\n\n"
-                          ";;; Examples:\n"
-                          ";; (package! some-package)\n"
-                          ";; (package! another-package :recipe (:host github :repo \"username/repo\"))\n"
-                          ";; (package! builtin-package :disable t)\n"
-                          ((relpath doom-private-dir))))))))
+                 (insert-file-contents
+                  (doom-path doom-core-dir "templates/packages.example.el")))))))
 
     ;; In case no init.el was present the first time `doom-initialize-modules' was
     ;; called in core.el (e.g. on first install)
@@ -72,7 +68,7 @@ DOOMDIR environment variable. e.g.
       (if (file-exists-p doom-env-file)
           (print! (info "Envvar file already exists, skipping"))
         (when (or doom-auto-accept
-                  (y-or-n-p "Generate an env file? (see `doom help env` for details)"))
+                  (y-or-n-p "Generate an envvar file? (see `doom help env` for details)"))
           (doom-cli-reload-env-file 'force-p))))
 
     ;; Install Doom packages

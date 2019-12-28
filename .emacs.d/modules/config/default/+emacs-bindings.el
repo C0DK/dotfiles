@@ -48,6 +48,32 @@
         :desc "Open scratch buffer"         "x"   #'doom/open-scratch-buffer
         :desc "Open project scratch buffer" "X"   #'doom/switch-to-scratch-buffer)
 
+      ;;; <leader> r --- remote
+      (:when (featurep! :tools upload)
+        (:prefix-map ("r" . "remote")
+          :desc "Upload local"               "u" #'ssh-deploy-upload-handler
+          :desc "Upload local (force)"       "U" #'ssh-deploy-upload-handler-forced
+          :desc "Download remote"            "d" #'ssh-deploy-download-handler
+          :desc "Diff local & remote"        "D" #'ssh-deploy-diff-handler
+          :desc "Browse remote files"        "." #'ssh-deploy-browse-remote-handler
+          :desc "Detect remote changes"      ">" #'ssh-deploy-remote-changes-handler))
+
+      ;;; <leader> s --- search
+      (:prefix-map ("s" . "search")
+        :desc "Search buffer"                "b" #'swiper
+        :desc "Search current directory"     "d" #'+default/search-cwd
+        :desc "Search other directory"       "D" #'+default/search-other-cwd
+        :desc "Locate file"                  "f" #'locate
+        :desc "Jump to symbol"               "i" #'imenu
+        :desc "Jump to visible link"         "l" #'ace-link
+        :desc "Jump to link"                 "L" #'ffap-menu
+        :desc "Jump list"                    "j" #'evil-show-jumps
+        :desc "Jump to mark"                 "m" #'evil-show-marks
+        :desc "Search project"               "p" #'+default/search-project
+        :desc "Search other project"         "P" #'+default/search-other-project
+        :desc "Search buffer"                "s" #'swiper-isearch
+        :desc "Search buffer for thing at point" "S" #'swiper-isearch-thing-at-point)
+
       ;;; <leader> g --- lookup
       (:when (featurep! :tools lookup)
         (:prefix-map ("g" . "lookup")
@@ -76,7 +102,9 @@
         :desc "Capture"                 "c"     #'org-capture
         :desc "Goto capture"            "C"     #'org-capture-goto-target
         :desc "Link store"              "l"     #'org-store-link
-        :desc "Sync org caldav"         "S"     #'org-caldav-sync)
+        :desc "Sync org caldav"         "S"     #'org-caldav-sync
+        (:when (featurep! :lang org +pomodoro)
+          :desc "Pomodoro timer"          "t" #'org-pomodoro))
 
       ;;; <leader> p --- project
       (:prefix ("p" . "project")
@@ -272,12 +300,15 @@
         "M-SPC"     #'objed-activate)
 
       ;;; buffer management
-      "C-x b"       #'persp-switch-to-buffer
-      (:when (featurep! :completion ivy)
-        "C-x 4 b"   #'+ivy/switch-workspace-buffer-other-window)
+      "C-x b"       #'switch-to-buffer
+      "C-x 4 b"     #'switch-to-buffer-other-window
+      (:when (featurep! :ui workspaces)
+        "C-x b"       #'persp-switch-to-buffer
+        "C-x B"       #'switch-to-buffer
+        "C-x 4 B"     #'switch-to-buffer-other-window
+        (:when (featurep! :completion ivy)
+          "C-x 4 b"   #'+ivy/switch-workspace-buffer-other-window))
       "C-x C-b"     #'ibuffer-list-buffers
-      "C-x B"       #'switch-to-buffer
-      "C-x 4 B"     #'switch-to-buffer-other-window
       "C-x K"       #'doom/kill-this-buffer-in-all-windows
 
       ;;; company-mode

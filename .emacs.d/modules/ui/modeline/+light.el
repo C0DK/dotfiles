@@ -68,14 +68,6 @@ side of the modeline, and whose CDR is the right-hand side.")
 ;;
 ;;; Helpers
 
-(defvar +modeline--redisplayed-p nil)
-(defadvice! modeline-recalculate-height-a (&optional _force &rest _ignored)
-  "Ensure that window resizing functions take modeline height into account."
-  :before '(fit-window-to-buffer resize-temp-buffer-window)
-  (unless +modeline--redisplayed-p
-    (setq-local +modeline--redisplayed-p t)
-    (redisplay t)))
-
 ;;; `active'
 (defvar +modeline--active-window (selected-window))
 
@@ -196,12 +188,12 @@ LHS and RHS will accept."
         (setq +modeline-bar
               (+modeline--make-xpm
                (and +modeline-bar-width
-                    (face-background '+modeline-bar nil 'inherit))
+                    (face-background '+modeline-bar nil t))
                width height)
               +modeline-inactive-bar
               (+modeline--make-xpm
                (and +modeline-bar-width
-                    (face-background '+modeline-bar-inactive nil 'inherit))
+                    (face-background '+modeline-bar-inactive nil t))
                width height)))))
 
   (add-hook! 'doom-change-font-size-hook
@@ -472,16 +464,19 @@ lines are selected, or the NxM dimensions of a block selection.")
 ;;; `+modeline-encoding'
 (def-modeline-var! +modeline-encoding
   '(:eval
-    (concat (pcase (coding-system-eol-type buffer-file-coding-system)
-              (0 " LF ")
-              (1 " RLF ")
-              (2 " CR "))
+    (concat (coding-system-eol-type-mnemonic buffer-file-coding-system)
+            " "
             (let ((sys (coding-system-plist buffer-file-coding-system)))
               (if (memq (plist-get sys :category)
                         '(coding-category-undecided coding-category-utf-8))
                   "UTF-8"
-                (upcase (symbol-name (plist-get sys :name)))))
-            "  ")))
+                (upcase (symbol-name (plist-get sys :name))))))))
+
+;; Clearer mnemonic labels for EOL styles
+(setq eol-mnemonic-dos "CRLF"
+      eol-mnemonic-mac "CR"
+      eol-mnemonic-unix "LF"
+      eol-mnemonic-undecided "??")
 
 
 ;;
@@ -493,14 +488,15 @@ lines are selected, or the NxM dimensions of a block selection.")
     " "
     +modeline-buffer-identification
     +modeline-position)
-  '(""
+  `(""
     mode-line-misc-info
     +modeline-modes
     (vc-mode ("  "
               ,(all-the-icons-octicon "git-branch" :v-adjust 0.0)
               vc-mode " "))
-    " "
+    "  "
     +modeline-encoding
+    "  "
     (+modeline-checker ("" +modeline-checker "   "))))
 
 (def-modeline! project

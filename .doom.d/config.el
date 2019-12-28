@@ -66,7 +66,7 @@
            ;;:table-of-contents nil
            :html-head-extra ,(format "<style type=\"text/css\">%s</style>"
                                     (with-temp-buffer
-                                      (insert-file-contents "nord.css")
+                                      (insert-file-contents "~/.doom.d/nord.css")
                                       (buffer-string))
                                     )
            )))

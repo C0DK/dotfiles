@@ -9,7 +9,7 @@
 ;;    other windows just to pop up one tiny window).
 ;; 2. Forcing plugins to use `display-buffer' and `pop-to-buffer' instead of
 ;;    `switch-to-buffer' (which is unaffected by `display-buffer-alist', which
-;;    this module heavily relies on).
+;;    we must rely on, heavily).
 ;; 3. Closing popups (temporarily) before functions that are highly destructive
 ;;    to the illusion of popup control get run (with the use of the
 ;;    `save-popups!' macro).
@@ -206,10 +206,10 @@ the command buffer."
   (defadvice! +popup--helm-elisp--persistent-help-a (candidate _fun &optional _name)
     :before #'helm-elisp--persistent-help
     (let (win)
-      (when (and (helm-attr 'help-running-p)
-                 (string= candidate (helm-attr 'help-current-symbol))
-                 (setq win (get-buffer-window (get-buffer (help-buffer)))))
-        (delete-window win)))))
+      (and (helm-attr 'help-running-p)
+           (string= candidate (helm-attr 'help-current-symbol))
+           (setq win (get-buffer-window (get-buffer (help-buffer))))
+           (delete-window win)))))
 
 
 ;;;###package Info
@@ -316,7 +316,8 @@ Ugh, such an ugly hack."
 (after! which-key
   (when (eq which-key-popup-type 'side-window)
     (setq which-key-popup-type 'custom
-          which-key-custom-popup-max-dimensions-function (lambda (_) (which-key--side-window-max-dimensions))
+          which-key-custom-popup-max-dimensions-function
+          (lambda (_) (which-key--side-window-max-dimensions))
           which-key-custom-hide-popup-function #'which-key--hide-buffer-side-window
           which-key-custom-show-popup-function
           (lambda (act-popup-dim)
@@ -324,6 +325,8 @@ Ugh, such an ugly hack."
                        (lambda (buffer alist)
                          (+popup-display-buffer-stacked-side-window-fn
                           buffer (append '((vslot . -9999)) alist)))))
+              ;; HACK Fix #2219 where the which-key popup would get cut off.
+              (setcar act-popup-dim (1+ (car act-popup-dim)))
               (which-key--show-buffer-side-window act-popup-dim))))))
 
 

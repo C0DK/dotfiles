@@ -162,12 +162,6 @@ users).")
 ;; to, it's our (the user's) failure. One case for all!
 (setq auto-mode-case-fold nil)
 
-;; Make all regexps case-sensitive by default. This favors correctness for
-;; programmatical regexp searches and provides a slight performance benefit to
-;; font-locking where the keywords don't let-bind `case-fold-search' themselves
-;; and are already case-correct. This could break poorly written packages!
-(setq-default case-fold-search nil)
-
 ;; Display the bare minimum at startup. We don't need all that noise. The
 ;; dashboard/empty scratch buffer is good enough.
 (setq inhibit-startup-message t
@@ -278,6 +272,16 @@ users).")
     (setq gcmh-idle-delay 10
           gcmh-verbose doom-debug-mode)
     (add-hook 'focus-out-hook #'gcmh-idle-garbage-collect)))
+
+;; HACK `tty-run-terminal-initialization' is *tremendously* slow for some
+;;      reason. Disabling it completely could have many side-effects, so we
+;;      defer it until later.
+(unless (display-graphic-p)
+  (advice-add #'tty-run-terminal-initialization :override #'ignore)
+  (add-hook! 'window-setup-hook
+    (defun doom-init-tty-h ()
+      (advice-remove #'tty-run-terminal-initialization #'ignore)
+      (tty-run-terminal-initialization (selected-frame) nil t))))
 
 
 ;;

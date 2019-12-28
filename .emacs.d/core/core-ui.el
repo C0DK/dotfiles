@@ -272,7 +272,8 @@ windows, switch to `doom-fallback-buffer'. Otherwise, delegate to original
 (setq frame-title-format '("%b – Doom Emacs")
       icon-title-format frame-title-format)
 
-;; Don't resize emacs in steps, it looks weird.
+;; Don't resize windows & frames in steps; it's prohibitive to prevent the user
+;; from resizing it to exact dimensions, and looks weird.
 (setq window-resize-pixelwise t
       frame-resize-pixelwise t)
 
@@ -283,29 +284,32 @@ windows, switch to `doom-fallback-buffer'. Otherwise, delegate to original
   (push '(tool-bar-lines . 0) default-frame-alist)
   (push '(vertical-scroll-bars) default-frame-alist))
 
-;; Sets `ns-appearance' and `ns-transparent-titlebar' on GUI frames (and fixes
-;; mismatching text color in the frame title)
 (when IS-MAC
   ;; Curse Lion and its sudden but inevitable fullscreen mode!
   ;; NOTE Meaningless to railwaycat's emacs-mac build
-  (setq ns-use-native-fullscreen nil
-        ;; Visit files opened outside of Emacs in existing frame, rather than a
-        ;; new one
-        ns-pop-up-frames nil)
+  (setq ns-use-native-fullscreen nil)
 
-  ;; Sets ns-transparent-titlebar and ns-appearance frame parameters as is
-  ;; appropriate for the loaded theme.
+  ;; Visit files opened outside of Emacs in existing frame, not a new one
+  (setq ns-pop-up-frames nil)
+
+  ;; Sets `ns-transparent-titlebar' and `ns-appearance' frame parameters so
+  ;; window borders will match the enabled theme.
   (and (or (daemonp)
            (display-graphic-p))
        (require 'ns-auto-titlebar nil t)
        (ns-auto-titlebar-mode +1))
 
-  (add-hook! 'after-make-frame-functions
-    (defun doom-init-menu-bar-in-gui-frames-h (frame)
-      "On MacOS, the menu bar isn't part of the frame. Disabling it makes MacOS
-treat Emacs as a non-application window."
-      (when (display-graphic-p frame)
-        (set-frame-parameter frame 'menu-bar-lines 1)))))
+  ;; HACK On MacOS, disabling the menu bar makes MacOS treat Emacs as a
+  ;;      non-application window -- which means it doesn't automatically capture
+  ;;      focus when it is started, among other things. We enable menu-bar-lines
+  ;;      there, but we still want it disabled in terminal frames because there
+  ;;      it activates an ugly menu bar.
+  (add-hook! '(window-setup-hook after-make-frame-functions)
+    (defun doom-init-menu-bar-in-gui-frames-h (&optional frame)
+      "Re-enable menu-bar-lines in GUI frames."
+      (when-let (frame (or frame (selected-frame)))
+        (when (display-graphic-p frame)
+          (set-frame-parameter frame 'menu-bar-lines 1))))))
 
 ;; The native border "consumes" a pixel of the fringe on righter-most splits,
 ;; `window-divider' does not. Available since Emacs 25.1.
@@ -319,13 +323,15 @@ treat Emacs as a non-application window."
 
 ;; always avoid GUI
 (setq use-dialog-box nil)
-;; Don't display floating tooltips; display their contents in the echo-area.
-(if (bound-and-true-p tooltip-mode) (tooltip-mode -1))
-;; native linux tooltips are ugly
+;; Don't display floating tooltips; display their contents in the echo-area,
+;; because native tooltips are ugly.
+(when (bound-and-true-p tooltip-mode)
+  (tooltip-mode -1))
+;; ...especially on linux
 (when IS-LINUX
   (setq x-gtk-use-system-tooltips nil))
 
- ;; Favor vertical splits over horizontal ones
+ ;; Favor vertical splits over horizontal ones. Screens are usually wide.
 (setq split-width-threshold 160
       split-height-threshold nil)
 
@@ -334,7 +340,7 @@ treat Emacs as a non-application window."
 ;;; Minibuffer
 
 ;; Allow for minibuffer-ception. Sometimes we need another minibuffer command
-;; _while_ we're in the minibuffer.
+;; while we're in the minibuffer.
 (setq enable-recursive-minibuffers t)
 
 ;; Show current key-sequence in minibuffer, like vim does. Any feedback after
@@ -403,19 +409,20 @@ treat Emacs as a non-application window."
   (setq hl-line-sticky-flag nil
         global-hl-line-sticky-flag nil)
 
-  ;; Disable `hl-line' in evil-visual mode (temporarily). `hl-line' can make the
-  ;; selection region harder to see while in evil visual mode.
-  (after! evil
-    (defvar doom-buffer-hl-line-mode nil)
-    (add-hook! 'evil-visual-state-entry-hook
-      (defun doom-disable-hl-line-h ()
-        (when hl-line-mode
-          (setq-local doom-buffer-hl-line-mode t)
-          (hl-line-mode -1))))
-    (add-hook! 'evil-visual-state-exit-hook
-      (defun doom-enable-hl-line-maybe-h ()
-        (when doom-buffer-hl-line-mode
-          (hl-line-mode +1))))))
+  ;; Temporarily disable `hl-line' when selection is active, since it doesn't
+  ;; serve much purpose when the selection is so much more visible.
+  (defvar doom-buffer-hl-line-mode nil)
+
+  (add-hook! '(evil-visual-state-entry-hook activate-mark-hook)
+    (defun doom-disable-hl-line-h ()
+      (when hl-line-mode
+        (setq-local doom-buffer-hl-line-mode t)
+        (hl-line-mode -1))))
+
+  (add-hook! '(evil-visual-state-exit-hook deactivate-mark-hook)
+    (defun doom-enable-hl-line-maybe-h ()
+      (when doom-buffer-hl-line-mode
+        (hl-line-mode +1)))))
 
 
 (use-package! winner
@@ -461,15 +468,23 @@ treat Emacs as a non-application window."
              all-the-icons-wicon
              all-the-icons-material
              all-the-icons-alltheicon)
-  :init
-  (defadvice! doom--disable-all-the-icons-in-tty-a (orig-fn &rest args)
-    "Return a blank string in tty Emacs, which doesn't support multiple fonts."
-    :around '(all-the-icons-octicon all-the-icons-material
-              all-the-icons-faicon all-the-icons-fileicon
-              all-the-icons-wicon all-the-icons-alltheicon)
-    (if (display-multi-font-p)
-        (apply orig-fn args)
-      "")))
+  :config
+  (cond ((daemonp)
+         (defadvice! doom--disable-all-the-icons-in-tty-a (orig-fn &rest args)
+           "Return a blank string in tty Emacs, which doesn't support multiple fonts."
+           :around '(all-the-icons-octicon all-the-icons-material
+                                           all-the-icons-faicon all-the-icons-fileicon
+                                           all-the-icons-wicon all-the-icons-alltheicon)
+           (if (or (not after-init-time) (display-multi-font-p))
+               (apply orig-fn args)
+             "")))
+        ((not (display-graphic-p))
+         (defadvice! doom--disable-all-the-icons-in-tty-a (&rest _)
+           "Return a blank string for tty users."
+           :override '(all-the-icons-octicon all-the-icons-material
+                       all-the-icons-faicon all-the-icons-fileicon
+                       all-the-icons-wicon all-the-icons-alltheicon)
+           ""))))
 
 ;;;###package hide-mode-line-mode
 (add-hook! '(completion-list-mode-hook Man-mode-hook)

@@ -268,13 +268,20 @@ workspace to delete."
     ('error (+workspace-error ex t))))
 
 ;;;###autoload
-(defun +workspace/kill-session ()
+(defun +workspace/kill-session (&optional interactive)
   "Delete the current session, all workspaces, windows and their buffers."
-  (interactive)
-  (unless (cl-every #'+workspace-delete (+workspace-list-names))
-    (+workspace-error "Could not clear session"))
-  (+workspace-switch +workspaces-main t)
-  (doom/kill-all-buffers (buffer-list)))
+  (interactive (list t))
+  (let ((windows (length (window-list)))
+        (persps (length (+workspace-list-names)))
+        (buffers 0))
+    (let ((persp-autokill-buffer-on-remove t))
+      (unless (cl-every #'+workspace-delete (+workspace-list-names))
+        (+workspace-error "Could not clear session")))
+    (+workspace-switch +workspaces-main t)
+    (setq buffers (doom/kill-all-buffers (buffer-list)))
+    (when interactive
+      (message "Killed %d workspace(s), %d window(s) & %d buffer(s)"
+               persps windows buffers))))
 
 ;;;###autoload
 (defun +workspace/kill-session-and-quit ()
@@ -335,7 +342,8 @@ end of the workspace list."
 ;;;###autoload
 (dotimes (i 9)
   (defalias (intern (format "+workspace/switch-to-%d" i))
-    (lambda () (interactive) (+workspace/switch-to i))))
+    (lambda () (interactive) (+workspace/switch-to i))
+    (format "Switch to workspace #%d" (1+ i))))
 
 ;;;###autoload
 (defun +workspace/switch-to-final ()

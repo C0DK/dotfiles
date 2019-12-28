@@ -197,7 +197,7 @@ Modules that bring support for a language or group of languages to Emacs.
 + [[file:../modules/lang/nim/README.org][nim]] - TODO
 + nix - TODO
 + [[file:../modules/lang/ocaml/README.org][ocaml]] =+lsp= - TODO
-+ [[file:../modules/lang/org/README.org][org]] =+dragndrop +gnuplot +hugo +ipython +pandoc +pomodoro +present= - TODO
++ [[file:../modules/lang/org/README.org][org]] =+brain +dragndrop +gnuplot +hugo +ipython +journal +jupyter +pandoc +pomodoro +present= - TODO
 + [[file:../modules/lang/perl/README.org][perl]] - TODO
 + [[file:../modules/lang/php/README.org][php]] =+lsp= - TODO
 + plantuml - TODO
@@ -235,9 +235,10 @@ Small modules that give Emacs access to external tools & services.
 + [[file:../modules/tools/ein/README.org][ein]] - TODO
 + [[file:../modules/tools/eval/README.org][eval]] =+overlay= - REPL & code evaluation support for a variety of languages
 + flycheck - Live error/warning highlights
-+ flyspell - Spell checking
++ flyspell =+everywhere= - Spell checking
 + gist - TODO
-+ [[file:../modules/tools/lookup/README.org][lookup]] =+docsets= - Universal jump-to & documentation lookup backend
++ [[file:../modules/tools/lookup/README.org][lookup]] =+dictionary +docsets= - Universal jump-to & documentation lookup
+  backend
 + [[file:../modules/tools/lsp/README.org][lsp]] - TODO
 + macos - TODO
 + magit - TODO
@@ -274,3 +275,4 @@ Aesthetic modules that affect the Emacs interface or user experience.
 + vi-tilde-fringe - TODO
 + [[file:../modules/ui/window-select/README.org][window-select]] =+switch-window +numbers= - TODO
 + [[file:../modules/ui/workspaces/README.org][workspaces]] - Isolated workspaces
++ [[file:../modules/ui/zen/README.org][zen]] - Distraction-free coding (or writing)

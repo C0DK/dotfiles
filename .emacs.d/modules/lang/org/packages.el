@@ -39,12 +39,14 @@
   (package! org-pdfview))
 (when (featurep! :tools magit)
   (package! orgit))
+(when (featurep! +brain)
+  (package! org-brain))
 (when (featurep! +dragndrop)
   (package! org-download))
 (when (featurep! +gnuplot)
   (package! gnuplot)
   (package! gnuplot-mode))
-(when (featurep! +ipython)
+(when (featurep! +ipython) ; DEPRECATED
   (package! ob-ipython))
 (when (featurep! +jupyter)
   (package! jupyter))
@@ -72,6 +74,8 @@
   (package! ob-restclient))
 (when (featurep! :lang rust)
   (package! ob-rust))
+(when (featurep! :lang scala)
+  (package! ob-ammonite))
 
 ;;; Export
 (when (featurep! +pandoc)
