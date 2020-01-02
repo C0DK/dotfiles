@@ -2,7 +2,9 @@
 # If you come from bash you might have to change your $PATH.
 export GOPATH=$HOME/go
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.emacs.d/bin/:$PATH
-
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
 
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
