@@ -171,9 +171,11 @@ If FETCHER is a function, ELT is used as the key in LIST (an alist)."
 
 (defmacro letenv! (envvars &rest body)
   "Lexically bind ENVVARS in BODY, like `let' but for `process-environment'."
+  (declare (indent 1))
   `(let ((process-environment (copy-sequence process-environment)))
-     (dolist (var ',envvars)
-       (setenv (car var) (cadr var)))
+     (dolist (var (list ,@(cl-loop for (var val) in envvars
+                                   collect `(cons ,var ,val))))
+       (setenv (car var) (cdr var)))
      ,@body))
 
 (defmacro add-load-path! (&rest dirs)
@@ -423,6 +425,24 @@ DOCSTRING and BODY are as in `defun'.
        (dolist (targets (list ,@(nreverse where-alist)))
          (dolist (target (cdr targets))
            (advice-add target (car targets) #',symbol))))))
+
+(defmacro undefadvice! (symbol _arglist &optional docstring &rest body)
+  "Undefine an advice called SYMBOL.
+
+This has the same signature as `defadvice!' an exists as an easy undefiner when
+testing advice (when combined with `rotate-text').
+
+\(fn SYMBOL ARGLIST &optional DOCSTRING &rest [WHERE PLACES...] BODY\)"
+  (declare (doc-string 3) (indent defun))
+  (let (where-alist)
+    (unless (stringp docstring)
+      (push docstring body))
+    (while (keywordp (car body))
+      (push `(cons ,(pop body) (doom-enlist ,(pop body)))
+            where-alist))
+    `(dolist (targets (list ,@(nreverse where-alist)))
+       (dolist (target (cdr targets))
+         (advice-remove target #',symbol)))))
 
 (provide 'core-lib)
 ;;; core-lib.el ends here

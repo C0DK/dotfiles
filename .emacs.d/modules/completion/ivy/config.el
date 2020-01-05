@@ -103,7 +103,9 @@ evil-ex-specific constructs, so we disable it solely in evil-ex."
     (let ((completion-in-region-function #'completion--in-region))
       (apply orig-fn args)))
 
-  (define-key ivy-minibuffer-map (kbd "C-c C-e") #'+ivy/woccur)
+  (define-key! ivy-minibuffer-map
+    "C-c C-e" #'+ivy/woccur
+    [remap doom/delete-backward-word] #'ivy-backward-kill-word)
 
   (ivy-mode +1)
 
@@ -200,6 +202,14 @@ evil-ex-specific constructs, so we disable it solely in evil-ex."
   :config
   (set-popup-rule! "^\\*ivy-occur" :size 0.35 :ttl 0 :quit nil)
 
+  ;; HACK Fix an issue where `counsel-projectile-find-file-action' would try to
+  ;;      open a candidate in an occur buffer relative to the wrong buffer,
+  ;;      causing it to fail to find the file we want.
+  (defadvice! +ivy--run-from-ivy-directory-a (orig-fn &rest args)
+    :around #'counsel-projectile-find-file-action
+    (let ((default-directory (ivy-state-directory ivy-last)))
+      (apply orig-fn args)))
+
   ;; Don't use ^ as initial input. Set this here because `counsel' defines more
   ;; of its own, on top of the defaults.
   (setq ivy-initial-inputs-alist nil)
@@ -211,7 +221,7 @@ evil-ex-specific constructs, so we disable it solely in evil-ex."
   ;; Record in jumplist when opening files via counsel-{ag,rg,pt,git-grep}
   (add-hook 'counsel-grep-post-action-hook #'better-jumper-set-jump)
   (ivy-add-actions
-   'counsel-ag ; also applies to `counsel-rg'
+   'counsel-rg ; also applies to `counsel-rg'
    '(("O" +ivy-git-grep-other-window-action "open in other window")))
 
   ;; Make `counsel-compile' projectile-aware (if you prefer it over
@@ -232,18 +242,21 @@ evil-ex-specific constructs, so we disable it solely in evil-ex."
 
   ;; `counsel-find-file'
   (setq counsel-find-file-ignore-regexp "\\(?:^[#.]\\)\\|\\(?:[#~]$\\)\\|\\(?:^Icon?\\)")
-  (ivy-add-actions
-   'counsel-find-file
-   '(("p" (lambda (path) (with-ivy-window (insert (file-relative-name path default-directory))))
-      "insert relative path")
-     ("P" (lambda (path) (with-ivy-window (insert path)))
-      "insert absolute path")
-     ("l" (lambda (path) (with-ivy-window (insert (format "[[./%s]]" (file-relative-name path default-directory)))))
-      "insert relative org-link")
-     ("L" (lambda (path) (with-ivy-window (insert (format "[[%s]]" path))))
-      "Insert absolute org-link")))
+  (dolist (fn '(counsel-rg counsel-find-file))
+    (ivy-add-actions
+     fn '(("p" (lambda (path) (with-ivy-window (insert (file-relative-name path default-directory))))
+           "insert relative path")
+          ("P" (lambda (path) (with-ivy-window (insert path)))
+           "insert absolute path")
+          ("l" (lambda (path) (with-ivy-window (insert (format "[[./%s]]" (file-relative-name path default-directory)))))
+           "insert relative org-link")
+          ("L" (lambda (path) (with-ivy-window (insert (format "[[%s]]" path))))
+           "Insert absolute org-link"))))
 
-  ;; `counsel-search'
+  (ivy-add-actions 'counsel-file-jump (plist-get ivy--actions-list 'counsel-find-file))
+
+  ;; `counsel-search': use normal page for displaying results, so that we see
+  ;; custom ddg themes (if one is set).
   (setf (nth 1 (alist-get 'ddg counsel-search-engines-alist))
         "https://duckduckgo.com/?q=")
 

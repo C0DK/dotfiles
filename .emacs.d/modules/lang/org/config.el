@@ -184,7 +184,7 @@ background (and foreground) match the current theme."
 
 (defun +org-init-babel-h ()
   (setq org-src-preserve-indentation t  ; use native major-mode indentation
-        org-src-tab-acts-natively t
+        org-src-tab-acts-natively t     ; we do this ourselves
         ;; You don't need my permission (just be careful, mkay?)
         org-confirm-babel-evaluate nil
         org-link-elisp-confirm-function nil
@@ -355,42 +355,14 @@ underlying, modified buffer. This fixes that."
     (add-hook '+doom-dashboard-inhibit-functions #'+org-capture-frame-p)))
 
 
-(defun +org-init-centralized-attachments-h ()
-  "I believe Org's native attachment system is over-complicated and litters
-files with metadata I don't want. So I wrote my own, which:
-
-+ Places attachments in a centralized location (`org-attach-id-dir' in
-  `org-directory').
-+ Adds attach:* link abbreviation for quick links to these files from anywhere.
-+ Use `+org-attach/sync' to index all attachments in `org-directory' that use
-  the attach:* abbreviation and delete orphaned ones that are no longer
-  referenced.
-+ This compliments the +dragndrop flag which provides drag'n'drop support for
-  images (with preview) and media files.
-
-Some commands of interest:
-+ `org-download-screenshot'
-+ `+org-attach/file'
-+ `+org-attach/url'
-+ `+org-attach/sync'"
-  (setq org-attach-id-dir (doom-path org-directory org-attach-id-dir))
-
-  ;; A shorter link to attachments
-  (add-to-list 'org-link-abbrev-alist
-               (cons "attach"
-                     (abbreviate-file-name org-attach-id-dir)))
-
-  (org-link-set-parameters
-   "attach"
-   :follow   (lambda (link) (find-file (doom-path org-attach-id-dir link)))
-   :complete (lambda (&optional _arg)
-               (+org--relpath (+org-link-read-file "attach" org-attach-id-dir)
-                              org-attach-id-dir))
-   :face     (lambda (link)
-               (if (file-exists-p (expand-file-name link org-attach-id-dir))
-                   'org-link
-                 'error)))
-
+(defun +org-init-attachments-h ()
+  "Sets up org's attachment system."
+  ;; Centralized attachments directory
+  (setq org-attach-id-dir (doom-path org-directory org-attach-id-dir)
+        ;; Store a link to attachments when they are attached
+        org-attach-store-link-p t
+        ;; Inherit attachment properties from parent nodes
+        org-attach-use-inheritance t)
   (after! projectile
     (add-to-list 'projectile-globally-ignored-directories org-attach-id-dir)))
 
@@ -609,8 +581,8 @@ between the two."
         org-insert-heading-respect-content t)
 
   (add-hook! 'org-tab-first-hook
-             #'+org-indent-maybe-h
-             #'+org-yas-expand-maybe-h)
+             #'+org-yas-expand-maybe-h
+             #'+org-indent-maybe-h)
 
   (add-hook 'doom-delete-backward-functions
             #'+org-delete-backward-char-and-realign-table-maybe-h)
@@ -650,10 +622,21 @@ between the two."
         "t" #'org-todo
         "T" #'org-todo-list
         (:prefix ("a" . "attachments")
-          "a" #'+org-attach/file
-          "u" #'+org-attach/uri
-          "f" #'+org-attach/find-file
-          "s" #'+org-attach/sync)
+          "a" #'org-attach
+          "d" #'org-attach-delete-one
+          "D" #'org-attach-delete-all
+          "f" #'+org/find-file-in-attachments
+          "l" #'+org/attach-file-and-insert-link
+          "n" #'org-attach-new
+          "o" #'org-attach-open
+          "O" #'org-attach-open-in-emacs
+          "r" #'org-attach-reveal
+          "R" #'org-attach-reveal-in-emacs
+          "u" #'org-attach-url
+          "s" #'org-attach-set-directory
+          "S" #'org-attach-sync
+          (:when (featurep! +dragndrop)
+            "y" #'org-download-yank))
         (:prefix ("b" . "tables")
           "-" #'org-table-insert-hline
           "a" #'org-table-align
@@ -808,6 +791,10 @@ compelling reason, so..."
   :config (setq toc-org-hrefify-default "gh"))
 
 
+(use-package! org-bookmark-heading ; add org heading support to bookmark.el
+  :after (:or bookmark org))
+
+
 (use-package! org-bullets ; "prettier" bullets
   :hook (org-mode . org-bullets-mode))
 
@@ -867,8 +854,11 @@ compelling reason, so..."
   (defvar evil-org-use-additional-insert t)
   :config
   (evil-org-set-key-theme)
-  ;; Only fold the current tree, rather than recursively
-  (add-hook 'org-tab-first-hook #'+org-cycle-only-current-subtree-h 'append)
+  (add-hook! 'org-tab-first-hook :append
+             ;; Only fold the current tree, rather than recursively
+             #'+org-cycle-only-current-subtree-h
+             ;; Clear babel results if point is inside a src block
+             #'+org-clear-babel-results-h)
   (map! :map evil-org-mode-map
         :ni [C-return]   #'+org/insert-item-below
         :ni [C-S-return] #'+org/insert-item-above
@@ -944,10 +934,9 @@ compelling reason, so..."
   org-capture
   :preface
   ;; Change org defaults (should be set before org loads)
-  (defvar org-directory "~/org/")
-  (defvar org-attach-id-dir ".attach/")
-
-  (setq org-publish-timestamp-directory (concat doom-cache-dir "org-timestamps/")
+  (setq org-directory "~/org/"
+        org-attach-id-dir ".attach/"
+        org-publish-timestamp-directory (concat doom-cache-dir "org-timestamps/")
         org-preview-latex-image-directory (concat doom-cache-dir "org-latex/"))
 
   (defvar org-modules
@@ -978,11 +967,11 @@ compelling reason, so..."
   (add-hook! 'org-load-hook
              #'+org-init-appearance-h
              #'+org-init-agenda-h
+             #'+org-init-attachments-h
              #'+org-init-babel-h
              #'+org-init-babel-lazy-loader-h
              #'+org-init-capture-defaults-h
              #'+org-init-capture-frame-h
-             #'+org-init-centralized-attachments-h
              #'+org-init-centralized-exports-h
              #'+org-init-custom-links-h
              #'+org-init-export-h
@@ -1011,4 +1000,10 @@ compelling reason, so..."
     (run-hooks 'org-load-hook))
 
   :config
+  ;; Global ID state means we can have ID links anywhere. This is required for
+  ;; `org-brain', however.
+  (setq org-id-track-globally t
+        org-id-locations-file (concat org-directory ".orgids")
+        org-id-locations-file-relative t)
+
   (add-hook 'org-open-at-point-functions #'doom-set-jump-h))

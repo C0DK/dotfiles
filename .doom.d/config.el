@@ -71,3 +71,11 @@
                                     )
            )))
   )
+
+;; el feed
+(global-set-key (kbd "C-x w") 'elfeed)
+(setq elfeed-feeds
+      '("http://nullprogram.com/feed/"
+        "https://node2.feed43.com/2538022243138888.xml"
+        "https://www.dr.dk/nyheder/service/feeds/allenyheder"
+))

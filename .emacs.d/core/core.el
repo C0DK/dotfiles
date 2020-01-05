@@ -196,7 +196,8 @@ users).")
 (when IS-WINDOWS
   (setq abbreviated-home-dir "\\`'"))
 
-;; Don't litter `doom-emacs-dir'
+;; Don't litter `doom-emacs-dir'. We don't use `no-littering' because it's a
+;; mote too opinionated for our needs.
 (setq abbrev-file-name             (concat doom-local-dir "abbrev.el")
       async-byte-compile-log-file  (concat doom-etc-dir "async-bytecomp.log")
       bookmark-default-file        (concat doom-etc-dir "bookmarks")
@@ -543,7 +544,11 @@ to least)."
           (warn "Your Doom core autoloads file is missing"))
         (unless pkg-autoloads-p
           (warn "Your package autoloads file is missing"))
-        (signal 'doom-autoload-error (list "Run `bin/doom refresh' to generate them"))))
+        (signal 'doom-autoload-error (list "Run `bin/doom refresh' to generate them")))
+
+      (when doom-interactive-mode
+        (add-hook 'window-setup-hook #'doom-display-benchmark-h 'append)
+        (add-to-list 'command-switch-alist (cons "--restore" #'doom-restore-session-handler))))
     t))
 
 (defun doom-initialize-core ()

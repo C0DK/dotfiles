@@ -50,7 +50,8 @@ possible."
       (prog1 (apply orig-fn args)
         (if (memq major-mode doom-large-file-excluded-modes)
             (setq doom-large-file-p nil)
-          (so-long-minor-mode +1)
+          (when (fboundp 'so-long-minor-mode) ; in case the user disabled it
+            (so-long-minor-mode +1))
           (message "Large file detected! Cutting a few corners to improve performance...")))
     (apply orig-fn args)))
 
@@ -129,9 +130,6 @@ possible."
 ;;
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
-;; Save clipboard contents into kill-ring before replacing them
-(setq save-interprogram-paste-before-kill t)
-
 ;; Fixes the clipboard in tty Emacs by piping clipboard I/O through xclip, xsel,
 ;; pb{copy,paste}, wl-copy, termux-clipboard-get, or getclip (cygwin).
 (add-hook! 'tty-setup-hook
@@ -195,9 +193,11 @@ possible."
             (not (file-remote-p file)))
         (file-truename file)
       file))
-  (setq recentf-filename-handlers '(doom--recent-file-truename abbreviate-file-name))
-
-  (setq recentf-save-file (concat doom-cache-dir "recentf")
+  (setq recentf-filename-handlers
+        '(substring-no-properties
+          doom--recent-file-truename
+          abbreviate-file-name)
+        recentf-save-file (concat doom-cache-dir "recentf")
         recentf-auto-cleanup 'never
         recentf-max-menu-items 0
         recentf-max-saved-items 200)
@@ -428,19 +428,21 @@ files, so we replace calls to `pp' with the much faster `prin1'."
   (setq sp-highlight-pair-overlay nil
         sp-highlight-wrap-overlay nil
         sp-highlight-wrap-tag-overlay nil)
-  ;; But if someone does want overlays enabled, evil users will be stricken with
-  ;; an off-by-one issue where smartparens assumes you're outside the pair when
-  ;; you're really at the last character in insert mode. We must correct this
-  ;; vile injustice.
-  (setq sp-show-pair-from-inside t)
-  ;; ...and stay highlighted until we've truly escaped the pair!
-  (setq sp-cancel-autoskip-on-backward-movement nil)
+  (with-eval-after-load 'evil
+    ;; But if someone does want overlays enabled, evil users will be stricken
+    ;; with an off-by-one issue where smartparens assumes you're outside the
+    ;; pair when you're really at the last character in insert mode. We must
+    ;; correct this vile injustice.
+    (setq sp-show-pair-from-inside t)
+    ;; ...and stay highlighted until we've truly escaped the pair!
+    (setq sp-cancel-autoskip-on-backward-movement nil))
+
   ;; The default is 100, because smartparen's scans are relatively expensive
   ;; (especially with large pair lists for somoe modes), we halve it, as a
   ;; better compromise between performance and accuracy.
   (setq sp-max-prefix-length 50)
   ;; This speeds up smartparens. No pair has any business being longer than 4
-  ;; characters; if they must, the modes that need it set it buffer-locally.
+  ;; characters; if they must, set it buffer-locally.
   (setq sp-max-pair-length 4)
   ;; This isn't always smart enough to determine when we're in a string or not.
   ;; See https://github.com/Fuco1/smartparens/issues/783.
@@ -452,9 +454,9 @@ files, so we replace calls to `pp' with the much faster `prin1'."
 
   (add-hook! 'minibuffer-setup-hook
     (defun doom-init-smartparens-in-minibuffer-maybe-h ()
-      "Enable `smartparens-mode' in the minibuffer, during `eval-expression' or
-`evil-ex'."
-      (when (memq this-command '(eval-expression evil-ex))
+      "Enable `smartparens-mode' in the minibuffer, during `eval-expression',
+`pp-eval-expression' or `evil-ex'."
+      (when (memq this-command '(eval-expression pp-eval-expression evil-ex))
         (smartparens-mode))))
 
   ;; You're likely writing lisp in the minibuffer, therefore, disable these

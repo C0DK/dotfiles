@@ -12,7 +12,7 @@ or :ignore property."
   (straight-check-all)
   (doom-cli-reload-core-autoloads)
   (when (doom-cli-packages-update)
-    (doom-cli-reload-package-autoloads 'force-p))
+    (doom-cli-reload-package-autoloads))
   t)
 
 (defcli! (build b)
@@ -23,7 +23,7 @@ This ensures that all needed files are symlinked from their package repo and
 their elisp files are byte-compiled. This is especially necessary if you upgrade
 Emacs (as byte-code is generally not forward-compatible)."
   (when (doom-cli-packages-build (not rebuild-p))
-    (doom-cli-reload-package-autoloads 'force-p))
+    (doom-cli-reload-package-autoloads))
   t)
 
 (defcli! (purge p)
@@ -46,7 +46,7 @@ list remains lean."
          (not norepos-p)
          (not nobuilds-p)
          regraft-p)
-    (doom-cli-reload-package-autoloads 'force-p))
+    (doom-cli-reload-package-autoloads))
   t)
 
 ;; (defcli! rollback () ; TODO doom rollback
@@ -64,6 +64,7 @@ list remains lean."
 
 This function will install any primary package (i.e. a package with a `package!'
 declaration) or dependency thereof that hasn't already been."
+  (straight--transaction-finalize)
   (print! (start "Installing & building packages..."))
   (print-group!
    (let ((versions-alist doom-pinned-packages)
@@ -73,9 +74,7 @@ declaration) or dependency thereof that hasn't already been."
            (package local-repo)
          (let ((existed-p (file-directory-p (straight--repos-dir package))))
            (condition-case-unless-debug e
-               (and (straight-use-package
-                     (intern package) nil nil
-                     (make-string (1- (or doom-format-indent 1)) 32))
+               (and (straight-use-package (intern package))
                     (not existed-p)
                     (file-directory-p (straight--repos-dir package))
                     (if-let (commit (cdr (assoc package versions-alist)))
@@ -99,47 +98,26 @@ declaration) or dependency thereof that hasn't already been."
 
 (defun doom-cli-packages-build (&optional force-p)
   "(Re)build all packages."
+  (straight--transaction-finalize)
   (print! (start "(Re)building %spackages...") (if force-p "all " ""))
   (print-group!
-   (let ((n 0))
-     (if force-p
-         (let ((straight--packages-to-rebuild :all)
-               (straight--packages-not-to-rebuild (make-hash-table :test #'equal)))
-           (dolist (package (hash-table-keys straight--recipe-cache))
-             (straight-use-package
-              (intern package) nil (lambda (_) (cl-incf n) nil)
-              (make-string (1- (or doom-format-indent 1)) 32))))
-       (dolist (recipe (hash-table-values straight--recipe-cache))
-         (straight--with-plist recipe (package local-repo no-build)
-           (unless (or no-build (null local-repo))
-             ;; REVIEW We do these modification checks manually because
-             ;;        Straight's checks seem to miss stale elc files. Need
-             ;;        more tests to confirm this.
-             (when (or (ignore-errors
-                         (gethash package straight--packages-to-rebuild))
-                       (gethash package straight--cached-package-modifications)
-                       (not (file-directory-p (straight--build-dir package)))
-                       (cl-loop for file
-                                in (doom-files-in (straight--build-dir package)
-                                                  :match "\\.el$"
-                                                  :full t)
-                                for elc-file = (byte-compile-dest-file file)
-                                if (and (file-exists-p elc-file)
-                                        (file-newer-than-file-p file elc-file))
-                                return t))
-               (let ((straight-use-package-pre-build-functions
-                      straight-use-package-pre-build-functions))
-                 (add-hook 'straight-use-package-pre-build-functions
-                           (lambda (&rest _) (cl-incf n)))
-                 (let ((straight--packages-to-rebuild :all)
-                       (straight--packages-not-to-rebuild (make-hash-table :test #'equal)))
-                   (straight-use-package
-                    (intern package) nil nil
-                    (make-string (or doom-format-indent 0) 32)))
-                 (straight--byte-compile-package recipe)
-                 (dolist (dep (straight--get-dependencies package))
-                   (when-let (recipe (gethash dep straight--recipe-cache))
-                     (straight--byte-compile-package recipe)))))))))
+   (let* ((n 0)
+          (straight-check-for-modifications
+           (when (file-directory-p (straight--modified-dir))
+             '(find-when-checking)))
+          (straight--allow-find (and straight-check-for-modifications t))
+          (straight--packages-not-to-rebuild
+           (or straight--packages-not-to-rebuild (make-hash-table :test #'equal)))
+          (straight--packages-to-rebuild
+           (or (if force-p :all straight--packages-to-rebuild)
+               (make-hash-table :test #'equal)))
+          (straight-use-package-pre-build-functions
+           (cons (lambda (&rest _) (cl-incf n))
+                 straight-use-package-pre-build-functions)))
+     (unless force-p
+       (straight--make-package-modifications-available))
+     (dolist (package (hash-table-keys straight--recipe-cache))
+       (straight-use-package (intern package)))
      (if (= n 0)
          (ignore (print! (success "No packages need rebuilding")))
        (print! (success "Rebuilt %d package(s)" n))
@@ -148,6 +126,7 @@ declaration) or dependency thereof that hasn't already been."
 
 (defun doom-cli-packages-update ()
   "Updates packages."
+  (straight--transaction-finalize)
   (print! (start "Updating packages (this may take a while)..."))
   (let ((straight--repos-dir (straight--repos-dir))
         (straight--packages-to-rebuild (make-hash-table :test #'equal))
@@ -243,8 +222,10 @@ declaration) or dependency thereof that hasn't already been."
   (if (not builds)
       (progn (print! (info "No builds to purge"))
              0)
-    (length
-     (delq nil (mapcar #'doom--cli-packages-purge-build builds)))))
+    (print! (start "Purging straight builds..." (length builds)))
+    (print-group!
+     (length
+      (delq nil (mapcar #'doom--cli-packages-purge-build builds))))))
 
 (defun doom--cli-packages-regraft-repo (repo)
   (let ((default-directory (straight--repos-dir repo)))
@@ -265,6 +246,7 @@ declaration) or dependency thereof that hasn't already been."
   (if (not repos)
       (progn (print! (info "No repos to regraft"))
              0)
+    (print! (start "Regrafting %d repos..." (length repos)))
     (let ((before-size (doom-directory-size (straight--repos-dir))))
       (print-group!
        (prog1 (delq nil (mapcar #'doom--cli-packages-regraft-repo repos))
@@ -288,22 +270,29 @@ declaration) or dependency thereof that hasn't already been."
   (if (not repos)
       (progn (print! (info "No repos to purge"))
              0)
-    (length
-     (delq nil (mapcar #'doom--cli-packages-purge-repo repos)))))
+    (print! (start "Purging straight repositories..."))
+    (print-group!
+     (length
+      (delq nil (mapcar #'doom--cli-packages-purge-repo repos))))))
 
 (defun doom--cli-packages-purge-elpa ()
-  (unless (bound-and-true-p package--initialized)
-    (package-initialize))
-  (let ((packages (cl-loop for (package desc) in package-alist
-                           for dir = (package-desc-dir desc)
-                           if (file-in-directory-p dir package-user-dir)
-                           collect (cons package dir))))
-    (if (not package-alist)
+  (require 'core-packages)
+  (let ((dirs (doom-files-in package-user-dir :type t :depth 0)))
+    (if (not dirs)
         (progn (print! (info "No ELPA packages to purge"))
                0)
-      (mapc (doom-rpartial #'delete-directory 'recursive)
-            (mapcar #'cdr packages))
-      (length packages))))
+      (print! (start "Purging ELPA packages..."))
+      (dolist (path dirs (length dirs))
+        (condition-case e
+            (print-group!
+             (if (file-directory-p path)
+                 (delete-directory path 'recursive)
+               (delete-file path))
+             (print! (success "Deleted %s") (filename path)))
+          (error
+           (print! (error "Failed to delete %s because: %s")
+                   (filename path)
+                   e)))))))
 
 (defun doom-cli-packages-purge (&optional elpa-p builds-p repos-p regraft-repos-p)
   "Auto-removes orphaned packages and repos.
@@ -314,7 +303,7 @@ a `package!' declaration) or isn't depended on by another primary package.
 If BUILDS-P, include straight package builds.
 If REPOS-P, include straight repos.
 If ELPA-P, include packages installed with package.el (M-x package-install)."
-  (print! (start "Searching for orphaned packages to purge (for the emperor)..."))
+  (print! (start "Purging orphaned packages (for the emperor)..."))
   (cl-destructuring-bind (&optional builds-to-purge repos-to-purge repos-to-regraft)
       (let ((rdirs (straight--directory-files (straight--repos-dir) nil nil 'sort))
             (bdirs (straight--directory-files (straight--build-dir) nil nil 'sort)))
@@ -341,7 +330,6 @@ If ELPA-P, include packages installed with package.el (M-x package-install)."
               (setq success t)))
        (if (not regraft-repos-p)
            (print! (info "Skipping regrafting"))
-         (print! (start "Regrafting %d repos..." (length repos-to-regraft)))
          (and (doom--cli-packages-regraft-repos repos-to-regraft)
               (setq success t)))
        success))))

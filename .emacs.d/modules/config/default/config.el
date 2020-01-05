@@ -24,10 +24,8 @@
 (setq avy-all-windows nil
       avy-all-windows-alt t
       avy-background t
-      ;; the unpredictability of this makes it a poor default
-      avy-single-candidate-jump nil
-      ;; Since `goto-address-mode' is enabled everywhere...
-      ace-link-fallback-function #'ace-link-addr)
+      ;; the unpredictability of this (when enabled) makes it a poor default
+      avy-single-candidate-jump nil)
 
 
 (after! epa
@@ -67,7 +65,7 @@
   ;;   (sp-pair "{" nil :post-handlers '(:rem ("| " "SPC")))
   (after! smartparens
     ;; Smartparens is broken in `cc-mode' as of Emacs 27. See
-    ;; <https://github.com/Fuco1/smartparens/issues/963>.
+    ;; https://github.com/Fuco1/smartparens/issues/963.
     (unless EMACS27+
       (pushnew! sp--special-self-insert-commands 'c-electric-paren 'c-electric-brace))
 
@@ -80,7 +78,7 @@
               sp-navigate-consider-sgml-tags nil)))
 
     ;; Autopair quotes more conservatively; if I'm next to a word/before another
-    ;; quote, I likely don't want to open a new pair.
+    ;; quote, I don't want to open a new pair or it would unbalance them.
     (let ((unless-list '(sp-point-before-word-p
                          sp-point-after-word-p
                          sp-point-before-same-p)))
@@ -282,6 +280,7 @@
 (define-key! help-map
   ;; new keybinds
   "'"    #'describe-char
+  "u"    #'doom/help-autodefs
   "E"    #'doom/sandbox
   "M"    #'doom/describe-active-minor-mode
   "O"    #'+lookup/online
@@ -317,26 +316,27 @@
 
   ;; replaces `apropos-documentation' b/c `apropos' covers this
   "d"    nil
-  "da"   #'doom/help-autodefs
   "db"   #'doom/report-bug
+  "dc"   #'doom/goto-private-config-file
+  "dC"   #'doom/goto-private-init-file
   "dd"   #'doom/toggle-debug-mode
   "df"   #'doom/help-faq
   "dh"   #'doom/help
-  "dk"   #'doom/goto-packages-file
   "dl"   #'doom/help-search-load-path
+  "dL"   #'doom/help-search-loaded-files
   "dm"   #'doom/help-modules
   "dn"   #'doom/help-news
   "dN"   #'doom/help-news-search
-  "di"   #'doom/goto-doomblock
-  "dp"   #'doom/help-packages
-  "dP"   #'doom/help-package-homepage
-  "dc"   #'doom/goto-config-file
-  "dC"   #'doom/help-package-config
+  "dpc"  #'doom/help-package-config
+  "dpd"  #'doom/goto-private-packages-file
+  "dph"  #'doom/help-package-homepage
+  "dpp"  #'doom/help-packages
   "ds"   #'doom/help-search-headings
   "dS"   #'doom/help-search
-  "dx"   #'doom/sandbox
   "dt"   #'doom/toggle-profiler
+  "du"   #'doom/help-autodefs
   "dv"   #'doom/version
+  "dx"   #'doom/sandbox
 
   ;; replaces `apropos-command'
   "a"    #'apropos
@@ -353,7 +353,7 @@
   "t"    #'load-theme
   ;; replaces `finder-by-keyword' b/c not useful
   "p"    #'doom/help-packages
-  ;; replaces `describe-package' b/c redundant w/ `doom/describe-package'
+  ;; replaces `describe-package' b/c redundant w/ `doom/help-packages'
   "P"    #'find-library)
 
 (after! which-key
@@ -392,14 +392,11 @@
         ;; which ctrl+RET will add a new "item" below the current one and
         ;; cmd+RET (Mac) / meta+RET (elsewhere) will add a new, blank line below
         ;; the current one.
-        :gni [C-return]    #'+default/newline-below
-        :gni [C-S-return]  #'+default/newline-above
+        :gn [C-return]    #'+default/newline-below
+        :gn [C-S-return]  #'+default/newline-above
         (:when IS-MAC
-          :gni [s-return]    #'+default/newline-below
-          :gni [S-s-return]  #'+default/newline-above)
-        (:unless IS-MAC
-          :gni [M-return]    #'+default/newline-below
-          :gni [M-S-return]  #'+default/newline-above)))
+          :gn [s-return]    #'+default/newline-below
+          :gn [S-s-return]  #'+default/newline-above)))
 
 
 ;;

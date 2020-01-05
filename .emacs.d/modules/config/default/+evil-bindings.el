@@ -17,7 +17,7 @@
     "C-r"    #'evil-paste-from-register
     "C-u"    #'evil-delete-back-to-indentation
     "C-v"    #'yank
-    "C-w"    #'evil-delete-backward-word
+    "C-w"    #'doom/delete-backward-word
     "C-z"    (λ! (ignore-errors (call-interactively #'undo)))
     ;; Scrolling lines
     "C-j"    #'next-line
@@ -61,13 +61,13 @@
       :i "C-j"           #'+default/newline    ; default behavior
 
       (:after help :map help-mode-map
-        :n "o"       #'ace-link-help)
+        :n "o"       #'link-hint-open-link)
       (:after helpful :map helpful-mode-map
-        :n "o"       #'ace-link-help)
+        :n "o"       #'link-hint-open-link)
       (:after info :map Info-mode-map
-        :n "o"       #'ace-link-info)
+        :n "o"       #'link-hint-open-link)
       (:after apropos :map apropos-mode-map
-        :n "o"       #'ace-link-help
+        :n "o"       #'link-hint-open-link
         :n "TAB"     #'forward-button
         :n [tab]     #'forward-button
         :n [backtab] #'backward-button)
@@ -142,7 +142,7 @@
             "C-j"     #'company-select-next-or-abort
             "C-k"     #'company-select-previous-or-abort
             "C-s"     (λ! (company-search-abort) (company-filter-candidates))
-            "ESC"     #'company-search-abort))
+            [escape]  #'company-search-abort))
         ;; TAB auto-completion in term buffers
         (:after comint :map comint-mode-map
           "TAB" #'company-complete
@@ -333,6 +333,8 @@
         :desc "Kill buffer"                 "k"   #'kill-current-buffer
         :desc "Kill all buffers"            "K"   #'doom/kill-all-buffers
         :desc "Switch to last buffer"       "l"   #'evil-switch-to-windows-last-buffer
+        :desc "Set bookmark"                "m"   #'bookmark-set
+        :desc "Delete bookmark"             "M"   #'bookmark-delete
         :desc "Next buffer"                 "n"   #'next-buffer
         :desc "New empty buffer"            "N"   #'evil-buffer-new
         :desc "Kill other buffers"          "O"   #'doom/kill-other-buffers
@@ -348,6 +350,7 @@
 
       ;;; <leader> c --- code
       (:prefix-map ("c" . "code")
+        :desc "LSP Execute code action"               "a"   #'lsp-execute-code-action
         :desc "Compile"                               "c"   #'compile
         :desc "Recompile"                             "C"   #'recompile
         :desc "Jump to definition"                    "d"   #'+lookup/definition
@@ -583,18 +586,21 @@
         :desc "Search other directory"       "D" #'+default/search-other-cwd
         :desc "Locate file"                  "f" #'locate
         :desc "Jump to symbol"               "i" #'imenu
-        :desc "Jump to visible link"         "l" #'ace-link
+        :desc "Jump to visible link"         "l" #'link-hint-open-link
         :desc "Jump to link"                 "L" #'ffap-menu
         :desc "Jump list"                    "j" #'evil-show-jumps
-        :desc "Jump to mark"                 "m" #'evil-show-marks
+        :desc "Jump to bookmark"             "m" #'bookmark-jump
         :desc "Look up online"               "o" #'+lookup/online
         :desc "Look up online (w/ prompt)"   "O" #'+lookup/online-select
         :desc "Look up in local docsets"     "k" #'+lookup/in-docsets
         :desc "Look up in all docsets"       "K" #'+lookup/in-all-docsets
         :desc "Search project"               "p" #'+default/search-project
         :desc "Search other project"         "P" #'+default/search-other-project
+        :desc "Jump to mark"                 "r" #'evil-show-marks
         :desc "Search buffer"                "s" #'swiper-isearch
-        :desc "Search buffer for thing at point" "S" #'swiper-isearch-thing-at-point)
+        :desc "Search buffer for thing at point" "S" #'swiper-isearch-thing-at-point
+        :desc "Dictionary"                   "t" #'+lookup/dictionary-definition
+        :desc "Thesaurus"                    "T" #'+lookup/synonyms)
 
       ;;; <leader> t --- toggle
       (:prefix-map ("t" . "toggle")

@@ -182,6 +182,19 @@ missing) and shouldn't be deleted.")
            (print! (warn "%s is not a valid answer, try again.") answer))
          (funcall fn))))))
 
+(defadvice! doom--straight-respect-print-indent-a (args)
+  :filter-args #'straight-use-package
+  (cl-destructuring-bind
+      (melpa-style-recipe &optional no-clone no-build cause interactive)
+      args
+    (list melpa-style-recipe no-clone no-build
+          (if (and (not cause)
+                   (boundp 'doom-format-indent)
+                   (> doom-format-indent 0))
+              (make-string (1- (or doom-format-indent 1)) 32)
+            cause)
+          interactive)))
+
 
 ;;
 ;;; Bootstrapper
@@ -223,7 +236,7 @@ necessary package metadata is initialized and available for them."
           doom-packages (doom-package-list))
     (dolist (package doom-packages)
       (let ((name (car package)))
-        (with-plist! (cdr package) (recipe module disable ignore pin)
+        (with-plist! (cdr package) (recipe modules disable ignore pin)
           (if ignore
               (doom-log "Ignoring package %S" name)
             (when pin
@@ -239,7 +252,7 @@ necessary package metadata is initialized and available for them."
               (doom-log "Disabling package %S" name)
               (cl-pushnew name doom-disabled-packages)
               ;; Warn about disabled core packages
-              (when (cl-find :core module :key #'car)
+              (when (cl-find :core modules :key #'car)
                 (print! (warn "%s\n%s")
                         (format "You've disabled %S" name)
                         (indent 2 (concat "This is a core package. Disabling it will cause errors, as Doom assumes\n"

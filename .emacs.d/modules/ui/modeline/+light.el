@@ -50,7 +50,7 @@ side of the modeline, and whose CDR is the right-hand side.")
 ;;
 ;;; Faces
 
-(defface +modeline-bar '((t (:inherit highlight)))
+(defface +modeline-bar-active '((t (:inherit highlight)))
   "Face used for left-most bar on the mode-line of an active window.")
 
 (defface +modeline-bar-inactive '((t (:inherit mode-line-inactive)))
@@ -141,17 +141,15 @@ See `def-modeline!' on how modelines are defined."
           (remove-hook hook (intern (format "+modeline-set-%s-format-h" name)))))
       (add-hook hook fn))))
 
-(defmacro def-modeline! (name lhs rhs)
+(defun def-modeline! (name lhs rhs)
   "Define a modeline format by NAME.
 LHS and RHS are the formats representing the left and right hand side of the
 mode-line, respectively. See the variable `format-mode-line' for details on what
 LHS and RHS will accept."
-  `(progn
-     (setf (alist-get ',name +modeline-format-alist)
-           (cons ,lhs ,rhs))
-     (defun ,(intern (format "+modeline-set-%s-format-h" name)) (&rest _)
-       "TODO"
-       (set-modeline! ',name))))
+  (setf (alist-get name +modeline-format-alist)
+        (cons lhs rhs))
+  (fset (intern (format "+modeline-set-%s-format-h" name))
+        (lambda (&rest _) (set-modeline! name))))
 
 (defmacro def-modeline-var! (name body &optional docstring &rest plist)
   "TODO"
@@ -188,7 +186,7 @@ LHS and RHS will accept."
         (setq +modeline-bar
               (+modeline--make-xpm
                (and +modeline-bar-width
-                    (face-background '+modeline-bar nil t))
+                    (face-background '+modeline-bar-active nil t))
                width height)
               +modeline-inactive-bar
               (+modeline--make-xpm
@@ -499,7 +497,7 @@ lines are selected, or the NxM dimensions of a block selection.")
     "  "
     (+modeline-checker ("" +modeline-checker "   "))))
 
-(def-modeline! project
+(def-modeline! 'project
   `(" "
     ,(all-the-icons-octicon
       "file-directory"
@@ -510,7 +508,7 @@ lines are selected, or the NxM dimensions of a block selection.")
                  face bold))
   '("" +modeline-modes))
 
-(def-modeline! special
+(def-modeline! 'special
   '("" +modeline-matches
     " " +modeline-buffer-identification)
   '("" +modeline-modes))

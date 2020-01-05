@@ -360,6 +360,12 @@ Made for `org-tab-first-hook' in evil-mode."
         ((org-in-src-block-p t)
          (org-babel-do-in-edit-buffer
           (call-interactively #'indent-for-tab-command))
+         t)
+        ((and (save-excursion
+                (skip-chars-backward " \t")
+                (bolp))
+              (org-in-subtree-not-table-p))
+         (call-interactively #'tab-to-tab-stop)
          t)))
 
 ;;;###autoload
@@ -374,18 +380,26 @@ Made for `org-tab-first-hook' in evil-mode."
   "Tries to expand a yasnippet snippet, if one is available. Made for
 `org-tab-first-hook'."
   (when (bound-and-true-p yas-minor-mode)
-    (cond ((and (or (not (bound-and-true-p evil-local-mode))
-                    (evil-insert-state-p))
-                (yas--templates-for-key-at-point))
-           (call-interactively #'yas-expand)
-           t)
-          ((use-region-p)
-           ;; Triggering mode-specific indentation is expensive in src blocks
-           ;; (if `org-src-tab-acts-natively' is non-nil), and can cause errors,
-           ;; so we avoid smart indentation in this case.
-           (let ((yas-indent-line 'fixed))
-             (call-interactively #'yas-insert-snippet))
-           t))))
+    (let ((major-mode (if (org-in-src-block-p t)
+                          (org-src-get-lang-mode (org-eldoc-get-src-lang))
+                        major-mode))
+          (org-src-tab-acts-natively nil) ; causes breakages
+          ;; Smart indentation doesn't work with yasnippet, and painfully slow
+          ;; in the few cases where it does.
+          (yas-indent-line 'fixed))
+      ;; HACK Yasnippet field overlays break org-bullet-mode. Don't ask me why.
+      (add-hook! 'yas-after-exit-snippet-hook :local
+        (when (bound-and-true-p org-bullets-mode)
+          (org-bullets-mode -1)
+          (org-bullets-mode +1)))
+      (cond ((and (or (not (bound-and-true-p evil-local-mode))
+                      (evil-insert-state-p))
+                  (yas--templates-for-key-at-point))
+             (yas-expand)
+             t)
+            ((use-region-p)
+             (yas-insert-snippet)
+             t)))))
 
 ;;;###autoload
 (defun +org-cycle-only-current-subtree-h (&optional arg)
@@ -405,6 +419,14 @@ with `org-cycle')."
             (setq org-cycle-subtree-status 'subtree))
           (org-cycle-internal-local)
           t)))))
+
+;;;###autoload
+(defun +org-clear-babel-results-h ()
+  "Remove the results block for the org babel block at point."
+  (when (and (org-in-src-block-p t)
+             (org-babel-where-is-src-block-result))
+    (org-babel-remove-result)
+    t))
 
 ;;;###autoload
 (defun +org-unfold-to-2nd-level-or-point-h ()
