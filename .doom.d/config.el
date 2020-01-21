@@ -36,7 +36,7 @@
 
 (after! org
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
-                                 (file+headline "~/Documents/org/inbox.org" "Tasks")
+                                 (file+headline "~/Documents/org/gtd.org" "Tasks")
                                  "* TODO %i%?")
                                 ("n" "Note" entry
                                  (file+headline "~/Documents/org/notes.org" "Notes")
@@ -47,9 +47,7 @@
                                 ("w" "Wish" entry
                                  (file+headline "~/Documents/org/wishlist.org" "Wishlist")
                                  "* %i%?")
-                                ("T" "Tickler" entry
-                                 (file+headline "~/Documents/org/tickler.org" "Tickler")
-                                 " %i%? \n %U")))
+                                ))
   (setq org-agenda-prefix-format
         (quote
          ((agenda . " %i %-12:c%?-12t% s")
@@ -71,6 +69,12 @@
                                      )
            )))
   )
+
+;; Movements in doom
+(global-set-key (kbd "M-h") 'evil-window-left)
+(global-set-key (kbd "M-j") 'evil-window-down)
+(global-set-key (kbd "M-k") 'evil-window-up)
+(global-set-key (kbd "M-l") 'evil-window-right)
 ;; newline on toc
 (org-babel-do-load-languages
  'org-babel-load-languages
