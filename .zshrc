@@ -5,7 +5,7 @@ export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.emacs.d
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
-
+export CFLAGS="-Wno-error=deprecated"
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
 
