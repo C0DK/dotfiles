@@ -6,6 +6,7 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 export CFLAGS="-Wno-error=deprecated"
+export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
 
