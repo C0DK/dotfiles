@@ -1,0 +1,7 @@
+.DS_Store
+.idea
+*.log
+tmp/
+
+# these files are compiled by doom, so they shouldn't be in VS obviously
+.emacs.d/

@@ -35,6 +35,11 @@ bindsym Ctrl+Return exec --no-startup-id dmenu_recency
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
 
+#scratchpad
+exec alacritty --class='forceFloat' -e 'setup_tmux'
+
+bindsym $mod+Tab scratchpad show
+
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
@@ -197,6 +202,7 @@ assign [class="Thunderbird"] $ws4
 assign [class="Keybase"] $ws4
 #assign [class="Alacritty"] $ws1
 # assign [class="Spotify"] $ws5 # doesn't work so workaround
+for_window [instance="w1term"] move to workspace $ws1
 for_window [class="Spotify"] move to workspace $ws5
 for_window [class="jetbrains"] move to workspace $ws2
 
@@ -212,6 +218,7 @@ for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Alacritty"] floating disable border pixel 1
+for_window [instance="forceFloat"] floating enable move scratchpad border normal
 #for_window [class="Spotify"] floating enable border none 
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
@@ -281,6 +288,7 @@ mode "$mode_settings" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 
 #bindsym $mod+Shift+w exec /home/cdk/bin/two_terminals.sh
 bindsym $mod+Shift+w mode "$mode_term"
@@ -399,7 +407,8 @@ smart_borders on
 
 
 ## Auto EXEC
-exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/alacritty' 
+#exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/alacritty'
+exec --no-startup-id alacritty -e "~/bin/setup_tmux" --class=w1term
 exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/emacs' 
 exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/firefox'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/thunderbird'
