@@ -1,0 +1,315 @@
+/*
+/* Credit
+/* https://www.reddit.com/r/FirefoxCSS/comments/ebce1h/i_am_back_with_a_new_and_improved_userchrome/
+/* https://www.reddit.com/r/FirefoxCSS/comments/a1rj3v/my_oneliner_setup_code_in_comments/
+*/
+
+/* TODO sort and create titles */
+:root {
+  --nord0: #2e3440;
+  --nord1: #3b4252;
+  --nord2: #434c5e;
+  --nord3: #4c566a;
+  --nord4: #d8dee9;
+  --nord5: #e5e9f0;
+  --nord6: #eceff4;
+  --nord7: #8fbcbb;
+  --nord8: #88c0d0;
+  --nord9: #81a1c1;
+  --nord10: #5e81ac;
+  --nord11: #bf616a;
+  --nord12: #d08770;
+  --nord13: #ebcb8b;
+  --nord14: #a3be8c;
+  --nord14: #b48ead;
+}
+
+html#main-window {
+  --color-bg: var(--nord0);
+  --color-fg: var(--nord5);
+  --color-disabled-fg: var(--nord4);
+  --toolbar-bgcolor: var(--color-bg) !important;
+  --font: "SauceCodePro Nerd Font Mono", sans-serif;
+  --font-size: 12px;
+
+  --gap-between-tabs: 5px;
+  --margin-after-tab-list: 8x;
+  --margin-before-tab-list: 8px;
+  --tab-font: "Cantarell", sans-serif;
+  --tab-font-weight: 700;
+  --tab-height: 32px;
+  --tabs-container-height: 140px;
+
+  --urlbar-container-margin: 5px;
+  --urlbar-list-width: 60%;
+  --urlbar-text-font: "mononoki Nerd Font", sans-serif;
+  --urlbar-text-size: 15pt;
+  --urlbar-text-weight: 700;
+
+  --padding: 1px;
+
+  /* Firefox variables */
+  --lwt-toolbar-field-focus-color: var(--nord14) !important;
+  --lwt-toolbar-field-color: var(--color-fg) !important;
+  --lwt-toolbar-field-background-color: var(--color-bg) !important;
+
+  --arrowpanel-background: var(--nord1) !important;
+  --arrowpanel-color: var(--color-fg) !important;
+  --arrowpanel-border-color: transparent !important;
+}
+
+:root {
+  --tabs-border: transparent !important;
+  /* active tab left & right borders - not working in 58?*/
+  --toolbox-border-bottom-color: transparent !important;
+  /* 1px line under background tabs */
+  --chrome-nav-bar-controls-border-color: transparent !important;
+  /* border around url bar */
+}
+
+toolbox {
+  background-color: var(--color-bg) !important;
+  color: var(--color-fg);
+  font-family: var(--font);
+  font-size: var(--font);
+  padding-top: 5px !important;
+}
+
+toolbar {
+  box-shadow: none !important;
+}
+:root:-moz-any([inFullscreen], [tabsintitlebar])
+  #TabsToolbar:not(:-moz-lwtheme) {
+  -moz-appearance: none !important;
+}
+#TabsToolbar {
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+  margin-left: 25vw !important;
+  margin-right: 0px !important;
+  max-height: 35px !important;
+  height: 35px !important;
+
+  font-family: var(--font);
+  font-size: var(--font);
+}
+#tabbrowser-tabs {
+  height: 35px !important;
+}
+#urlbar-container,
+#search-container {
+  padding-block: 0 !important;
+  margin-inline: 0 !important;
+}
+
+#nav-bar {
+  margin-bottom: 0px !important;
+  margin-top: -35px !important;
+  margin-left: 0px !important;
+  margin-right: 75vw !important;
+  border-top: none !important;
+  height: 35px;
+}
+
+#main-window[sizemode="normal"] > #titlebar {
+  -moz-appearance: initial !important;
+}
+
+#back-button,
+#forward-button,
+#stop-reload-button,
+#nav-bar-overflow-button,
+#home-button,
+#customizableui-special-spring1,
+#customizableui-special-spring2,
+#library-button,
+#downloads-button,
+#sidebar-button,
+.tabs-newtab-button,
+#star-button,
+#statuspanel,
+.urlbarView-favicon,
+.urlbar-history-dropmarker,
+#star-button,
+#identity-box,
+.urlbar-icon.urlbar-page-action,
+.titlebar-placeholder {
+  display: none !important;
+}
+/* Hide some bloat */
+.tab-close-button,
+.tab-line,
+.tabbrowser-tab::before, /* Favicon */
+.tabbrowser-tab::after,
+.tabbrowser-tab .tab-icon-image {
+  display: none !important;
+}
+/* Url bar suggestions list container */
+.urlbarView {
+  background-color: var(--color-bg) !important;
+  border-radius: 0 8px 8px !important;
+  box-shadow: none !important;
+  width: var(--urlbar-list-width) !important;
+}
+.urlbar-input-box {
+  padding-left: 10px !important;
+}
+
+/* Url bar suggestions' selected row */
+.urlbarView:not(.megabar) .urlbarView-row:not([type="tip"])[selected],
+.urlbarView.megabar
+  .urlbarView-row:not([type="tip"])[selected]
+  > .urlbarView-row-inner {
+  background: var(--nord2) !important;
+  color: var(--color-fg) !important;
+  fill-opacity: 1;
+}
+#back-button > .toolbarbutton-icon,
+#forward-button > .toolbarbutton-icon {
+  transform: scale(0.9, 0.9) !important;
+  margin-left: -4px !important;
+  margin-right: -4px !important;
+}
+
+#PanelUI-button,
+#customization-panel-container,
+#customization-panelWrapper .panel-arrow {
+  -moz-box-ordinal-group: 0 !important;
+  margin-right: -6px !important;
+  background: var(--nord1);
+}
+
+#appMenu-popup {
+  margin-right: -258px !important;
+}
+
+#appMenu-popup .panel-arrow {
+  margin-right: 248px !important;
+}
+
+#nav-bar-overflow-button {
+  transform: scale(0.9, 0.9) !important;
+  fill: var(--color-overflow) !important;
+}
+
+.tabbrowser-tab {
+  height: 28px !important;
+}
+
+.tabbrowser-tab {
+  color: var(--color-disabled-fg) !important;
+}
+.tabbrowser-tab:hover {
+  background: var(--nord2) !important;
+  color: var(--color-fg) !important;
+}
+
+.tabbrowser-tab[selected="true"] {
+  background: var(--nord1) !important;
+  color: var(--color-fg) !important;
+}
+.tabbrowser-tab:hover[pinned="true"] {
+}
+
+.tabbrowser-tab[pinned="true"][selected="true"] {
+  background: var(--nord1) !important;
+  color: var(--color-fg) !important;
+}
+.tabbrowser-tab[pinned="true"] .tab-icon-image {
+  align-items: center !important;
+  display: inline-block !important;
+  min-height: var(--pinned-tab-favicon-dim) !important;
+  min-width: var(--pinned-tab-favicon-dim) !important;
+}
+
+.tabbrowser-tab[pinned="true"] .tab-label-container {
+  display: none !important;
+}
+
+.tab-stack {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+  border-left: none !important;
+}
+
+/* tab line - adjust color & size, default #0a84ff 2px */
+
+.tab-line {
+  background-color: var(--nord5) !important;
+  height: 0px !important;
+}
+
+/* Hide various elements */
+
+/* Menu */
+
+/*#appMenu-fxa-container,
+
+/* Sign in to Sync */
+
+#appMenu-fxa-container+toolbarseparator,
+
+/* #appMenuRestoreLastSession, */
+
+#appMenu-zoom-controls,
+#appMenu-zoom-controls+toolbarseparator,
+#appMenu-edit-controls,
+#appMenu-edit-controls+toolbarseparator,
+#appMenu-library-button,
+#appMenu-customize-button,
+#appMenu-customize-button+toolbarseparator,
+#appMenu-open-file-button,
+#appMenu-save-file-button,
+#appMenu-find-button,
+#appMenu-more-button,
+
+/* URL Bar */
+#urlbar[focused="true"],
+#urlbar:hover, .searchbar-textbox:hover {
+  box-shadow: 0 0 0 !important;
+  border: 0 solid transparent !important;
+}
+
+#urlbar,
+.searchbar-textbox,
+#urlbar:hover,
+.searchbar-textbox:hover {
+  background: var(--nord1) !important;
+  color: var(--color-fg) !important;
+  height: 35px !important;
+  padding: 0 !important;
+  font-size: var(--font-size) !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: 0 0 0;
+  border: 0 solid transparent !important;
+  -moz-appearance: none;
+  margin: 0 !important;
+  min-height: 35px !important;
+  cursor: default;
+}
+
+#pageActionButton,
+#pocket-button-box,
+ar-button,
+.autocomplete-history-dropmarker,
+#identity-box,
+.urlbar-history-dropmarker.urlbar-icon.chromeclass-toolbar-additional,
+#TabsToolbar .titlebar-placeholder[type="pre-tabs"],
+#page-action-buttons,
+#identity-icon-labels {
+  display: none !important;
+}
+
+.tab-label,
+.tab-content {
+  padding: 0 10px;
+  border: 0;
+  font-family: var(--font) !important;
+  font-size: var(--font-size) !important;
+  line-height: var(--font-size) !important;
+}
