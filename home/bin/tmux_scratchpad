@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+tmux new-session \; rename-window -t 1 "scratchpad" \; new-window "python3" \; select-window -t 1 \; rename-session "scratchpad"

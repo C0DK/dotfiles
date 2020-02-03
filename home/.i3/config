@@ -36,7 +36,7 @@ bindsym Ctrl+Return exec --no-startup-id dmenu_recency
 bindsym $mod+z exec --no-startup-id morc_menu
 
 #scratchpad
-exec alacritty --class='forceFloat' -e 'setup_tmux'
+exec alacritty --class='forceFloat' -e 'tmux_scratchpad'
 
 bindsym $mod+Tab scratchpad show
 
@@ -408,7 +408,7 @@ smart_borders on
 
 ## Auto EXEC
 #exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/alacritty'
-exec --no-startup-id alacritty -e "~/bin/setup_tmux" --class=w1term
+exec --no-startup-id alacritty -e "tmux_ws" --class=w1term
 exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/emacs' 
 exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/firefox'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/thunderbird'

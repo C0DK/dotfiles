@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-tmux new-session \; rename-session  "console"  \; new-window "python3" \; select-window -t 1
