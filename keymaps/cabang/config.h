@@ -23,6 +23,7 @@
    - MIDI notes can be sent when in Music mode is on
 */
 
+#define TAPPING_TOGGLE 3
 #define MIDI_BASIC
 
 /* enable advanced MIDI features:

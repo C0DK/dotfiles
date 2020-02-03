@@ -76,7 +76,7 @@ toolbox {
 }
 
 toolbar {
-  box-shadow: none !important;
+  box-shadow: none;
 }
 :root:-moz-any([inFullscreen], [tabsintitlebar])
   #TabsToolbar:not(:-moz-lwtheme) {
@@ -115,8 +115,8 @@ toolbar {
   -moz-appearance: initial !important;
 }
 
-#back-button,
-#forward-button,
+/*#back-button,
+#forward-button,*/
 #stop-reload-button,
 #nav-bar-overflow-button,
 #home-button,
@@ -125,7 +125,7 @@ toolbar {
 #library-button,
 #downloads-button,
 #sidebar-button,
-.tabs-newtab-button,
+#tabs-newtab-button,
 #star-button,
 #statuspanel,
 .urlbarView-favicon,
@@ -177,6 +177,12 @@ toolbar {
   -moz-box-ordinal-group: 0 !important;
   margin-right: -6px !important;
   background: var(--nord1);
+}
+#PanelUI-button {
+  padding-inline: 0 !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 #appMenu-popup {
