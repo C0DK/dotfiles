@@ -115,8 +115,8 @@ toolbar {
   -moz-appearance: initial !important;
 }
 
-/*#back-button,
-#forward-button,*/
+#back-button,
+#forward-button,
 #stop-reload-button,
 #nav-bar-overflow-button,
 #home-button,
@@ -157,18 +157,25 @@ toolbar {
 
 /* Url bar suggestions' selected row */
 .urlbarView:not(.megabar) .urlbarView-row:not([type="tip"])[selected],
-.urlbarView.megabar
-  .urlbarView-row:not([type="tip"])[selected]
-  > .urlbarView-row-inner {
+.urlbarView.megabar,
+.urlbarView-row:not([type="tip"])[selected] > .urlbarView-row-inner {
   background: var(--nord2) !important;
   color: var(--color-fg) !important;
   fill-opacity: 1;
 }
+/*The area of the back/forward buttons*/
+
+#nav-bar-customization-target {
+  background: var(--nord1) !important;
+}
 #back-button > .toolbarbutton-icon,
 #forward-button > .toolbarbutton-icon {
-  transform: scale(0.9, 0.9) !important;
-  margin-left: -4px !important;
-  margin-right: -4px !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  border: none !important;
+  margin: 0 !important;
+  height: 34px !important;
+  width: 34px !important;
 }
 
 #PanelUI-button,
