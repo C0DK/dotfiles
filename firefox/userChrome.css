@@ -40,6 +40,8 @@ html#main-window {
   --tab-height: 32px;
   --tabs-container-height: 140px;
 
+  --toolbarbutton-border-radius: 0 !important;
+
   --urlbar-container-margin: 5px;
   --urlbar-list-width: 60%;
   --urlbar-text-font: "mononoki Nerd Font", sans-serif;
@@ -76,7 +78,7 @@ toolbox {
 }
 
 toolbar {
-  box-shadow: none;
+  box-shadow: none !important;
 }
 :root:-moz-any([inFullscreen], [tabsintitlebar])
   #TabsToolbar:not(:-moz-lwtheme) {
@@ -114,7 +116,11 @@ toolbar {
 #main-window[sizemode="normal"] > #titlebar {
   -moz-appearance: initial !important;
 }
-
+#identity-box:hover:not(.no-hover):not([open="true"]), #tracking-protection-icon-container:hover:not([open="true"]), #tracking-protection-icon-container:hover:not([open="true"]),
+{
+    background-color: hsla(0,0%,70%,.2);
+    fill-opacity: .8;
+}
 #back-button,
 #forward-button,
 #stop-reload-button,
