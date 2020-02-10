@@ -8,3 +8,4 @@
 (package! ox-twbs)
 (package! elfeed)
 (package! prettier-js)
+(package! ranger)
