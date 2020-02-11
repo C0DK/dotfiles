@@ -93,6 +93,7 @@ alias neofetch_long='clear && neofetch --config ~/.config/neofetch/config_long.c
 alias jrnl=' jrnl'
 alias readjrnl=' jrnl -from "1/1/2000" | less +G'
 
+eval $(thefuck --alias fq)
 
 note() {
 	if [ "$#" -eq 1 ]; then

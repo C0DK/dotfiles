@@ -31,9 +31,13 @@
                            ("~/Documents/org/archive.org" :level . 1)
                            ("~/Documents/org/wishlist.org" :level . 1)
                            ("~/Documents/org/tickler.org" :maxlevel . 2)))
-
-
-
+(map! (:leader (:prefix "o" :desc "Ranger" :nv "F" 'ranger)))
+(after! ranger
+  (setq ranger-ignored-extensions '("mkv" "iso" "mp4"))
+  (setq ranger-show-hidden t)
+  (setq ranger-cleanup-on-disable t)
+  (setq ranger-cleanup-eagerly t)
+)
 (after! org
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline "~/Documents/org/gtd.org" "Tasks")
