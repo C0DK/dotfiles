@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-tmux new-session \; rename-window -t 1 "console" \; new-window "python3" \; select-window -t 1 \; rename-session "workspace 1"
+tmux new-session \; rename-window -t 1 "console" \; new-window "python3" \; new-window "ranger" \; rename-window -t 3 "ranger" \; select-window -t 1 \; rename-session "workspace 1"
