@@ -1,7 +1,0 @@
-#!/bin/sh
-if [ $(echo info | bluetoothctl | grep 'Device' | wc -c) -eq 0 ]
-then 
-	echo " $(bluetoothctl info | grep "Name: " | sed 's/\W*Name://g')"
-else
-	echo "%{F#2193ff}"
-fi

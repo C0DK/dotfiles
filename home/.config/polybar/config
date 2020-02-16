@@ -66,7 +66,7 @@
 	font-1 = SauceCodePro Nerd Font:size=4;2
 	font-0 = Source Code Pro:size=4;2
 
-	modules-left   = workspaces
+	modules-left   = workspaces qmk_layer
 	modules-center = gitPushed newUpdates
 	modules-right  = timer bluetooth essid volume battery date
 
@@ -88,6 +88,13 @@
 	interval = 1
 	format-padding = 1
 	format-foreground = ${xrdb:color5}
+	format-background = ${xrdb:background}
+[module/qmk_layer]
+	type = custom/script
+	exec = ~/bin/qmk_layer_read
+	interval = 1
+	format-padding = 1
+	format-foreground = ${xrdb:color4}
 	format-background = ${xrdb:background}
 [module/gitPushed]
 	type = custom/script

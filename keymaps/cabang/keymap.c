@@ -73,6 +73,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+layer_state_t layer_state_set_user(layer_state_t state) {
+    //tap_code(G(S(C(KC_K))));
+    /*
+    send_string(SS_LGUI(SS_LSFT(SS_LCTL("k"))));
+    switch (get_highest_layer(state)) {
+    case _RAISE:
+        tap_code(KC_R);
+        break;
+    case _LOWER:
+        tap_code(KC_L);
+    case _ADJUST:
+        tap_code(KC_A);
+    default: //  for any other layers, or the default layer
+        tap_code(KC_D);
+        break;
+    }
+    ad*/
+  return state;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
         case BACKLIT:

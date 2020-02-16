@@ -1,0 +1,12 @@
+#/bin/sh
+
+if [ -f ~/.qmk_layer ]; then
+   layer=$(cat ~/.qmk_layer)
+    if [ -z $layer ]; then
+        echo ""
+    else
+        echo " $layer"
+    fi
+else
+    echo ""
+fi

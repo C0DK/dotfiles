@@ -415,3 +415,17 @@ exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/thunderbird'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/slack'
 # TODO open keybase on startup
 exec --no-startup-id i3-msg 'workspace $ws5; exec /usr/bin/spotify'
+
+
+
+exec_always --no-startup-id "~/bin/qmk_layer_set"
+bindsym $mod+Shift+Ctrl+k mode "set_qmk_layer"
+mode "set_qmk_layer" {
+### QMK Mech keyboard layer visualization
+    bindsym d exec --no-startup-id "~/bin/qmk_layer_set", mode "default"
+    bindsym r exec --no-startup-id "~/bin/qmk_layer_set RAISE", mode "default"
+    bindsym l exec --no-startup-id "~/bin/qmk_layer_set LOWER", mode "default"
+    bindsym a exec --no-startup-id "~/bin/qmk_layer_set ADJUST", mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
