@@ -256,8 +256,20 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 bindsym $mod+Ctrl+c focus parent,kill 
 
+bindsym $mod+c mode "$mode_leader"
+set $mode_leader (s)ystem, (o)pen, (c)onfig, (a)ction
+mode "$mode_leader" {
+    bindsym s mode "$mode_system"
+    bindsym o mode "$mode_open"
+    bindsym c mode "$mode_settings"
+    bindsym a mode "$mode_actions"
+    
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym q mode "default"
+    bindsym Escape mode "default"
+}
 # Set shut down, restart and locking features
-bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
    bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -270,10 +282,27 @@ mode "$mode_system" {
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
+    bindsym q mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+o mode "$mode_settings"
-#set $mode_settings (b)luetooth, (p)ulse audio, (s)talone, (l)xappearance, (n)itrogen
+
+set $mode_open (e)macs, (t)erm, (f)irefox, (Shift+s)potify, (S)kype, (m)essenger, (k)keybase, (p)dfreader, (Shift+t)hunderbird
+mode "$mode_open" {
+   bindsym e exec --no-startup-id emacs, mode "default"
+    bindsym t exec --no-startup-id alacritty, mode "default"
+    bindsym f exec --no-startup-id firefox, mode "default"
+    bindsym s exec --no-startup-id spotify, mode "default"
+    bindsym m exec --no-startup-id caprine, mode "default"
+    bindsym k exec --no-startup-id run_keybase, mode "default"
+    bindsym p exec --no-startup-id foxitreader, mode "default"
+    bindsym Shift+s exec --no-startup-id sypeforlinux, mode "default"
+    bindsym Shift+t exec --no-startup-id thunderbird, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym q mode "default"
+    bindsym Escape mode "default"
+}
 set $mode_settings (b)luetooth, (p)ulse audio, (l)xappearance, (n)mtui, (N)itrogen, (k)ill
 mode "$mode_settings" {
 	 bindsym b exec blueman-manager, mode "default"
@@ -286,21 +315,19 @@ mode "$mode_settings" {
 	 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
+    bindsym q mode "default"
     bindsym Escape mode "default"
 }
 
 
-#bindsym $mod+Shift+w exec /home/cdk/bin/two_terminals.sh
-bindsym $mod+Shift+w mode "$mode_term"
-set $mode_term Amount of terminals: (2), (3), (4)
-
-mode "$mode_term" {
-    bindsym 2 exec --no-startup-id /home/cdk/bin/two_terminals.sh, mode "default"
-    bindsym 3 exec --no-startup-id /home/cdk/bin/three_terminals.sh, mode "default"
-    bindsym 4 exec --no-startup-id /home/cdk/bin/four_terminals.sh, mode "default"
+set $mode_actions (b)ackup, (h)ello
+mode "$mode_actions" {
+	 bindsym b exec alacritty -e 'backup | less', mode "default"
+	 bindsym h exec alacritty -e 'echo "hello" | less', mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
+    bindsym q mode "default"
     bindsym Escape mode "default"
 }
 
