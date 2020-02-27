@@ -186,14 +186,15 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 bindsym $mod+Ctrl+c focus parent,kill 
 
-bindsym $mod+c mode "$mode_leader"
-set $mode_leader (s)ystem, (o)pen, (c)onfig, (a)ction
+bindsym $mod+o mode "$mode_leader"
+set $mode_leader (s)ystem, (o)pen, (c)onfig, (a)ction, ser(v)ices
 mode "$mode_leader" {
     bindsym s mode "$mode_system"
     bindsym o mode "$mode_open"
     bindsym c mode "$mode_settings"
     bindsym a mode "$mode_actions"
-    
+
+    bindsym $mod+Shift+p exec --no-startup-id flameshot gui
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym q mode "default"
@@ -216,11 +217,12 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-set $mode_open (e)macs, (t)erm, (f)irefox, (Shift+s)potify, (S)kype, (m)essenger, (k)keybase, (p)dfreader, (Shift+t)hunderbird
+set $mode_open (e)macs, (t)erm, (f)irefox, (Shift+s)potify, (S)kype, (m)essenger, (k)keybase, (p)dfreader, (Shift+t)hunderbird, (c)hrome
 mode "$mode_open" {
    bindsym e exec --no-startup-id emacs, mode "default"
     bindsym t exec --no-startup-id alacritty -e sh -c "neofetch && zsh", mode "default"
     bindsym f exec --no-startup-id firefox, mode "default"
+    bindsym c exec --no-startup-id google-chrome-stable, mode "default"
     bindsym s exec --no-startup-id spotify, mode "default"
     bindsym m exec --no-startup-id caprine, mode "default"
     bindsym k exec --no-startup-id run_keybase, mode "default"
@@ -254,8 +256,8 @@ mode "$mode_settings" {
 set $mode_actions (b)ackup, reload (i)3, restart (Shift+i)3, restart (d)unst, (p)rint screen
 mode "$mode_actions" {
 	 bindsym b exec --no-startup-id alacritty -e 'backup', mode "default"
-	 bindsym Shift+i restart, mode "default"
-     bindsym i reload, mode "default"
+	 bindsym Shift+i mode "default", restart
+     bindsym i mode "default", reload
      bindsym p exec --no-startup-id flameshot gui, mode "default"
      bindsym d --release exec "killall dunst; exec notify-send 'restart dunst'", mode "default"
 

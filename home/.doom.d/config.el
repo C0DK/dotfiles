@@ -24,6 +24,7 @@
 (setq org-agenda-files '("~/Documents/org/inbox.org"
                          "~/Documents/org/gtd.org"
                          "~/Documents/org/wishlist.org"
+                         "~/Documents/org/gcal.org"
                          "~/Documents/org/tickler.org"))
 
 (setq org-refile-targets '(("~/Documents/org/gtd.org" :maxlevel . 3)

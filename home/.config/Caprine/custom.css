@@ -29,32 +29,47 @@ Press Command/Ctrl+R in Caprine to see your changes.
 
 */
 
-
 :root {
-	--base: #2e3440;
-	--base-ninety: rgba(255, 255, 255, 0.9);
-	--base-seventy-five: rgba(255, 255, 255, 0.75);
-	/* Font color */
-	--base-seventy: #eceff4;
-	--base-fifty: rgba(255, 255, 255, 0.5);
-	--base-fourty: rgba(255, 255, 255, 0.4);
-	--base-thirty: rgba(255, 255, 255, 0.3);
-	--base-twenty: rgba(255, 255, 255, 0.2);
-	--base-five: rgba(255, 255, 255, 0.05);
-	/* other persons chat */
-	--base-ten: #3b4252;
-	--base-nine: rgba(255, 255, 255, 0.09);
-	--container-color: #2e3440;
-	--container-dark-color: #2e3440;
-	--list-header-color: #2e3440;
-	--blue: #5e81ac;
-	--selected-conversation-background: #4c566a;
+  --base: #2e3440;
+  --base-ninety: rgba(255, 255, 255, 0.9);
+  --base-seventy-five: rgba(255, 255, 255, 0.75);
+  /* Font color */
+  --base-seventy: #eceff4;
+  --base-fifty: rgba(255, 255, 255, 0.5);
+  --base-fourty: rgba(255, 255, 255, 0.4);
+  --base-thirty: rgba(255, 255, 255, 0.3);
+  --base-twenty: rgba(255, 255, 255, 0.2);
+  --base-five: rgba(255, 255, 255, 0.05);
+  /* other persons chat */
+  --base-ten: #3b4252;
+  --base-nine: rgba(255, 255, 255, 0.09);
+  --container-color: #2e3440;
+  --container-dark-color: #2e3440;
+  --list-header-color: #3b4252;
+  --blue: #5e81ac;
+  --selected-conversation-background: #4c566a;
 }
 
-._p0g.error, ._p0g.offline, ._p0g.notice  {
-	background-color: #bf616a;
+._p0g.error,
+._p0g.offline,
+._p0g.notice {
+  background-color: #bf616a;
 }
 
-#phone > path, #camcorder > path, #info-circle > g > path {
-	fill: var(--blue);
+#phone,
+#camcorder {
+  display: none;
+}
+#info-circle > g > path {
+  fill: var(--blue);
+}
+._673w._6ynl._1_fz {
+  height: 40px;
+}
+._673w._6ynl._1_fz {
+  display: none;
+}
+/*Hide image on header of mmessage*/
+._6ynm {
+  display: none !important;
 }
