@@ -43,11 +43,13 @@ Press Command/Ctrl+R in Caprine to see your changes.
   /* other persons chat */
   --base-ten: #3b4252;
   --base-nine: rgba(255, 255, 255, 0.09);
-  --container-color: #2e3440;
-  --container-dark-color: #2e3440;
+  --container-color: var(--base);
+  --container-dark-color: var(--base);
   --list-header-color: #3b4252;
   --blue: #5e81ac;
   --selected-conversation-background: #4c566a;
+
+  --fds-dark-ui-card-border: var(#3b4252);
 }
 
 ._p0g.error,
@@ -55,7 +57,6 @@ Press Command/Ctrl+R in Caprine to see your changes.
 ._p0g.notice {
   background-color: #bf616a;
 }
-
 #phone,
 #camcorder {
   display: none;

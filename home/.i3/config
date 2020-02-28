@@ -253,9 +253,10 @@ mode "$mode_settings" {
 }
 
 
-set $mode_actions (b)ackup, reload (i)3, restart (Shift+i)3, restart (d)unst, (p)rint screen
+set $mode_actions (b)ackup, reload (i)3, restart (Shift+i)3, restart (d)unst, (p)rint screen, (u)pdate
 mode "$mode_actions" {
 	 bindsym b exec --no-startup-id alacritty -e 'backup', mode "default"
+	 bindsym u exec --no-startup-id alacritty -e 'yay -Syu', mode "default"
 	 bindsym Shift+i mode "default", restart
      bindsym i mode "default", reload
      bindsym p exec --no-startup-id flameshot gui, mode "default"
