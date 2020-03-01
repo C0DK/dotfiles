@@ -1,15 +1,6 @@
-#+TITLE: Doom Configuration file
-* Personal Information
-** Set full name
-#+BEGIN_SRC emacs-lisp
-(setq user-full-name "Brett Mandler")
-#+END_SRC
-** Set email address
-#+BEGIN_SRC emacs-lisp
-(setq user-mail-address "brettmandler@gmail.com")
-#+END_SRC
-* Color themes
-#+BEGIN_SRC emacs-lisp
+;;; .doom.d/config.el -*- lexical-binding: t; -*-
+
+;; Place your private configuration here
 
 (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 12))
 (setq doom-theme 'doom-nord)
@@ -24,42 +15,30 @@
  '(org-level-7 ((t (:inherit org-level-4))))
  '(org-level-8 ((t (:inherit org-level-4)))))
 
-#+END_SRC
-* Languages
-** Python
-#+BEGIN_SRC emacs-lisp
+;; python
 
 (setq-hook! python-mode python-indent-offset 2)
 
-#+END_SRC
-* ORG-mode
-** Org agenda
-#+BEGIN_SRC emacs-lisp
+
+;; org stuff
 (setq org-agenda-files '("~/Documents/org/inbox.org"
                          "~/Documents/org/gtd.org"
                          "~/Documents/org/wishlist.org"
                          "~/Documents/org/gcal.org"
                          "~/Documents/org/tickler.org"))
-#+END_SRC
-** Org agenda Prefixes
-#+BEGIN_SRC emacs-lisp
-(setq org-agenda-prefix-format
-        (quote
-         ((agenda . " %i %-12:c%?-12t% s")
-          (todo . "%l %i %-6:c")
-          (tags . " %i %-12:c")
-          (search . " %i %-12:c"))))
-#+END_SRC
-** Refile targets
-#+BEGIN_SRC emacs-lisp
+
 (setq org-refile-targets '(("~/Documents/org/gtd.org" :maxlevel . 3)
                            ("~/Documents/org/someday.org" :level . 1)
                            ("~/Documents/org/archive.org" :level . 1)
                            ("~/Documents/org/wishlist.org" :level . 1)
                            ("~/Documents/org/tickler.org" :maxlevel . 2)))
-#+END_SRC
-** Capture templates
-#+BEGIN_SRC emacs-lisp
+(map! (:leader (:prefix "o" :desc "Ranger" :nv "F" 'ranger)))
+(after! ranger
+  (setq ranger-ignored-extensions '("mkv" "iso" "mp4"))
+  (setq ranger-show-hidden t)
+  (setq ranger-cleanup-on-disable t)
+  (setq ranger-cleanup-eagerly t)
+)
 (after! org
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline "~/Documents/org/gtd.org" "Tasks")
@@ -74,11 +53,12 @@
                                  (file+headline "~/Documents/org/wishlist.org" "Wishlist")
                                  "* %i%?")
                                 ))
-)
-#+END_SRC
-** Capture templates
-#+BEGIN_SRC emacs-lisp
-(after! org
+  (setq org-agenda-prefix-format
+        (quote
+         ((agenda . " %i %-12:c%?-12t% s")
+          (todo . "%l %i %-6:c")
+          (tags . " %i %-12:c")
+          (search . " %i %-12:c"))))
   (setq org-publish-project-alist
         `(("KBP"
            :base-directory "~/Documents/org/kbp"
@@ -93,44 +73,19 @@
                                        (buffer-string))
                                      )
            )))
-)
-#+END_SRC
-** Exporting
-#+BEGIN_SRC emacs-lisp
+  )
+
+;; Movements in doom
+;; TODO fix this - it doesn't really work. - maybe use ctrl instead
+(global-set-key (kbd "M-h") 'evil-window-left)
+(global-set-key (kbd "M-j") 'evil-window-down)
+(global-set-key (kbd "M-k") 'evil-window-up)
+(global-set-key (kbd "M-l") 'evil-window-right)
 ;; newline on toc
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((plantuml . t)))
 (setq org-latex-toc-command "\\tableofcontents \\clearpage")
-#+END_SRC
-** Change the character that displays on collapsed headings
-#+BEGIN_SRC emacs-lisp
-(setq org-ellipsis " ▼ ")
-#+END_SRC
-* Ranger-mode
-#+BEGIN_SRC emacs-lisp
-(map! (:leader (:prefix "o" :desc "Ranger" :nv "F" 'ranger)))
-(after! ranger
-  (setq ranger-ignored-extensions '("mkv" "iso" "mp4"))
-  (setq ranger-show-hidden t)
-  (setq ranger-cleanup-on-disable t)
-  (setq ranger-cleanup-eagerly t)
-)
-
-#+END_SRC
-* Movements
-#+BEGIN_SRC emacs-lisp
-;; Movements in doom
-;; TODO fix this - it doesn't really work. - maybe use ctrl instead
-(map!
- (:after evil
-   :en "C-h"   #'evil-window-left
-   :en "C-j"   #'evil-window-down
-   :en "C-k"   #'evil-window-up
-   :en "C-l"   #'evil-window-right))
-#+END_SRC
-* RSS
-#+BEGIN_SRC emacs-lisp
 ;; el feed
 (global-set-key (kbd "C-x w") 'elfeed)
 (setq elfeed-feeds
@@ -140,4 +95,3 @@
         ))
 
 
-#+END_SRC

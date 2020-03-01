@@ -1,6 +1,6 @@
-;;; .doom.d/config.el -*- lexical-binding: t; -*-
+(setq user-full-name "Brett Mandler")
 
-;; Place your private configuration here
+(setq user-mail-address "brettmandler@gmail.com")
 
 (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 12))
 (setq doom-theme 'doom-nord)
@@ -15,30 +15,27 @@
  '(org-level-7 ((t (:inherit org-level-4))))
  '(org-level-8 ((t (:inherit org-level-4)))))
 
-;; python
-
 (setq-hook! python-mode python-indent-offset 2)
 
-
-;; org stuff
 (setq org-agenda-files '("~/Documents/org/inbox.org"
                          "~/Documents/org/gtd.org"
                          "~/Documents/org/wishlist.org"
                          "~/Documents/org/gcal.org"
                          "~/Documents/org/tickler.org"))
 
+(setq org-agenda-prefix-format
+        (quote
+         ((agenda . " %i %-12:c%?-12t% s")
+          (todo . "%l %i %-6:c")
+          (tags . " %i %-12:c")
+          (search . " %i %-12:c"))))
+
 (setq org-refile-targets '(("~/Documents/org/gtd.org" :maxlevel . 3)
                            ("~/Documents/org/someday.org" :level . 1)
                            ("~/Documents/org/archive.org" :level . 1)
                            ("~/Documents/org/wishlist.org" :level . 1)
                            ("~/Documents/org/tickler.org" :maxlevel . 2)))
-(map! (:leader (:prefix "o" :desc "Ranger" :nv "F" 'ranger)))
-(after! ranger
-  (setq ranger-ignored-extensions '("mkv" "iso" "mp4"))
-  (setq ranger-show-hidden t)
-  (setq ranger-cleanup-on-disable t)
-  (setq ranger-cleanup-eagerly t)
-)
+
 (after! org
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline "~/Documents/org/gtd.org" "Tasks")
@@ -53,12 +50,9 @@
                                  (file+headline "~/Documents/org/wishlist.org" "Wishlist")
                                  "* %i%?")
                                 ))
-  (setq org-agenda-prefix-format
-        (quote
-         ((agenda . " %i %-12:c%?-12t% s")
-          (todo . "%l %i %-6:c")
-          (tags . " %i %-12:c")
-          (search . " %i %-12:c"))))
+)
+
+(after! org
   (setq org-publish-project-alist
         `(("KBP"
            :base-directory "~/Documents/org/kbp"
@@ -73,19 +67,33 @@
                                        (buffer-string))
                                      )
            )))
-  )
+)
 
-;; Movements in doom
-;; TODO fix this - it doesn't really work. - maybe use ctrl instead
-(global-set-key (kbd "M-h") 'evil-window-left)
-(global-set-key (kbd "M-j") 'evil-window-down)
-(global-set-key (kbd "M-k") 'evil-window-up)
-(global-set-key (kbd "M-l") 'evil-window-right)
 ;; newline on toc
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((plantuml . t)))
 (setq org-latex-toc-command "\\tableofcontents \\clearpage")
+
+(setq org-ellipsis " ▼ ")
+
+(map! (:leader (:prefix "o" :desc "Ranger" :nv "F" 'ranger)))
+(after! ranger
+  (setq ranger-ignored-extensions '("mkv" "iso" "mp4"))
+  (setq ranger-show-hidden t)
+  (setq ranger-cleanup-on-disable t)
+  (setq ranger-cleanup-eagerly t)
+)
+
+;; Movements in doom
+;; TODO fix this - it doesn't really work. - maybe use ctrl instead
+(map!
+ (:after evil
+   :en "C-h"   #'evil-window-left
+   :en "C-j"   #'evil-window-down
+   :en "C-k"   #'evil-window-up
+   :en "C-l"   #'evil-window-right))
+
 ;; el feed
 (global-set-key (kbd "C-x w") 'elfeed)
 (setq elfeed-feeds
@@ -93,5 +101,3 @@
         "https://node2.feed43.com/2538022243138888.xml"
         "https://www.dr.dk/nyheder/service/feeds/allenyheder"
         ))
-
-
