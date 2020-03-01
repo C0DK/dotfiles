@@ -85,8 +85,6 @@
   (setq ranger-cleanup-eagerly t)
 )
 
-;; Movements in doom
-;; TODO fix this - it doesn't really work. - maybe use ctrl instead
 (map!
  (:after evil
    :en "C-h"   #'evil-window-left

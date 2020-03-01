@@ -1,14 +1,15 @@
 #+TITLE: Doom Configuration file
-* Personal Information
-** Set full name
+* Config
+** Personal Information
+*** Set full name
 #+BEGIN_SRC emacs-lisp
 (setq user-full-name "Brett Mandler")
 #+END_SRC
-** Set email address
+*** Set email address
 #+BEGIN_SRC emacs-lisp
 (setq user-mail-address "brettmandler@gmail.com")
 #+END_SRC
-* Color themes
+** Color themes
 #+BEGIN_SRC emacs-lisp
 
 (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 12))
@@ -25,15 +26,15 @@
  '(org-level-8 ((t (:inherit org-level-4)))))
 
 #+END_SRC
-* Languages
-** Python
+** Languages
+*** Python
 #+BEGIN_SRC emacs-lisp
 
 (setq-hook! python-mode python-indent-offset 2)
 
 #+END_SRC
-* ORG-mode
-** Org agenda
+** ORG-mode
+*** Org agenda
 #+BEGIN_SRC emacs-lisp
 (setq org-agenda-files '("~/Documents/org/inbox.org"
                          "~/Documents/org/gtd.org"
@@ -41,7 +42,7 @@
                          "~/Documents/org/gcal.org"
                          "~/Documents/org/tickler.org"))
 #+END_SRC
-** Org agenda Prefixes
+*** Org agenda Prefixes
 #+BEGIN_SRC emacs-lisp
 (setq org-agenda-prefix-format
         (quote
@@ -50,7 +51,7 @@
           (tags . " %i %-12:c")
           (search . " %i %-12:c"))))
 #+END_SRC
-** Refile targets
+*** Refile targets
 #+BEGIN_SRC emacs-lisp
 (setq org-refile-targets '(("~/Documents/org/gtd.org" :maxlevel . 3)
                            ("~/Documents/org/someday.org" :level . 1)
@@ -58,7 +59,7 @@
                            ("~/Documents/org/wishlist.org" :level . 1)
                            ("~/Documents/org/tickler.org" :maxlevel . 2)))
 #+END_SRC
-** Capture templates
+*** Capture templates
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
@@ -76,7 +77,7 @@
                                 ))
 )
 #+END_SRC
-** Capture templates
+*** Capture templates
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-publish-project-alist
@@ -95,7 +96,7 @@
            )))
 )
 #+END_SRC
-** Exporting
+*** Exporting
 #+BEGIN_SRC emacs-lisp
 ;; newline on toc
 (org-babel-do-load-languages
@@ -103,11 +104,11 @@
  '((plantuml . t)))
 (setq org-latex-toc-command "\\tableofcontents \\clearpage")
 #+END_SRC
-** Change the character that displays on collapsed headings
+*** Change the character that displays on collapsed headings
 #+BEGIN_SRC emacs-lisp
 (setq org-ellipsis " ▼ ")
 #+END_SRC
-* Ranger-mode
+** Ranger-mode
 #+BEGIN_SRC emacs-lisp
 (map! (:leader (:prefix "o" :desc "Ranger" :nv "F" 'ranger)))
 (after! ranger
@@ -118,10 +119,8 @@
 )
 
 #+END_SRC
-* Movements
+** Movements
 #+BEGIN_SRC emacs-lisp
-;; Movements in doom
-;; TODO fix this - it doesn't really work. - maybe use ctrl instead
 (map!
  (:after evil
    :en "C-h"   #'evil-window-left
@@ -129,7 +128,7 @@
    :en "C-k"   #'evil-window-up
    :en "C-l"   #'evil-window-right))
 #+END_SRC
-* RSS
+** RSS
 #+BEGIN_SRC emacs-lisp
 ;; el feed
 (global-set-key (kbd "C-x w") 'elfeed)
@@ -141,3 +140,7 @@
 
 
 #+END_SRC
+
+* Sources
+** https://github.com/Brettm12345/doom-emacs-literate-config/blob/master/config.org#emacseshell
+** https://github.com/hlissner/doom-emacs-private/blob/master/config.el
