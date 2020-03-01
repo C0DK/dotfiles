@@ -72,15 +72,15 @@
        ;;vterm             ; another terminals in Emacs
 
        :checkers
-       syntax         ; tasing you for every semicolon you forget
-       spell          ; tasing you for misspelling mispelling
+       syntax              ; tasing you for every semicolon you forget
+       (spell +everywhere) ; tasing you for misspelling mispelling
 
        :tools
        ;;ansible
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
+       debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        ;;docker
-       ;;editorconfig      ; let someone else argue about tabs vs spaces
+       editorconfig      ; let someone else argue about tabs vs spaces
        ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        gist              ; interacting with github gists
@@ -168,7 +168,7 @@
        ;;(wanderlust +gmail)
 
        :app
-       ;;calendar
+       calendar
        ;;irc               ; how neckbeards socialize
        (rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought

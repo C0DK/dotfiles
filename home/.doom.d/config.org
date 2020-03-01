@@ -1,6 +1,7 @@
-;;; .doom.d/config.el -*- lexical-binding: t; -*-
+#+TITLE: Doom Config
 
-;; Place your private configuration here
+* Color themes
+#+BEGIN_SRC emacs-lisp
 
 (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 12))
 (setq doom-theme 'doom-nord)
@@ -15,12 +16,16 @@
  '(org-level-7 ((t (:inherit org-level-4))))
  '(org-level-8 ((t (:inherit org-level-4)))))
 
-;; python
+#+END_SRC
+* Language stuff
+#+BEGIN_SRC emacs-lisp
 
 (setq-hook! python-mode python-indent-offset 2)
 
+#+END_SRC
+* ORG-mode
+#+BEGIN_SRC emacs-lisp
 
-;; org stuff
 (setq org-agenda-files '("~/Documents/org/inbox.org"
                          "~/Documents/org/gtd.org"
                          "~/Documents/org/wishlist.org"
@@ -32,13 +37,6 @@
                            ("~/Documents/org/archive.org" :level . 1)
                            ("~/Documents/org/wishlist.org" :level . 1)
                            ("~/Documents/org/tickler.org" :maxlevel . 2)))
-(map! (:leader (:prefix "o" :desc "Ranger" :nv "F" 'ranger)))
-(after! ranger
-  (setq ranger-ignored-extensions '("mkv" "iso" "mp4"))
-  (setq ranger-show-hidden t)
-  (setq ranger-cleanup-on-disable t)
-  (setq ranger-cleanup-eagerly t)
-)
 (after! org
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline "~/Documents/org/gtd.org" "Tasks")
@@ -74,18 +72,34 @@
                                      )
            )))
   )
+;; newline on toc
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((plantuml . t)))
+(setq org-latex-toc-command "\\tableofcontents \\clearpage")
+#+END_SRC
+* Ranger-mode
+#+BEGIN_SRC emacs-lisp
+(map! (:leader (:prefix "o" :desc "Ranger" :nv "F" 'ranger)))
+(after! ranger
+  (setq ranger-ignored-extensions '("mkv" "iso" "mp4"))
+  (setq ranger-show-hidden t)
+  (setq ranger-cleanup-on-disable t)
+  (setq ranger-cleanup-eagerly t)
+)
 
+#+END_SRC
+* Movements
+#+BEGIN_SRC emacs-lisp
 ;; Movements in doom
 ;; TODO fix this - it doesn't really work. - maybe use ctrl instead
 (global-set-key (kbd "M-h") 'evil-window-left)
 (global-set-key (kbd "M-j") 'evil-window-down)
 (global-set-key (kbd "M-k") 'evil-window-up)
 (global-set-key (kbd "M-l") 'evil-window-right)
-;; newline on toc
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((plantuml . t)))
-(setq org-latex-toc-command "\\tableofcontents \\clearpage")
+#+END_SRC
+* RSS
+#+BEGIN_SRC emacs-lisp
 ;; el feed
 (global-set-key (kbd "C-x w") 'elfeed)
 (setq elfeed-feeds
@@ -95,3 +109,4 @@
         ))
 
 
+#+END_SRC
