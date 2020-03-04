@@ -1,6 +1,6 @@
-(setq user-full-name "Brett Mandler")
+(setq user-full-name "Casper Weiss Bang")
 
-(setq user-mail-address "brettmandler@gmail.com")
+(setq user-mail-address "cawb@itu.dk")
 
 (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 12))
 (setq doom-theme 'doom-nord)

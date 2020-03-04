@@ -3,11 +3,11 @@
 ** Personal Information
 *** Set full name
 #+BEGIN_SRC emacs-lisp
-(setq user-full-name "Brett Mandler")
+(setq user-full-name "Casper Weiss Bang")
 #+END_SRC
 *** Set email address
 #+BEGIN_SRC emacs-lisp
-(setq user-mail-address "brettmandler@gmail.com")
+(setq user-mail-address "cawb@itu.dk")
 #+END_SRC
 ** Color themes
 #+BEGIN_SRC emacs-lisp

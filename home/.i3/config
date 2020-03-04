@@ -226,7 +226,7 @@ mode "$mode_open" {
     bindsym s exec --no-startup-id spotify, mode "default"
     bindsym m exec --no-startup-id caprine, mode "default"
     bindsym k exec --no-startup-id run_keybase, mode "default"
-    bindsym p exec --no-startup-id foxitreader, mode "default"
+    bindsym p exec --no-startup-id epdfview, mode "default"
     bindsym Shift+s exec --no-startup-id sypeforlinux, mode "default"
     bindsym Shift+t exec --no-startup-id thunderbird, mode "default"
 
