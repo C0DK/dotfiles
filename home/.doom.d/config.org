@@ -77,6 +77,15 @@
                                 ))
 )
 #+END_SRC
+*** Always show images
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (setq org-startup-with-inline-images "inlineimages"
+             )
+  )
+
+#+END_SRC
+
 *** Capture templates
 #+BEGIN_SRC emacs-lisp
 (after! org
@@ -103,6 +112,12 @@
  'org-babel-load-languages
  '((plantuml . t)))
 (setq org-latex-toc-command "\\tableofcontents \\clearpage")
+#+END_SRC
+*** Dot / graphviz
+#+BEGIN_SRC emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t))) ; this line activates dot
 #+END_SRC
 *** Change the character that displays on collapsed headings
 #+BEGIN_SRC emacs-lisp

@@ -53,6 +53,11 @@
 )
 
 (after! org
+  (setq org-startup-with-inline-images "inlineimages"
+             )
+  )
+
+(after! org
   (setq org-publish-project-alist
         `(("KBP"
            :base-directory "~/Documents/org/kbp"
@@ -74,6 +79,10 @@
  'org-babel-load-languages
  '((plantuml . t)))
 (setq org-latex-toc-command "\\tableofcontents \\clearpage")
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t))) ; this line activates dot
 
 (setq org-ellipsis " ▼ ")
 
