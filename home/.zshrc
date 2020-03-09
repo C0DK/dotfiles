@@ -92,6 +92,7 @@ alias clearofetch='clear && neofetch'
 alias neofetch_long='clear && neofetch --config ~/.config/neofetch/config_long.conf'
 alias jrnl=' jrnl'
 alias readjrnl=' jrnl -from "1/1/2000" | less +G'
+alias idk='echo "ok, buddy"'
 
 eval $(thefuck --alias fq)
 
