@@ -26,6 +26,16 @@
 #define TAPPING_TOGGLE 3
 #define MIDI_BASIC
 
+#define RGBLIGHT_LAYERS
+
+
+#define RGB_NO 0x00, 0x00, 0x00
+#define HSV_ATT HSV_RED
+#undef RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_EFFECT_SNAKE
+#define RGBLIGHT_EFFECT_RAINBOW_MOOD
+#define RGBLIGHT_EFFECT_CHRISTMAS
+#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 /* enable advanced MIDI features:
    - MIDI notes can be added to the keymap
    - Octave shift and transpose
@@ -36,3 +46,4 @@
 
 /* override number of MIDI tone keycodes (each octave adds 12 keycodes and allocates 12 bytes) */
 //#define MIDI_TONE_KEYCODE_OCTAVES 2
+

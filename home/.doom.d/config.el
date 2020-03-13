@@ -108,3 +108,5 @@
         "https://node2.feed43.com/2538022243138888.xml"
         "https://www.dr.dk/nyheder/service/feeds/allenyheder"
         ))
+
+(setq max-specpdl-size 13000)

@@ -155,6 +155,11 @@
 
 
 #+END_SRC
+** Hacks
+So i got an error, and based on [[https://www.reddit.com/r/emacs/comments/9jp9zt/anyone_know_what_variable_binding_depth_exceeds/][this]] the following should fix it
+#+BEGIN_SRC emacs-lisp
+(setq max-specpdl-size 13000)
+#+END_SRC
 
 * Sources
 ** https://github.com/Brettm12345/doom-emacs-literate-config/blob/master/config.org#emacseshell

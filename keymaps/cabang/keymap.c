@@ -13,7 +13,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include QMK_KEYBOARD_H
 #include "muse.h"
 
@@ -26,6 +25,8 @@ enum preonic_layers {
 
 enum preonic_keycodes {
   BACKLIT = SAFE_RANGE,
+  RGB_COF,
+  RGB_CON
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -43,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 # define KC_AE RALT(KC_Z)
 # define KC_OE RALT(KC_L)
 [_LOWER] = LAYOUT_preonic_grid( \
-  KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,      KC_PERC, KC_CIRC, KC_AMPR,      KC_ASTR,    _______,  KC_EQUAL, _______, \
+  KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,      KC_AMPR, KC_PERC,  KC_CIRC,     KC_ASTR,   _______,  KC_EQUAL, _______, \
   KC_GRV,  _______, _______, KC_AE,   _______,     _______, _______,  _______,     _______,   KC_OE,    _______,  _______, \
   _______, KC_AA,   KC_LPRN, KC_RPRN, KC_LCBR,     KC_RCBR, KC_EQUAL, KC_UNDS,     KC_PLUS,   KC_MINUS, KC_COLN,  _______, \
   _______, _______, KC_LABK, KC_RABK, KC_LBRC,     KC_RBRC, _______,  _______,     _______,   _______,  KC_PIPE,  KC_GRV,  \
@@ -63,35 +64,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_ADJUST] = LAYOUT_preonic_grid( \
-  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,       KC_F6,   KC_F7,   KC_F8,       KC_F9,   KC_F10,  KC_F11,  KC_F12,   \
-  _______, RESET,   DEBUG,   _______, _______,     _______, _______, TERM_ON,     TERM_OFF,_______, _______, KC_DEL,   \
-  _______, _______, MU_MOD,  AU_ON,   AU_OFF,      AG_NORM, AG_SWAP, _______,     _______, _______,  _______, _______, \
-  _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,      MI_ON,   MI_OFF,  _______,     _______, _______, _______, _______,  \
-  _______, _______, _______, _______, TO(_QWERTY), _______, _______, TO(_QWERTY), _______, _______, _______, _______   \
+  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,       KC_F6,   KC_F7,   KC_F8,       KC_F9,    KC_F10,  KC_F11,  KC_F12,  \
+  _______, RESET,   DEBUG,   _______, _______,     _______, _______, TERM_ON,     TERM_OFF, _______, _______, KC_DEL,  \
+  _______, _______, MU_MOD,  AU_ON,   AU_OFF,      AG_NORM, AG_SWAP, _______,     _______,  _______, RGB_COF, _______, \
+  _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,      MI_ON,   MI_OFF,  RGB_TOG,     RGB_MOD,  RGB_M_P, RGB_CON, _______, \
+  _______, _______, _______, _______, TO(_QWERTY), _______, _______, TO(_QWERTY), _______,  _______, _______, _______  \
 )
 
 
 };
 
-/*
-layer_state_t layer_state_set_user(layer_state_t state) {
-    //tap_code(G(S(C(KC_K))));
-    send_string(SS_LGUI(SS_LSFT(SS_LCTL("k"))));
-    switch (get_highest_layer(state)) {
-    case _RAISE:
-        tap_code(KC_R);
-        break;
-    case _LOWER:
-        tap_code(KC_L);
-    case _ADJUST:
-        tap_code(KC_A);
-    default: //  for any other layers, or the default layer
-        tap_code(KC_D);
-        break;
-    }
-  return state;
-}
-*/
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -110,6 +92,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             writePinHigh(E6);
             #endif
           }
+          return false;
+          break;
+        case RGB_CON:
+          rgblight_set_layer_state(0, true);
+          return false;
+          break;
+        case RGB_COF:
+          rgblight_set_layer_state(0, false);
           return false;
           break;
       }
@@ -194,3 +184,53 @@ bool music_mask_user(uint16_t keycode) {
       return true;
   }
 }
+
+/* LIGHTS AND SHIT */
+//*
+// Light LED under raise key upon pressing it (LED 6)
+const rgblight_segment_t PROGMEM my_blank_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+	{0, 9, RGB_NO}
+);
+const rgblight_segment_t PROGMEM my_raise_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+	{0, 9, RGB_NO},
+	{8, 1, HSV_ATT}
+);
+const rgblight_segment_t PROGMEM my_lower_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+	{0, 9, RGB_NO},
+	{1, 1, HSV_ATT}
+);
+// Light all LED's in red when keyboard layer 2 is active (LED 9)
+const rgblight_segment_t PROGMEM my_adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+	{0, 9, RGB_NO},
+	{2, 1, HSV_ATT}
+);
+const rgblight_segment_t PROGMEM my_caps_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+	{0, 9, RGB_NO},
+	{3, 4, HSV_ATT}
+);
+// Now define the array of layers. Later layers take precedence
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+	my_blank_layer,
+	my_raise_layer,
+	my_lower_layer,    // Overrides caps lock layer
+	my_adjust_layer,     // Overrides other layers
+	my_caps_layer
+);
+
+void keyboard_post_init_user(void) {
+	// Enable the LED layers
+	rgblight_layers = my_rgb_layers;
+}
+layer_state_t layer_state_set_user(layer_state_t state) {
+	// Both layers will light up if both kb layers are active
+	rgblight_set_layer_state(1, layer_state_cmp(state, 1));
+	rgblight_set_layer_state(2, layer_state_cmp(state, 2));
+	rgblight_set_layer_state(3, layer_state_cmp(state, 3));
+	return state;
+}
+bool led_update_user(led_t led_state) {
+
+    rgblight_set_layer_state(4, led_state.caps_lock);
+    return true;
+}
+//*/

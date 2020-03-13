@@ -11,6 +11,7 @@
 	aa = add -A .
 	cm = commit -m
 	aacm = !git add -A . && git commit -m
+	aaacm = aacm
 	aacmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 	cp = cherry-pick
 	amend = commit --amend --no-edit

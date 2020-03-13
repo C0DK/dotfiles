@@ -5,7 +5,7 @@ export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.emacs.d
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
-export CFLAGS="-Wno-error=deprecated"
+export CFLAGS="-Wno-error=deprecated -Wno-error=int-to-pointer-cast"
 export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
@@ -17,7 +17,7 @@ POWERLEVEL9K_MODE='awesome-fontconfig'
 source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
 # settings for powerlevel9k
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir virtualenv pyenv_joined nodeenv vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir virtualenv pyenv_joined nodeenv vcs vi_mode)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 
 
@@ -26,10 +26,14 @@ BASIC_COLOR='default'
 POWERLEVEL9K_VIRTUALENV_BACKGROUND=$BASIC_COLOR
 POWERLEVEL9K_VIRTUALENV_FOREGROUND='cyan'
 
-POWERLEVEL9K_VI_INSERT_MODE_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_VI_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_VI_INSERT_MODE_STRING=' '
-POWERLEVEL9K_VI_COMMAND_MODE_STRING=' '
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND=$BASIC_COLOR
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND=$BASIC_COLOR
+POWERLEVEL9K_VI_MODE_VISUAL_BACKGROUND=$BASIC_COLOR
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND="white"
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND="white"
+POWERLEVEL9K_VI_MODE_VISUAL_FOREGROUND="white"
+POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+POWERLEVEL9K_VI_COMMAND_MODE_STRING=''
 
 POWERLEVEL9K_DIR_DEFAULT_BACKGROUND=$BASIC_COLOR
 POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='red'
@@ -93,6 +97,8 @@ alias neofetch_long='clear && neofetch --config ~/.config/neofetch/config_long.c
 alias jrnl=' jrnl'
 alias readjrnl=' jrnl -from "1/1/2000" | less +G'
 alias idk='echo "ok, buddy"'
+alias cln='clean'
+alias cf='clearofetch'
 
 eval $(thefuck --alias fq)
 
@@ -120,3 +126,6 @@ export EDITOR="$VISUAL"
 export KEYTIMEOUT=1
 setopt HIST_IGNORE_SPACE
 
+# use VI
+bindkey -v
+bindkey "^?" backward-delete-char
