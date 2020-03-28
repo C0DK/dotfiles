@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 
 # If you come from bash you might have to change your $PATH.
 export GOPATH=$HOME/go
@@ -13,56 +20,7 @@ ZSH=/usr/share/oh-my-zsh/
 plugins=(virtualenv git)
 
 
-POWERLEVEL9K_MODE='awesome-fontconfig'
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
-
-# settings for powerlevel9k
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir virtualenv pyenv_joined nodeenv vcs vi_mode)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
-
-
-
-BASIC_COLOR='default'
-POWERLEVEL9K_VIRTUALENV_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_VIRTUALENV_FOREGROUND='cyan'
-
-POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_VI_MODE_VISUAL_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND="white"
-POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND="white"
-POWERLEVEL9K_VI_MODE_VISUAL_FOREGROUND="white"
-POWERLEVEL9K_VI_INSERT_MODE_STRING=''
-POWERLEVEL9K_VI_COMMAND_MODE_STRING=''
-
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='red'
-POWERLEVEL9K_DIR_HOME_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_DIR_HOME_FOREGROUND='default'
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='default'
-POWERLEVEL9K_DIR_ETC_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_DIR_ETC_FOREGROUND='white'
-
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND='green'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='yellow'
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='red'
-
-POWERLEVEL9K_STATUS_OK_BACKGROUND=$BASIC_COLOR
-POWERLEVEL9K_STATUS_OK='false'
-POWERLEVEL9K_VCS_GIT_ICON=''
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
-POWERLEVEL9K_VCS_GIT_BITBUCKET_ICON=''
-POWERLEVEL9K_VCS_GIT_GITLAB_ICON=''
-
-
-POWERLEVEL9K_SHORTEN_DIR_LENGTH='3'
-POWERLEVEL9K_SHORTEN_STRATEGY='truncate_from_right'
-POWERLEVEL9K_DIR_SHOW_WRITABLE="true"
-
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 DISABLE_AUTO_UPDATE="true"
 
@@ -129,3 +87,6 @@ setopt HIST_IGNORE_SPACE
 # use VI
 bindkey -v
 bindkey "^?" backward-delete-char
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
