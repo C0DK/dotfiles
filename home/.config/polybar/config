@@ -181,14 +181,14 @@
 	type          = internal/alsa
 	format-volume = <label-volume>
 
-	label-volume            = "%{A1:pavucontrol:} %percentage%%{A}"
+	label-volume            = " %percentage%%"
 	label-volume-background = ${xrdb:background}
 	label-volume-foreground = ${xrdb:foreground}
 	label-volume-padding    = 3
 
 	format-muted = <label-muted>
 
-	label-muted            = "%{A1:pavucontrol:} 0%{A}"
+	label-muted            = " 0%"
 	label-muted-background = ${xrdb:background}
 	label-muted-foreground = ${xrdb:foreground}
 	label-muted-padding    = 3
@@ -240,7 +240,7 @@
 	format-connected-prefix-background = ${xrdb:background}
 	format-connected-prefix-foreground = ${xrdb:color2}
 
-	label-connected            = "%{A1:nm-connection-editor:}%essid%%{A}"
+	label-connected            = "%essid%"
 	label-connected-background = ${xrdb:background}
 	label-connected-foreground = ${xrdb:foreground}
 	label-connected-padding    = 1
@@ -257,7 +257,7 @@
 	format-disconnected-prefix-background = ${xrdb:background}
 	format-disconnected-prefix-foreground = ${xrdb:foreground}
 
-	label-disconnected            = "%{A1:nm-connection-editor:}DISCONNECTED%{A}"
+	label-disconnected            = "DISCONNECTED"
 	label-disconnected-background = ${xrdb:background}
 	label-disconnected-foreground = ${xrdb:foreground}
 	label-disconnected-padding    = 1
