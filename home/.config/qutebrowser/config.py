@@ -105,7 +105,7 @@ c.colors.downloads.start.fg = nord[15]
 ## for transparency.
 ## Type: QssColor
 c.colors.hints.bg = nord[0]
-c.hints.border = "1 px "+nord[3]
+c.hints.border = "1 px " + nord[3]
 
 ## Font color for hints.
 ## Type: QssColor
@@ -170,7 +170,7 @@ c.colors.prompts.bg = nord[0]
 
 ## Border used around UI elements in prompts.
 ## Type: String
-#c.colors.prompts.border = "1px solid " + nord["base3"]
+# c.colors.prompts.border = "1px solid " + nord["base3"]
 
 ## Foreground color for prompts.
 ## Type: QssColor
@@ -226,7 +226,7 @@ c.colors.statusbar.normal.bg = nord[0]
 
 ## Foreground color of the statusbar.
 ## Type: QssColor
-c.colors.statusbar.normal.fg = nord[4]
+c.colors.statusbar.normal.fg = nord[3]
 
 ## Background color of the statusbar in passthrough mode.
 ## Type: QssColor
@@ -274,9 +274,7 @@ c.colors.statusbar.url.success.https.fg = nord[3]
 ## Type: QssColor
 c.colors.statusbar.url.warn.fg = nord[13]
 
-## Background color of the tab bar.
-## Type: QtColor
-# c.colors.tabs.bar.bg = '#555555'
+c.tabs.padding = {"bottom": 5, "left": 5, "right": 5, "top": 5}
 
 ## Background color of unselected even tabs.
 ## Type: QtColor
@@ -299,14 +297,13 @@ c.colors.tabs.indicator.error = nord[11]
 
 ## Color gradient start for the tab indicator.
 ## Type: QtColor
-c.colors.tabs.indicator.start = nord[15]
+c.colors.tabs.indicator.start = nord[7]
 
 ## Color gradient end for the tab indicator.
 ## Type: QtColor
-c.colors.tabs.indicator.stop = nord[15]
+c.colors.tabs.indicator.stop = nord[1]
 
-
-
+c.tabs.title.format = "{audio} {current_title}"
 ## Background color of selected even tabs.
 ## Type: QtColor
 c.colors.tabs.selected.even.bg = nord[1]
@@ -328,3 +325,10 @@ c.colors.tabs.selected.odd.fg = c.colors.tabs.selected.even.fg
 ## Type: QtColor
 # c.colors.webpage.bg = 'white'
 
+c.url.searchengines = {
+    "DEFAULT": "https://duckduckgo.com/?q={}",
+    "wolfram-alpha": "https://www.wolframalpha.com/input/?i={}",
+    "dictionary": "https://www.dictionary.com/browse/{}?s=t",
+    "google": "https://www.google.com/search?q={}",
+    "arch": "https://wiki.archlinux.org/?search={}",
+}

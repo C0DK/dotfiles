@@ -28,7 +28,8 @@ floating_modifier $mod
 bindsym $mod+q kill
 
 # start program launcher
-bindsym Ctrl+Return exec --no-startup-id dmenu_recency 
+bindsym Ctrl+Return exec --no-startup-id dmenu_run
+bindsym Ctrl+p exec --no-startup-id passmenu
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -217,11 +218,11 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-set $mode_open (e)macs, (t)erm, (f)irefox, (Shift+s)potify, (S)kype, (m)essenger, (k)keybase, (p)dfreader, (Shift+t)hunderbird, (c)hrome
+set $mode_open (e)ditor, (t)erm, (b)rowser, (Shift+s)potify, (S)kype, (m)essenger, (k)keybase, (p)dfreader, (Shift+t)hunderbird, (c)hrome
 mode "$mode_open" {
    bindsym e exec --no-startup-id emacs, mode "default"
     bindsym t exec --no-startup-id alacritty -e sh -c "neofetch && zsh", mode "default"
-    bindsym f exec --no-startup-id firefox, mode "default"
+    bindsym b exec --no-startup-id qutebrowser, mode "default"
     bindsym c exec --no-startup-id google-chrome-stable, mode "default"
     bindsym s exec --no-startup-id spotify, mode "default"
     bindsym m exec --no-startup-id caprine, mode "default"

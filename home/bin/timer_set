@@ -3,5 +3,5 @@
 
 d=$(date -d "now + $*")
 
-echo $d > ~/.timer 
+echo $d > ~/.cache/timer
 echo "Timer set for: $d"

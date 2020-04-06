@@ -1,6 +1,6 @@
-# My ~Dracula~ NORD based Dotfiles
+# My NORD based Dotfiles
 
 
-Dotfiles for ~dracula~ NORD everywhere.
+Dotfiles for NORD everywhere.
 
-I like ~dracula~ NORD
+I like NORD

@@ -1,5 +1,5 @@
 #/bin/sh
-endTime=$(cat ~/.timer)
+endTime=$(cat ~/.cache/timer)
 
 now=$(date -d "now" +%s)
 then=$(date -d "$endTime" +%s)

@@ -78,7 +78,7 @@ kb() {
 
 
 # Default browser
-BROWSER=/usr/bin/firefox
+#BROWSER=/usr/bin/qutebrowser
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export KEYTIMEOUT=1
@@ -90,3 +90,5 @@ bindkey "^?" backward-delete-char
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+eval $(thefuck --alias)
