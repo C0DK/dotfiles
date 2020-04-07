@@ -330,5 +330,6 @@ c.url.searchengines = {
     "wolfram-alpha": "https://www.wolframalpha.com/input/?i={}",
     "dictionary": "https://www.dictionary.com/browse/{}?s=t",
     "google": "https://www.google.com/search?q={}",
+    "translate": "https://translate.google.com/?text={}",
     "arch": "https://wiki.archlinux.org/?search={}",
 }
