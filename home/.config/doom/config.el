@@ -1,16 +1,6 @@
-#+TITLE: Doom Configuration file
-* Config
-** Personal Information
-*** Set full name
-#+BEGIN_SRC emacs-lisp
 (setq user-full-name "Casper Weiss Bang")
-#+END_SRC
-*** Set email address
-#+BEGIN_SRC emacs-lisp
+
 (setq user-mail-address "cawb@itu.dk")
-#+END_SRC
-** Color themes
-#+BEGIN_SRC emacs-lisp
 
 (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 12))
 (setq doom-theme 'doom-nord)
@@ -25,42 +15,27 @@
  '(org-level-7 ((t (:inherit org-level-4))))
  '(org-level-8 ((t (:inherit org-level-4)))))
 
-#+END_SRC
-** Languages
-*** Python
-#+BEGIN_SRC emacs-lisp
-
 (setq-hook! python-mode python-indent-offset 2)
 
-#+END_SRC
-** ORG-mode
-*** Org agenda
-#+BEGIN_SRC emacs-lisp
 (setq org-agenda-files '("~/Documents/org/inbox.org"
                          "~/Documents/org/gtd.org"
                          "~/Documents/org/wishlist.org"
                          "~/Documents/org/gcal.org"
                          "~/Documents/org/tickler.org"))
-#+END_SRC
-*** Org agenda Prefixes
-#+BEGIN_SRC emacs-lisp
+
 (setq org-agenda-prefix-format
         (quote
          ((agenda . " %i %-12:c%?-12t% s")
           (todo . "%l %i %-6:c")
           (tags . " %i %-12:c")
           (search . " %i %-12:c"))))
-#+END_SRC
-*** Refile targets
-#+BEGIN_SRC emacs-lisp
+
 (setq org-refile-targets '(("~/Documents/org/gtd.org" :maxlevel . 3)
                            ("~/Documents/org/someday.org" :level . 1)
                            ("~/Documents/org/archive.org" :level . 1)
                            ("~/Documents/org/wishlist.org" :level . 1)
                            ("~/Documents/org/tickler.org" :maxlevel . 2)))
-#+END_SRC
-*** Capture templates
-#+BEGIN_SRC emacs-lisp
+
 (after! org
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                  (file+headline "~/Documents/org/gtd.org" "Tasks")
@@ -76,18 +51,12 @@
                                  "* %i%?")
                                 ))
 )
-#+END_SRC
-*** Always show images
-#+BEGIN_SRC emacs-lisp
+
 (after! org
   (setq org-startup-with-inline-images "inlineimages"
              )
   )
 
-#+END_SRC
-
-*** Capture templates
-#+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-publish-project-alist
         `(("KBP"
@@ -99,32 +68,24 @@
            ;;:table-of-contents nil
            :html-head-extra ,(format "<style type=\"text/css\">%s</style>"
                                      (with-temp-buffer
-                                       (insert-file-contents "~/.doom.d/nord.css")
+                                       (insert-file-contents "~/.config/doom/nord.css")
                                        (buffer-string))
                                      )
            )))
 )
-#+END_SRC
-*** Exporting
-#+BEGIN_SRC emacs-lisp
+
 ;; newline on toc
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((plantuml . t)))
 (setq org-latex-toc-command "\\tableofcontents \\clearpage")
-#+END_SRC
-*** Dot / graphviz
-#+BEGIN_SRC emacs-lisp
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((dot . t))) ; this line activates dot
-#+END_SRC
-*** Change the character that displays on collapsed headings
-#+BEGIN_SRC emacs-lisp
+
 (setq org-ellipsis " ▼ ")
-#+END_SRC
-** Ranger-mode
-#+BEGIN_SRC emacs-lisp
+
 (map! (:leader (:prefix "o" :desc "Ranger" :nv "F" 'ranger)))
 (after! ranger
   (setq ranger-ignored-extensions '("mkv" "iso" "mp4"))
@@ -133,18 +94,13 @@
   (setq ranger-cleanup-eagerly t)
 )
 
-#+END_SRC
-** Movements
-#+BEGIN_SRC emacs-lisp
 (map!
  (:after evil
    :en "C-h"   #'evil-window-left
    :en "C-j"   #'evil-window-down
    :en "C-k"   #'evil-window-up
    :en "C-l"   #'evil-window-right))
-#+END_SRC
-** RSS
-#+BEGIN_SRC emacs-lisp
+
 ;; el feed
 (global-set-key (kbd "C-x w") 'elfeed)
 (setq elfeed-feeds
@@ -153,14 +109,4 @@
         "https://www.dr.dk/nyheder/service/feeds/allenyheder"
         ))
 
-
-#+END_SRC
-** Hacks
-So i got an error, and based on [[https://www.reddit.com/r/emacs/comments/9jp9zt/anyone_know_what_variable_binding_depth_exceeds/][this]] the following should fix it
-#+BEGIN_SRC emacs-lisp
 (setq max-specpdl-size 13000)
-#+END_SRC
-
-* Sources
-** https://github.com/Brettm12345/doom-emacs-literate-config/blob/master/config.org#emacseshell
-** https://github.com/hlissner/doom-emacs-private/blob/master/config.el
