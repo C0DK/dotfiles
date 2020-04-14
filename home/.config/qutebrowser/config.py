@@ -278,19 +278,21 @@ c.tabs.padding = {"bottom": 5, "left": 5, "right": 5, "top": 5}
 
 ## Background color of unselected even tabs.
 ## Type: QtColor
-c.colors.tabs.even.bg = nord[1]
+c.colors.tabs.bar.bg = nord[1]
+## Background color of unselected even tabs.
+## Type: QtColor
+c.colors.tabs.even.bg = c.colors.tabs.bar.bg
 
 ## Foreground color of unselected even tabs.
 ## Type: QtColor
 c.colors.tabs.even.fg = nord[3]
 
-## Background color of unselected odd tabs.
-## Type: QtColor
 c.colors.tabs.odd.bg = c.colors.tabs.even.bg
-
-## Foreground color of unselected odd tabs.
-## Type: QtColor
 c.colors.tabs.odd.fg = c.colors.tabs.even.fg
+c.colors.tabs.pinned.odd.bg = c.colors.tabs.odd.bg
+c.colors.tabs.pinned.odd.fg = c.colors.tabs.odd.fg
+c.colors.tabs.pinned.even.bg = c.colors.tabs.even.bg
+c.colors.tabs.pinned.even.fg = c.colors.tabs.even.fg
 ## Color for the tab indicator on errors.
 ## Type: QtColor
 c.colors.tabs.indicator.error = nord[11]

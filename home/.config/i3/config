@@ -348,7 +348,7 @@ smart_borders on
 ## Auto EXEC
 exec --no-startup-id alacritty -e "tmux_ws" --class=w1term
 exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/emacs' 
-exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/firefox'
+exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/qutebrowser'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/thunderbird'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/slack'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/caprine'
