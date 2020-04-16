@@ -38,7 +38,7 @@
 
 (after! org
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
-                                 (file+headline "~/Documents/org/gtd.org" "Tasks")
+                                 (file+headline "~/Documents/org/gtd.org" "Backlog")
                                  "* TODO %i%?")
                                 ("n" "Note" entry
                                  (file+headline "~/Documents/org/notes.org" "Notes")
