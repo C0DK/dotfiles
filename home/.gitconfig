@@ -15,7 +15,7 @@
 	aacmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 	cp = cherry-pick
 	amend = commit --amend --no-edit
-	aamend = git add -A && git amend
+	aamend = !git add -A . && git amend
 	amend-edit = commit --amend
 	dev = !git checkout dev && git pull origin dev
 	staging = !git checkout staging && git pull origin staging
@@ -43,3 +43,5 @@
 [user]
 	email = master@thecdk.net
 	name = Casper Weiss Bang
+[pull]
+	rebase = true
