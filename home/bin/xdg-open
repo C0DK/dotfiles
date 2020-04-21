@@ -1,0 +1,13 @@
+
+#!/bin/sh
+case "${1%%:*}" in
+    http|https|*.pdf)
+        exec qutebrowser "$1"
+        ;;
+    mailto)
+        exec aerc "$1"
+        ;;
+    *)
+        exec /usr/bin/xdg-open "$@"
+        ;;
+esac
