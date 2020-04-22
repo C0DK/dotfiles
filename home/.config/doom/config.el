@@ -17,6 +17,10 @@
 
 (setq-hook! python-mode python-indent-offset 2)
 
+(after! org
+   (setq org-directory "~/Documents/org/")
+)
+
 (setq org-agenda-files '("~/Documents/org/inbox.org"
                          "~/Documents/org/gtd.org"
                          "~/Documents/org/wishlist.org"
@@ -29,6 +33,10 @@
           (todo . "%l %i %-6:c")
           (tags . " %i %-12:c")
           (search . " %i %-12:c"))))
+
+(after! org
+  '(add-to-list 'org-latex-packages-alist '("" "minted")))
+(setq org-latex-listings 'minted)
 
 (setq org-refile-targets '(("~/Documents/org/gtd.org" :maxlevel . 3)
                            ("~/Documents/org/someday.org" :level . 1)

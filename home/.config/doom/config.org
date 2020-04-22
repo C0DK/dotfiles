@@ -34,6 +34,13 @@
 
 #+END_SRC
 ** ORG-mode
+*** Directory
+#+BEGIN_SRC emacs-lisp
+(after! org
+   (setq org-directory "~/Documents/org/")
+)
+
+#+END_SRC
 *** Org agenda
 #+BEGIN_SRC emacs-lisp
 (setq org-agenda-files '("~/Documents/org/inbox.org"
@@ -42,6 +49,7 @@
                          "~/Documents/org/gcal.org"
                          "~/Documents/org/tickler.org"))
 #+END_SRC
+
 *** Org agenda Prefixes
 #+BEGIN_SRC emacs-lisp
 (setq org-agenda-prefix-format
@@ -51,6 +59,17 @@
           (tags . " %i %-12:c")
           (search . " %i %-12:c"))))
 #+END_SRC
+
+*** PDF styling
+#+BEGIN_SRC emacs-lisp
+(after! org
+  '(add-to-list 'org-latex-packages-alist '("" "minted")))
+(setq org-latex-listings 'minted)
+#+END_SRC
+
+#+RESULTS:
+| pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f | pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f | pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f |
+
 *** Refile targets
 #+BEGIN_SRC emacs-lisp
 (setq org-refile-targets '(("~/Documents/org/gtd.org" :maxlevel . 3)
