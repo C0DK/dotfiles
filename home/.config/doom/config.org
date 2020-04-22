@@ -60,15 +60,6 @@
           (search . " %i %-12:c"))))
 #+END_SRC
 
-*** PDF styling
-#+BEGIN_SRC emacs-lisp
-(after! org
-  '(add-to-list 'org-latex-packages-alist '("" "minted")))
-(setq org-latex-listings 'minted)
-#+END_SRC
-
-#+RESULTS:
-| pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f | pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f | pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f |
 
 *** Refile targets
 #+BEGIN_SRC emacs-lisp

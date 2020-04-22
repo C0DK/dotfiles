@@ -34,10 +34,6 @@
           (tags . " %i %-12:c")
           (search . " %i %-12:c"))))
 
-(after! org
-  '(add-to-list 'org-latex-packages-alist '("" "minted")))
-(setq org-latex-listings 'minted)
-
 (setq org-refile-targets '(("~/Documents/org/gtd.org" :maxlevel . 3)
                            ("~/Documents/org/someday.org" :level . 1)
                            ("~/Documents/org/archive.org" :level . 1)
