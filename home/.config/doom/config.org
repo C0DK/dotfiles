@@ -96,7 +96,7 @@
 
 #+END_SRC
 
-*** Capture templates
+*** export to keybase
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-publish-project-alist
