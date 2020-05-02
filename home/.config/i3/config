@@ -155,10 +155,10 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 assign [class="Skype"] $ws4
 assign [class="Slack"] $ws4
 assign [class="Thunderbird"] $ws4
-assign [class="qutebrowser"] $ws4
+assign [class="qutebrowser"] $ws3
 assign [class="Keybase"] $ws4
 assign [class="Caprine"] $ws4
-assign instance="w1term"] $ws1
+assign [instance="w1term"] $ws1
 for_window [instance="w1term"] move to workspace $ws1
 for_window [class="Spotify"] move to workspace $ws5
 for_window [class="jetbrains"] move to workspace $ws2
