@@ -5,6 +5,8 @@
 	br = branch
 	brd = branch -d
 	brD = branch -D
+	bnm = branch --no-merged
+	bm = branch --merged
 	merged = branch --merged
 	dmerged = "git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 	st = status
