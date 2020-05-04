@@ -16,8 +16,8 @@
 	cp = cherry-pick
 	amend = commit --amend --no-edit
 	aamend = !git add -A . && git amend
+	aamende = !git add -A . && git commit --amend
 	amend-edit = commit --amend
-	dev = !git checkout dev && git pull origin dev
 	staging = !git checkout staging && git pull origin staging
 	master = !git checkout master && git pull origin 
 	rb = rebase
@@ -40,6 +40,36 @@
 	f = "!git ls-files | grep -i"
 	gr = grep -Ii
 	la = "!git config -l | grep alias | cut -c 7-"
+	publish = !"git push --set-upstream origin $(git branch-name)"
+	up= publish
+	# Delete all branches that have already been merged into the master branch.
+	master-cleanse = !git master-cleanse-local; git master-cleanse-remote
+	# Delete all local branches that have been merged into the local master branch
+	master-cleanse-local = "!git checkout master && git branch --merged | xargs git branch --delete"
+	# Delete all remote branches that have been merged into the remote master branch.
+	master-cleanse-remote = !"git branch --remotes --merged origin/master | sed 's# *origin/##' | grep -v '^master$' xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
+
+	# Friendly wording is easier to remember.
+	# Thanks to http://gggritso.com/human-git-aliases
+	branches = branch -a
+	tags = tag -n1 --list
+	stashes = stash list
+
+	rbi = rebase -i
+	rbis = rebase -i staging
+
+	reset-commit = reset --soft HEAD~1
+	reset-commit-hard = reset --hard HEAD~1
+	undo-commit = reset-commit
+	undo-commit-hard = reset-commit-hard
+
+	# Show who contributed with summarized changes
+	who = shortlog --summary --
+	# Show who contributed, in descending order by number of commits
+	whorank = shortlog --summary --numbered --no-merges
+
+	release =
+
 [user]
 	email = master@thecdk.net
 	name = Casper Weiss Bang
