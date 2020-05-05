@@ -60,7 +60,20 @@
           (search . " %i %-12:c"))))
 #+END_SRC
 
+*** Syntax highlight PDF
+#+BEGIN_SRC emacs-lisp
+(eval-after-load 'org
+  '(add-to-list 'org-latex-packages-alist '("" "minted")))
+(setq org-latex-listings 'minted)
+ (setq org-latex-minted-options
+     '(("frame" "lines") ("linenos=true") ))
+(eval-after-load 'tex-mode
+  '(setcar (cdr (cddaar tex-compile-commands)) " -shell-escape "))
+(eval-after-load 'ox-latex
+  '(setq org-latex-pdf-process
+         '("latexmk -pdflatex='pdflatex -shell-escape -interaction nonstopmode' -pdf -f %f")))
 
+#+END_SRC
 *** Refile targets
 #+BEGIN_SRC emacs-lisp
 (setq org-refile-targets '(("~/Documents/org/gtd.org" :maxlevel . 3)

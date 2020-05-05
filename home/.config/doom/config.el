@@ -34,6 +34,17 @@
           (tags . " %i %-12:c")
           (search . " %i %-12:c"))))
 
+(eval-after-load 'org
+  '(add-to-list 'org-latex-packages-alist '("" "minted")))
+(setq org-latex-listings 'minted)
+ (setq org-latex-minted-options
+     '(("frame" "lines") ("linenos=true") ))
+(eval-after-load 'tex-mode
+  '(setcar (cdr (cddaar tex-compile-commands)) " -shell-escape "))
+(eval-after-load 'ox-latex
+  '(setq org-latex-pdf-process
+         '("latexmk -pdflatex='pdflatex -shell-escape -interaction nonstopmode' -pdf -f %f")))
+
 (setq org-refile-targets '(("~/Documents/org/gtd.org" :maxlevel . 3)
                            ("~/Documents/org/someday.org" :level . 1)
                            ("~/Documents/org/archive.org" :level . 1)
