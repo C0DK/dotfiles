@@ -57,6 +57,7 @@ alias readjrnl=' jrnl -from "1/1/2000" | less +G'
 alias idk='echo "ok, buddy"'
 alias cln='clean'
 alias cf='clearofetch'
+alias wolframalpha='wa'
 
 eval $(thefuck --alias fq)
 
