@@ -45,7 +45,9 @@
 	la = "!git config -l | grep alias | cut -c 7-"
 	branch-name = rev-parse --abbrev-ref HEAD
 	publish = !"git push --set-upstream origin $(git branch-name)"
+	cobp = "git cob && git publish"
 	up= publish
+
 	# Delete all branches that have already been merged into the master branch.
 	master-cleanse = !git master-cleanse-local; git master-cleanse-remote
 	# Delete all local branches that have been merged into the local master branch
@@ -72,7 +74,9 @@
 	# Show who contributed, in descending order by number of commits
 	whorank = shortlog --summary --numbered --no-merges
 
-	release =
+	# git flow /staging name/
+    hotfix = !"f() { git rebase --onto master \"$@\" && git rebase --onto staging master}; f"
+	aacmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 
 [user]
 	email = master@thecdk.net
