@@ -1,13 +1,12 @@
-#/bin/sh
+#!/usr/bin/env bash
 endTime=$(cat ~/.cache/timer)
 
 now=$(date -d "now" +%s)
 then=$(date -d "$endTime" +%s)
-diff=$(( ($then - $now) / 60 ))
+diff=$(((then - now) / 60))
 
-if [ $diff -gt -5 ]
-then
-	 echo "$diff minutes"
+if [ $diff -gt -5 ]; then
+	echo "$diff minutes"
 else
 	echo ""
 fi

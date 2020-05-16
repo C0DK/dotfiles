@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Returns list of all passwords that are older than X months.
+
+cd ~/.password-store
+timeframe=$(date -d "5 months ago" +%s)
+for filename in *; do
+	modified=$(date -d "@$(stat -c '%Y' $filename)" +%s)
+
+	if [ $(((modified - timeframe))) -lt -0 ]; then
+		echo "$filename: Last updated $(date -d "@$(stat -c '%Y' $filename)" "+%m/%d/%Y")"
+	fi
+done

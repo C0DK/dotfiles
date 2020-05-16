@@ -58,6 +58,7 @@ alias idk='echo "ok, buddy"'
 alias cln='clean'
 alias cf='clearofetch'
 alias wolframalpha='wa'
+alias lssize='sudo du -h . | sort -rh | head -5'
 
 eval $(thefuck --alias fq)
 

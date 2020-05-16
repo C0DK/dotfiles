@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-tmux new-session \; rename-window -t 1 "scratchpad" \; new-window "ipython" \; new-window "ranger" \; rename-window -t 3 "ranger" \; new-window "vim" \; select-window -t 1 \; rename-session "scratchpad"
+tmux source ~/.tmux.conf \; tmux new-session -n "console" -s "scratchpad"

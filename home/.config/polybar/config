@@ -67,8 +67,8 @@
 	font-0 = Source Code Pro:size=4;2
 
 	modules-left   = workspaces
-	modules-center = gitPushed newUpdates
-	modules-right  = timer bluetooth essid volume battery date
+	modules-center = gitPushed newUpdates passAge
+	modules-right  =  timer bluetooth essid volume ram cpu filesystem battery date
 
 	fixed-center = true
 
@@ -79,6 +79,14 @@
 	type = custom/script
 	exec = ~/.config/polybar/any_updates.sh
 	interval = 600
+	format-padding = 1
+	format-foreground = ${xrdb:color1}
+	format-background = ${xrdb:background}
+[module/passAge]
+	type = custom/script
+	exec = "~/bin/passage | wc -l"
+	format =  <label>
+	interval = 6000
 	format-padding = 1
 	format-foreground = ${xrdb:color1}
 	format-background = ${xrdb:background}
@@ -118,7 +126,7 @@
 [module/date]
 	type     = internal/date
 	interval = 1.0
-	time     = "%Y-%m-%d %H:%M"
+	time     = "W-%W %Y-%m-%d %H:%M"
 	label    = "   %time%"
 
 	format         = <label>
@@ -143,7 +151,7 @@
 	format-charging-prefix-foreground = ${xrdb:color3}
 	format-charging-prefix-padding    = 1
 
-	label-charging            = "%percentage%% "
+	label-charging            = "%percentage%%"
 	label-charging-background = ${xrdb:background}
 	label-charging-foreground = ${xrdb:foreground}
 	label-charging-padding    = 1
@@ -154,7 +162,7 @@
 	format-discharging-prefix-foreground = ${xrdb:foreground}
 	format-discharging-prefix-padding    = 1
 
-	label-discharging            = "%percentage%% "
+	label-discharging            = "%percentage%%"
 	label-discharging-background = ${xrdb:background}
 	label-discharging-foreground = ${xrdb:foreground}
 	label-discharging-padding    = 1
@@ -173,13 +181,19 @@
 	format-full-prefix-foreground = ${xrdb:foreground}
 	format-full-prefix-padding    = 1
 
-	label-full            = "%percentage%% "
+	label-full            = "%percentage%%"
 	label-full-background = ${xrdb:background}
 	label-full-foreground = ${xrdb:foreground}
 	label-full-padding    = 1
 [module/volume]
 	type          = internal/alsa
 	format-volume = <label-volume>
+
+	master-soundcard = default
+	speaker-soundcard = default
+	headphone-soundcard = default
+
+	master-mixer = Master
 
 	label-volume            = " %percentage%%"
 	label-volume-background = ${xrdb:background}
@@ -197,37 +211,43 @@
 	format-muted-padding  = 0
 
 	ramp-headphones-0 = 
+[module/filesystem]
+	type = internal/fs
+
+	; Mountpoints to display
+	mount-0 = /
+
+	; Seconds to sleep between updates
+	; Default: 30
+	interval = 10
+
+	; Display fixed precision values
+	; Default: false
+	fixed-values = true
+	format-mounted-foreground = ${xrdb:color8}
+
+
+	label-mounted = " %percentage_free%% "
 
 [module/cpu]
 	type             = internal/cpu
 	interval         = 0.5
-	format           = <label>
+	format           =  <label>
 	label            = %percentage%%
-	label-background = ${colors.modules_bg}
-	label-foreground = ${colors.modules_fg}
+	format-foreground = ${xrdb:color8}
 	label-padding    = 1
 
-	format-prefix =  
-
-	format-prefix-padding    = 1
-	format-prefix-background = ${colors.cpu_p_bg}
-	format-prefix-foreground = ${colors.modules_prefix_fg}
 
 [module/ram]
 	type     = internal/memory
-	interval = 3
+	interval = 0.5
 
-	format           = <label>
+	format           = <label>
+	format-foreground = ${xrdb:color8}
 	label            = "%percentage_used%%"
-	label-background = ${colors.modules_bg}
-	label-foreground = ${colors.modules_fg}
 	label-padding    = 1
 
-	format-prefix = 
 
-	format-prefix-padding    = 1
-	format-prefix-background = ${colors.ram_p_bg}
-	format-prefix-foreground = ${colors.modules_prefix_fg}
 
 
 [module/essid]
@@ -240,7 +260,7 @@
 	format-connected-prefix-background = ${xrdb:background}
 	format-connected-prefix-foreground = ${xrdb:color2}
 
-	label-connected            = "%essid%"
+	label-connected            = "%essid% %downspeed:7%"
 	label-connected-background = ${xrdb:background}
 	label-connected-foreground = ${xrdb:foreground}
 	label-connected-padding    = 1
@@ -261,34 +281,6 @@
 	label-disconnected-background = ${xrdb:background}
 	label-disconnected-foreground = ${xrdb:foreground}
 	label-disconnected-padding    = 1
-
-
-[module/down]
-	inherit = module/network
-
-	format-connected = <label-connected>
-
-	format-connected-prefix            = 
-	format-connected-prefix-background = ${colors.down_p_bg}
-	format-connected-prefix-foreground = ${colors.modules_prefix_fg}
-	format-connected-prefix-padding    = 1
-
-	label-connected               = %{T2}%downspeed:7%%{T-}
-	label-connected-background    = ${colors.modules_bg}
-	label-connected-foreground    = ${colors.modules_fg}
-	label-connected-padding-right = 1
-
-[module/padding]
-	type               = custom/text
-	content            = |
-	content-foreground = ${colors.bg}
-	content-background = ${colors.bg}
-
-[module/paddinglite]
-	type               = custom/text
-	content            = |
-	content-foreground = #000f0f0f
-	content-background = #000f0f0f
 
 [module/workspaces]
 
@@ -322,47 +314,3 @@
 	label-urgent-foreground = ${xrdb:color1}
 	label-urgent-padding    = 2
 
-
-[module/openbox]
-	type                      = internal/xworkspaces
-	pin-workspaces            = true
-	enable-click              = false
-	enable-scroll             = false
-	format                    = <label-state>
-	label-monitor             = %name%
-	label-active              = %icon%%name%
-	label-active-foreground   = ${colors.obfg}
-	label-active-background   = ${colors.obbg}
-	label-active-underline    = #fba922
-	label-active-padding      = 1
-	label-occupied            = %name%
-	label-occupied-background = ${colors.obbg}
-	label-occupied-padding    = 1
-	label-urgent              = %index%
-	label-urgent-foreground   = #000000
-	label-urgent-background   = #bd2c40
-	label-urgent-underline    = #9b0a20
-	label-empty               = %name%
-	label-empty-padding       = 1
-	label-empty-background    = ${colors.obibg}
-	label-empty-foreground    = ${colors.obifg}
-
-[module/backlight]
-	type = internal/backlight
-
-	output = LVDS-1
-
-	card          = acpi_video0
-	enable-scroll = false
-
-	format        = <label>
-	format-prefix = 
-
-	format-prefix-padding    = 1
-	format-prefix-background = ${colors.cpu_p_bg}
-	format-prefix-foreground = ${colors.modules_prefix_fg}
-
-	label            = %percentage%%
-	label-background = ${colors.modules_bg}
-	label-foreground = ${colors.modules_fg}
-	label-padding    = 1
