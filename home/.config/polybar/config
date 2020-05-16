@@ -85,6 +85,7 @@
 [module/passAge]
 	type = custom/script
 	exec = "~/bin/passage | wc -l"
+	exec-if = "(( $(~/bin/passage | wc -l) > 0 ))"
 	format =  <label>
 	interval = 6000
 	format-padding = 1
