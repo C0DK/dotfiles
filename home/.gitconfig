@@ -45,7 +45,7 @@
 	la = "!git config -l | grep alias | cut -c 7-"
 	branch-name = rev-parse --abbrev-ref HEAD
 	publish = !"git push --set-upstream origin $(git branch-name)"
-	cobp = "git cob && git publish"
+	cobp = "!f() { git cob \"$@\" && git publish; }; f"
 	up= publish
 
 	# Delete all branches that have already been merged into the master branch.
