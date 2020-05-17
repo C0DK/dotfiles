@@ -220,7 +220,7 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-set $mode_open (e)ditor, (t)erm, (b)rowser, (Shift+s)potify, (S)kype, (m)essenger, (k)keybase, (p)dfreader, (Shift+p)ass, (Shift+t)hunderbird, (c)hrome
+set $mode_open (e)ditor, (t)erm, (b)rowser, (s)potify, (Shift+s)kype, (m)essenger, (k)keybase, (p)dfreader, (Shift+p)ass, (Shift+t)hunderbird, (c)hrome
 mode "$mode_open" {
    bindsym e exec --no-startup-id emacs, mode "default"
     bindsym t exec --no-startup-id alacritty -e sh -c "neofetch && zsh", mode "default"
@@ -257,13 +257,14 @@ mode "$mode_settings" {
 }
 
 
-set $mode_actions (b)ackup, reload (i)3, restart (Shift+i)3, restart (d)unst, (p)rint screen, (u)pdate
+set $mode_actions (b)ackup, reload (i)3, restart (Shift+i)3, restart (d)unst, (p)rint screen, (u)pdate, silent
 mode "$mode_actions" {
-	 bindsym b exec --no-startup-id alacritty -e 'backup', mode "default"
+	 bindsym b exec --no-startup-id alacritty -e 'backup | less', mode "default"
 	 bindsym u exec --no-startup-id alacritty -e 'yay -Syu', mode "default"
 	 bindsym Shift+i mode "default", restart
      bindsym i mode "default", reload
      bindsym p exec --no-startup-id flameshot gui, mode "default"
+     bindsym s exec --no-startup-id flameshot gui, mode "default"
      bindsym d --release exec "killall dunst; exec notify-send 'restart dunst'", mode "default"
 
     # exit system mode: "Enter" or "Escape"
@@ -380,14 +381,3 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
-exec_always --no-startup-id "~/bin/qmk_layer_set"
-bindsym $mod+Shift+Ctrl+k mode "set_qmk_layer"
-mode "set_qmk_layer" {
-### QMK Mech keyboard layer visualization
-    bindsym d exec --no-startup-id "~/bin/qmk_layer_set", mode "default"
-    bindsym r exec --no-startup-id "~/bin/qmk_layer_set RAISE", mode "default"
-    bindsym l exec --no-startup-id "~/bin/qmk_layer_set LOWER", mode "default"
-    bindsym a exec --no-startup-id "~/bin/qmk_layer_set ADJUST", mode "default"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}

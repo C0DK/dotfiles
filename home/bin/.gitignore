@@ -6,3 +6,7 @@ tmp/
 
 # `secret` sh files.
 tmux_work
+
+# this is secret until i find a way to extract
+# the quotes
+quote.py

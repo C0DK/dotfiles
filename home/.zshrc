@@ -36,43 +36,27 @@ source ~/.virtualenv-autodetect.sh
 
 alias sudoman="sudo pacman"
 alias gimme="sudo pacman -S"
-alias yao="yaourt"
-alias py="python"
-alias py2="python2"
+alias py="ipython"
 alias django="python3 manage.py"
 alias tasks='grep --exclude-dir=.git -rEI "TODO|FIXME|todo" . 2>/dev/null'
 alias shrugs='echo "¯\_(ツ)_/¯"'
-alias notes='note'
+
 alias dailynote='note `date +%Y-%m-%d`'
 alias notelist='ls ~/Documents/Notes' 
 alias listnote='notelist'
 alias listnotes='notelist'
 alias noteslist='notelist'
 alias clean='clear'
-#alias kb='keybase'
-alias clearofetch='clear && neofetch'
-alias neofetch_long='clear && neofetch --config ~/.config/neofetch/config_long.conf'
-alias jrnl=' jrnl'
-alias readjrnl=' jrnl -from "1/1/2000" | less +G'
-alias idk='echo "ok, buddy"'
 alias cln='clean'
 alias cf='clearofetch'
+alias clearofetch='clear && neofetch'
+alias neofetch_long='clear && neofetch --config ~/.config/neofetch/config_long.conf'
+alias idk='echo "ok, buddy"'
 alias wolframalpha='wa'
 alias lssize='sudo du -h . | sort -rh | head -5'
 
 eval $(thefuck --alias fq)
 
-note() {
-	if [ "$#" -eq 1 ]; then
-		vim note:$1
-	elif [ "$#" -eq 0 ]; then
-		vim note:
-	else 
-		echo 'wrong amount of arguments'
-	
-	fi
-
-}
 kb() {
 	 keybase "${@:1}" | less
 	
@@ -93,4 +77,3 @@ bindkey '^[[3~' delete-char
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-eval $(thefuck --alias)
