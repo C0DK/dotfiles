@@ -68,7 +68,7 @@
 
 	modules-left   = workspaces
 	modules-center = gitPushed newUpdates passAge
-	modules-right  =  timer bluetooth essid volume ram cpu filesystem battery date
+	modules-right  =  timer bluetooth essid volume battery date
 
 	fixed-center = true
 
@@ -261,7 +261,7 @@
 	format-connected-prefix-background = ${xrdb:background}
 	format-connected-prefix-foreground = ${xrdb:color2}
 
-	label-connected            = "%essid% %downspeed:7%"
+	label-connected            = "%essid% "
 	label-connected-background = ${xrdb:background}
 	label-connected-foreground = ${xrdb:foreground}
 	label-connected-padding    = 1
