@@ -67,7 +67,7 @@
 	font-0 = Source Code Pro:size=4;2
 
 	modules-left   = workspaces
-	modules-center = gitPushed newUpdates passAge
+	modules-center = gitPushed newUpdates passAge zoomRunning
 	modules-right  =  timer bluetooth essid volume battery date
 
 	fixed-center = true
@@ -82,12 +82,19 @@
 	format-padding = 1
 	format-foreground = ${xrdb:color1}
 	format-background = ${xrdb:background}
+[module/zoomRunning]
+	type = custom/script
+	exec = "pgrep zoom > /dev/null && echo ' ' || echo ''"
+	interval = 1
+	format-padding = 1
+	format-foreground = ${xrdb:color1}
+	format-background = ${xrdb:background}
 [module/passAge]
 	type = custom/script
 	exec = "~/bin/passage | wc -l"
 	exec-if = "(( $(~/bin/passage | wc -l) > 0 ))"
 	format =  <label>
-	interval = 6000
+	interval = 60
 	format-padding = 1
 	format-foreground = ${xrdb:color1}
 	format-background = ${xrdb:background}

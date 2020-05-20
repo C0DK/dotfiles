@@ -55,6 +55,10 @@ alias idk='echo "ok, buddy"'
 alias wolframalpha='wa'
 alias lssize='sudo du -h . | sort -rh | head -5'
 
+alias fibonacci='echo "1, 2, 3, 5, 8, 13, 21, 34, 55, 89"'
+alias fib='fibonacci'
+alias zshsource='source ~/.zshrc'
+
 eval $(thefuck --alias fq)
 
 kb() {
