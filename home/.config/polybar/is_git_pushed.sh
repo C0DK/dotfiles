@@ -9,15 +9,14 @@ isSync() {
 	fi
 }
 
+for file in ~/dev/*; do
+	if [ -f "$file/.git" ]; then
+	   isSync "$file"
+	fi
+done
+
 isSync ~/.dotfiles
-isSync ~/dev/ark36
-isSync ~/dev/kbtui
-isSync ~/dev/smalldickbot
-isSync ~/dev/gitgut
-isSync ~/itu/pcpp
-isSync ~/itu/security
-isSync ~/itu/algorithm_design/algdes-labs
-isSync ~/itu/func_programming
+isSync ~/.password-store
 isSync ~/Documents
 
 if [ ! -z "$repos" ]

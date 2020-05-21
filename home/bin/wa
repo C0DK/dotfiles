@@ -36,7 +36,7 @@
 #      ➤ # many many more usages... https://www.wolframalpha.com/examples/
 
 
-APPID=$(cat ~/.wa-key) # Get one at https://products.wolframalpha.com/api/
+APPID=$(cat ~/.config/wa-key) # Get one at https://products.wolframalpha.com/api/
 #VIEWER="kitty +kitten icat"                 # Use `VIEWER="display"` from imagemagick if terminal does not support images
 VIEWER="display"                 # Use `VIEWER="display"` from imagemagick if terminal does not support images
 BG="transparent"                            # Transparent background
