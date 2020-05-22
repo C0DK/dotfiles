@@ -8,4 +8,4 @@ export GOPATH=$HOME/.cache/go
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.config/emacs/bin/:$PATH
 export KBTUI_CFG="/home/cdk/.config/kbtui.toml"
 
-export ZSH=/usr/share/oh-my-zsh/
+export ZSH=/usr/share/oh-my-zsh

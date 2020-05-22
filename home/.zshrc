@@ -20,7 +20,6 @@ export TERM="xterm-256color"
 plugins=(virtualenv git)
 
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 DISABLE_AUTO_UPDATE="true"
 
@@ -31,7 +30,11 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
-source ~/.virtualenv-autodetect.sh
+ZSH_THEME="powerlevel10k/powerlevel10k"
+source $ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+#source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# TODO find out if this is needed
+#source ~/.virtualenv-autodetect.sh
 
 
 alias sudoman="sudo pacman"
