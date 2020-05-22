@@ -54,6 +54,8 @@ alias fibonacci='echo "1, 2, 3, 5, 8, 13, 21, 34, 55, 89"'
 alias fib='fibonacci'
 alias zshsource='source ~/.zshrc'
 
+alias la="ls -la"
+
 # ZSH stuff
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -88,6 +90,7 @@ bindkey '^[[3~' delete-char
 zle -C hist-complete complete-word _generic
 zstyle ':completion:hist-complete:*' completer _history
 bindkey '^X^X' hist-complete
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
