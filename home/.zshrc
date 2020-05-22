@@ -17,7 +17,7 @@ export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
 # This is different on server
 
-plugins=(virtualenv git)
+plugins=(virtualenv git autoswitch_virtualenv zsh-syntax-highlighting)
 
 
 
@@ -58,6 +58,7 @@ alias fib='fibonacci'
 alias zshsource='source ~/.zshrc'
 
 alias la="ls -la"
+alias ls='ls --color=auto'
 
 # ZSH stuff
 export XDG_CONFIG_HOME="$HOME/.config"
