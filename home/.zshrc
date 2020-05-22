@@ -41,11 +41,6 @@ alias django="python3 manage.py"
 alias tasks='grep --exclude-dir=.git -rEI "TODO|FIXME|todo" . 2>/dev/null'
 alias shrugs='echo "¯\_(ツ)_/¯"'
 
-alias dailynote='note `date +%Y-%m-%d`'
-alias notelist='ls ~/Documents/Notes' 
-alias listnote='notelist'
-alias listnotes='notelist'
-alias noteslist='notelist'
 alias clean='clear'
 alias cln='clean'
 alias cf='clearofetch'
