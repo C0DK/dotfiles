@@ -5,17 +5,17 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Makes it possible to change relevant parameters in profile for various machines
+source ~/.profile
 
 # If you come from bash you might have to change your $PATH.
-export GOPATH=$HOME/go
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.config/emacs/bin/:$PATH
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 export CFLAGS="-Wno-error=deprecated -Wno-error=int-to-pointer-cast"
 export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh/
+# This is different on server
 
 plugins=(virtualenv git)
 
