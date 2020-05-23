@@ -10,7 +10,7 @@ isSync() {
 }
 
 for file in ~/dev/*; do
-	if [ -f "$file/.git" ]; then
+	if [ -d "$file/.git" ]; then
 	   isSync "$file"
 	fi
 done

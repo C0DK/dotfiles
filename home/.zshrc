@@ -17,9 +17,10 @@ export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
 # This is different on server
 
-plugins=(virtualenv git autoswitch_virtualenv zsh-syntax-highlighting)
-
-
+plugins=(virtualenv git autoswitch_virtualenv zsh-autosuggestions zsh-syntax-highlighting )
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8,bold,underline"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC="PLEASE"
 
 DISABLE_AUTO_UPDATE="true"
 
@@ -46,8 +47,9 @@ alias shrugs='echo "¯\_(ツ)_/¯"'
 
 alias clean='clear'
 alias cln='clean'
-alias cf='clearofetch'
 alias clearofetch='clear && neofetch'
+alias cf='clearofetch'
+alias neoclear='clear && neofetch'
 alias neofetch_long='clear && neofetch --config ~/.config/neofetch/config_long.conf'
 alias idk='echo "ok, buddy"'
 alias wolframalpha='wa'
@@ -95,6 +97,7 @@ zle -C hist-complete complete-word _generic
 zstyle ':completion:hist-complete:*' completer _history
 bindkey '^X^X' hist-complete
 
+bindkey '^ ' autosuggest-accept
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
