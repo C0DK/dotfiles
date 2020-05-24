@@ -54,6 +54,9 @@ alias neofetch_long='clear && neofetch --config ~/.config/neofetch/config_long.c
 alias idk='echo "ok, buddy"'
 alias wolframalpha='wa'
 alias lssize='sudo du -h . | sort -rh | head -10'
+alias weather="wttr"
+alias cleanwttr="clean && wttr"
+alias cleanweather="cleanwttr"
 
 alias fibonacci='echo "1, 2, 3, 5, 8, 13, 21, 34, 55, 89"'
 alias fib='fibonacci'
