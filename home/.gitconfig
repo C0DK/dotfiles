@@ -54,10 +54,13 @@
 
 	# Delete all branches that have already been merged into the master branch.
 	master-cleanse = !git master-cleanse-local; git master-cleanse-remote
+	staging-cleanse = !git staging-cleanse-local; git staging-cleanse-remote
 	# Delete all local branches that have been merged into the local master branch
 	master-cleanse-local = "!git checkout master && git branch --merged | xargs git branch --delete"
+	staging-cleanse-local = "!git staging master && git branch --merged | xargs git branch --delete"
 	# Delete all remote branches that have been merged into the remote master branch.
 	master-cleanse-remote = !"git branch --remotes --merged origin/master | sed 's# *origin/##' | grep -v '^master$' xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
+	staging-cleanse-remote = !"git branch --remotes --merged origin/staging | sed 's# *origin/##' | grep -v '^master$' xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
 
 	# Friendly wording is easier to remember.
 	# Thanks to http://gggritso.com/human-git-aliases
