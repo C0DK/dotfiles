@@ -17,6 +17,8 @@
 
 (setq-hook! python-mode python-indent-offset 2)
 
+(add-hook! 'python-mode-hook (modify-syntax-entry ?_ "w"))
+
 (after! org
    (setq org-directory "~/Documents/org/")
 )
