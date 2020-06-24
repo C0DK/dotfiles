@@ -334,4 +334,5 @@ c.url.searchengines = {
     "google": "https://www.google.com/search?q={}",
     "translate": "https://translate.google.com/?text={}",
     "arch": "https://wiki.archlinux.org/?search={}",
+    "maps": "https://www.google.com/maps/place/{}/",
 }

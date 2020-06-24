@@ -12,8 +12,14 @@
 	st = status
 	aa = add -A .
 	cm = commit -m
+	ca = commit --aamend
 	aacm = !git add -A . && git commit -m
 	aaacm = aacm
+	pl = pull
+	ps = push
+	pushf = push --force
+	pf = pushf
+	psf = pushf
 	aacmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 	cp = cherry-pick
 	amend = commit --amend --no-edit
