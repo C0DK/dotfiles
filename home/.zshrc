@@ -41,6 +41,7 @@ source $ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 alias sudoman="sudo pacman"
 alias gimme="sudo pacman -S"
 alias py="ipython"
+alias kz="killall zoom"
 alias django="python3 manage.py"
 alias tasks='grep --exclude-dir=.git -rEI "TODO|FIXME|todo" . 2>/dev/null'
 alias shrugs='echo "¯\_(ツ)_/¯"'
