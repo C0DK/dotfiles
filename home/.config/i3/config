@@ -371,7 +371,7 @@ exec --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id flameshot
 exec --no-startup-id redshift
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id sleep 10; compton -b
+exec --no-startup-id sleep 10; picom -b
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
