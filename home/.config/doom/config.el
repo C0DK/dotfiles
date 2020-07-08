@@ -15,6 +15,13 @@
  '(org-level-7 ((t (:inherit org-level-4))))
  '(org-level-8 ((t (:inherit org-level-4)))))
 
+(setq projectile-indexing-method 'alien
+      projectile-sort-order 'recently-active
+      projectile-globally-ignored-files '(".DS_Store" "Icon" "TAGS")
+      projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
+      projectile-globally-ignored-directories '("node_modules")
+      projectile-enable-caching t)
+
 (setq-hook! python-mode python-indent-offset 2)
 
 (add-hook! 'python-mode-hook (modify-syntax-entry ?_ "w"))

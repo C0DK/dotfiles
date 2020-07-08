@@ -27,6 +27,15 @@
 
 #+END_SRC
 
+** Projectile
+#+BEGIN_SRC emacs-lisp
+(setq projectile-indexing-method 'alien
+      projectile-sort-order 'recently-active
+      projectile-globally-ignored-files '(".DS_Store" "Icon" "TAGS")
+      projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
+      projectile-globally-ignored-directories '("node_modules")
+      projectile-enable-caching t)
+#+END_SRC
 ** Languages
 *** Python
 #+BEGIN_SRC emacs-lisp
