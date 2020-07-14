@@ -22,6 +22,8 @@
 	psf = pushf
 	aacmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 	cp = cherry-pick
+
+	back = checkout -
 	amend = commit --amend --no-edit
 	aamend = !git add -A . && git amend
 	aamende = !git add -A . && git commit --amend
