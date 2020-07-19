@@ -33,6 +33,7 @@
 	master = !git checkout master && git pull origin 
 	rb = rebase
 	rbc = rebase --continue
+	arbc = !git aa && git rbc
 	po = push origin
 	pod = push origin dev
 	pos = push origin staging
