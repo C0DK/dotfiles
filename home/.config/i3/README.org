@@ -1,3 +1,51 @@
+#+TITLE: I3 Configuration file
+#+PROPERTY: header-args :tangle config
+#+STARTUP: showeverything
+
+
+This is my I3 configuration file.
+
+The following snippets contain the various aspects of my file and explains what
+each part does.
+* Table Of Content :toc:
+- [[#how-to-use][How To use]]
+- [[#constants][Constants]]
+  - [[#workspace-names][Workspace names]]
+  - [[#default-programs][Default programs]]
+- [[#binding-keys][Binding keys]]
+  - [[#modify-key][Modify key]]
+  - [[#floating-modifier][Floating Modifier]]
+  - [[#close-focused-window][Close focused window]]
+  - [[#open-application-launcher][Open application launcher]]
+  - [[#take-a-screenshot][Take a screenshot]]
+  - [[#changing-focus][Changing focus]]
+  - [[#move-focused-window][Move focused window]]
+  - [[#moves-focus-to-parent-container][Moves focus to parent container]]
+  - [[#change-container-visualization][Change container visualization]]
+  - [[#scratchpad][Scratchpad]]
+  - [[#workspaces][Workspaces]]
+  - [[#operations][Operations]]
+  - [[#leader-key][Leader key]]
+  - [[#resizing][Resizing]]
+-  [[#visuals][Visuals]]
+  - [[#font][Font]]
+  - [[#workspace-layout][Workspace layout]]
+  - [[#borders][Borders]]
+  - [[#colors][Colors]]
+  - [[#theming][Theming]]
+  - [[#gaps][Gaps]]
+  - [[#focus][focus]]
+- [[#behavior-of-various-programs][Behavior of various programs]]
+  - [[#default-workspaces][Default workspaces]]
+  - [[#specify-floating-state-of-windows][Specify floating state of windows]]
+  - [[#auto-start][Auto start]]
+
+* How To use
+Copy the ~config~ file from this folder into your ~.config/i3/~ folder
+(probably). See [[https://i3wm.org/docs/userguide.html#configuring][the config]], for up to date details.
+* Constants
+** Workspace names
+#+BEGIN_SRC Conf[Space]
 set $ws1 "1:"
 set $ws2 "2:"
 set $ws3 "3:"
@@ -7,25 +55,47 @@ set $ws6 "6:"
 set $ws7 "7:"
 set $ws8 "8:"
 set $ws9 "9:"
-
+#+END_SRC
+** Default programs
+#+BEGIN_SRC Conf[Space]
 set $locker slock
 set $term alacritty
 set $browser qutebrowser
-
+#+END_SRC
+* Binding keys
+** Modify key
+set the modifier key to the windows key
+#+BEGIN_SRC Conf[Space]
 set $mod Mod4
-
+#+END_SRC
+** Floating Modifier
+Used when holding down said key while
+moving the mouse to drag around floating windows.
+#+BEGIN_SRC Conf[Space]
 floating_modifier $mod
-
+#+END_SRC
+** Close focused window
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+q kill
-
+#+END_SRC
+** Open application launcher
+#+BEGIN_SRC Conf[Space]
 bindsym Ctrl+Return exec --no-startup-id dmenu_run
+#+END_SRC
+#+BEGIN_SRC Conf[Space]
 
 # Screen brightness controls
 #bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 #bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
+#+END_SRC
+** Take a screenshot
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+Shift+p exec --no-startup-id flameshot gui
-
+#+END_SRC
+** Changing focus
+changing which window is in focus
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -35,43 +105,75 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-
+#+END_SRC
+** Move focused window
+#+BEGIN_SRC Conf[Space]
 # move focused window
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
+#+END_SRC
+** Moves focus to parent container
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+a focus parent
-
+#+END_SRC
+** Change container visualization
+*** Change split orientation
+#+BEGIN_SRC Conf[Space]
 # split orientation
 bindsym $mod+shift+h split h
 bindsym $mod+shift+v split v
 bindsym $mod+shift+q split toggle
-
+#+END_SRC
+*** Set container layout type
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
+#+END_SRC
+*** Toggle full screen
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+f fullscreen toggle
-
+#+END_SRC
+*** Toggle full screen
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+Shift+space floating toggle
-
+#+END_SRC
+*** Toggle floating
+Toggles whether the current container/window is floating
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+space focus mode_toggle
-
+#+END_SRC
+*** Toggle Sticky
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+Shift+s sticky toggle
-
+#+END_SRC
+** Scratchpad
+*** Iterates through scratchpads
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+Tab scratchpad show
-
+#+END_SRC
+*** Moves focused window to scratchpad
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+Shift+minus move scratchpad
-
+#+END_SRC
+** Workspaces
+*** Move to neighbor workspace
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
-
+#+END_SRC
+*** Move to previous workspace
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
-
+#+END_SRC
+*** Go back to previous workspace
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+b workspace back_and_forth
-
+#+END_SRC
+*** Goto workspace
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -81,6 +183,9 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 
+#+END_SRC
+*** Move container to workspace
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+Ctrl+1 move container to workspace $ws1
 bindsym $mod+Ctrl+2 move container to workspace $ws2
 bindsym $mod+Ctrl+3 move container to workspace $ws3
@@ -89,12 +194,22 @@ bindsym $mod+Ctrl+5 move container to workspace $ws5
 bindsym $mod+Ctrl+6 move container to workspace $ws6
 bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
-
+#+END_SRC
+** Operations
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#+END_SRC
+** Leader key
+I use a nicely drafted leaderkey to make i3 more like doom emacs / spacemacs.
+TODO would be to have a dedicated key for it, but currently i don't know which
 
+*** Open leader menu
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+o mode "$mode_leader"
 set $mode_leader (s)ystem, (o)pen, (c)onfig, (a)ction, ser(v)ices
-
+#+END_SRC
+*** Main mode
+#+BEGIN_SRC Conf[Space]
 mode "$mode_leader" {
     bindsym s mode "$mode_system"
     bindsym o mode "$mode_open"
@@ -107,7 +222,10 @@ mode "$mode_leader" {
     bindsym q mode "default"
     bindsym Escape mode "default"
 }
-
+#+END_SRC
+*** System mode
+Things like locking, shutting down etc.
+#+BEGIN_SRC Conf[Space]
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
    bindsym l exec --no-startup-id $locker lock, mode "default"
@@ -123,7 +241,10 @@ mode "$mode_system" {
     bindsym q mode "default"
     bindsym Escape mode "default"
 }
-
+#+END_SRC
+*** Application launch mode
+Basically a shorthand for opening often used programs.
+#+BEGIN_SRC Conf[Space]
 set $mode_open (e)ditor, (t)erm, (b)rowser, (s)potify, (Shift+s)kype, (m)essenger, (k)eybase, (p)dfreader, (Shift+p)ass, (Shift+t)hunderbird, (c)hrome
 mode "$mode_open" {
    bindsym e exec --no-startup-id emacs, mode "default"
@@ -143,7 +264,10 @@ mode "$mode_open" {
     bindsym q mode "default"
     bindsym Escape mode "default"
 }
-
+#+END_SRC
+*** Settings mode
+Configuration of the system. Much like opening "settings" on your phone
+#+BEGIN_SRC Conf[Space]
 set $mode_settings (b)luetooth, (p)ulse audio, (l)xappearance, (n)mtui, (N)itrogen, (k)ill, (b)menu
 mode "$mode_settings" {
 	 bindsym b exec blueman-manager, mode "default"
@@ -160,7 +284,11 @@ mode "$mode_settings" {
     bindsym q mode "default"
     bindsym Escape mode "default"
 }
-
+#+END_SRC
+*** Actions mode
+Various actions that are done frequently.
+Shorthand for running some commands or stuff like that.
+#+BEGIN_SRC Conf[Space]
 set $mode_actions (b)ackup, reload (i)3, restart (Shift+i)3, restart (d)unst, (u)pdate, launch (p)ostgres
 mode "$mode_actions" {
 	 bindsym b exec --no-startup-id $term -e 'backup | less', mode "default"
@@ -175,7 +303,14 @@ mode "$mode_actions" {
     bindsym q mode "default"
     bindsym Escape mode "default"
 }
-
+#+END_SRC
+** Resizing
+These bindings trigger as soon as you enter the resize mode
+- Pressing left will shrink the window’s width.
+- Pressing right will grow the window’s width.
+- Pressing up will shrink the window’s height.
+- Pressing down will grow the window’s height.
+#+BEGIN_SRC Conf[Space]
 bindsym $mod+r mode "resize"
 mode "resize" {
     bindsym j resize shrink width 5 px or 5 ppt
@@ -194,18 +329,31 @@ mode "resize" {
     bindsym q mode "default"
     bindsym Escape mode "default"
 }
-
+#+END_SRC
+*  Visuals
+** Font
+#+BEGIN_SRC Conf[Space]
 font xft:SauceCodePro Nerd Font Mono 9
-
+#+END_SRC
+** Workspace layout
+Whether multiple things should render
+as tabs or stacking.
+#+BEGIN_SRC Conf[Space]
 workspace_layout tabbed
 
 title_align center
-
+#+END_SRC
+** Borders
+We want as simple borders as possible, very thin and hide them when we they
+aren't on the border towards something else (i.e in fullscreen mode)
+#+BEGIN_SRC Conf[Space]
 hide_edge_borders both
 default_border pixel 1
-
-
-
+#+END_SRC
+#+BEGIN_SRC Conf[Space]
+#+END_SRC
+** Colors
+#+BEGIN_SRC Conf[Space]
 set_from_resource $background background
 set_from_resource $foreground foreground
 set_from_resource $color0     color0
@@ -224,7 +372,9 @@ set_from_resource $color12    color12
 set_from_resource $color13    color13
 set_from_resource $color14    color14
 set_from_resource $color15    color15
-
+#+END_SRC
+** Theming
+#+BEGIN_SRC Conf[Space]
 client.focused          $color0 $color0 $foreground $color0
 client.focused_inactive $color0 $color0 $foreground $color0
 client.unfocused        $background $color0 $color8 $color0
@@ -233,13 +383,22 @@ client.placeholder      $background $color10 $foreground $color0
 
 client.background       $background
 
+#+END_SRC
+** Gaps
+#+BEGIN_SRC Conf[Space]
 gaps inner 0
 gaps outer 0
-
+#+END_SRC
+** focus
+#+BEGIN_SRC Conf[Space]
 focus_follows_mouse no
 no_focus [window_role=".*"]
 focus_on_window_activation no
-
+#+END_SRC
+* Behavior of various programs
+** Default workspaces
+Specify where specific windows/programs should open by default.
+#+BEGIN_SRC Conf[Space]
 assign [class="Skype"] $ws4
 assign [class="Slack"] $ws4
 assign [class="Thunderbird"] $ws4
@@ -250,7 +409,9 @@ assign [instance="w1term"] $ws1
 for_window [instance="w1term"] move to workspace $ws1
 for_window [class="Spotify"] move to workspace $ws5
 for_window [class="jetbrains"] move to workspace $ws2
-
+#+END_SRC
+** Specify floating state of windows
+#+BEGIN_SRC Conf[Space]
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
@@ -268,6 +429,10 @@ for_window [class="Blueman-manager"] floating enable sticky enable
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Skype"] floating disable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
+#+END_SRC
+** Auto start
+Programs we want to launch when the system starts
+#+BEGIN_SRC Conf[Space]
 
 exec --no-startup-id alacritty --class=w1term -e "tmux_ws"
 exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/emacs'
@@ -294,3 +459,4 @@ exec --no-startup-id clipit
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+#+END_SRC
