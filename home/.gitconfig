@@ -85,6 +85,7 @@
 	reset-commit-soft = reset-commit
 	undo-commit = reset-commit
 	undo-commit-hard = reset-commit-hard
+	reset-staging = reset --HARD HEAD
 
 	# Show who contributed with summarized changes
 	who = shortlog --summary --

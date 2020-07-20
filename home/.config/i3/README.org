@@ -82,13 +82,6 @@ bindsym $mod+q kill
 #+BEGIN_SRC Conf[Space]
 bindsym Ctrl+Return exec --no-startup-id dmenu_run
 #+END_SRC
-#+BEGIN_SRC Conf[Space]
-
-# Screen brightness controls
-#bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-#bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
-
-#+END_SRC
 ** Take a screenshot
 #+BEGIN_SRC Conf[Space]
 bindsym $mod+Shift+p exec --no-startup-id flameshot gui
@@ -172,7 +165,7 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 #+BEGIN_SRC Conf[Space]
 bindsym $mod+b workspace back_and_forth
 #+END_SRC
-*** Goto workspace
+*** Go to workspace
 #+BEGIN_SRC Conf[Space]
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -195,13 +188,27 @@ bindsym $mod+Ctrl+6 move container to workspace $ws6
 bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
 #+END_SRC
+*** Move container and go to workspace
+#+BEGIN_SRC Conf[Space]
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+#+END_SRC
 ** Operations
 #+BEGIN_SRC Conf[Space]
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 #+END_SRC
 ** Leader key
 I use a nicely drafted leaderkey to make i3 more like doom emacs / spacemacs.
-TODO would be to have a dedicated key for it, but currently i don't know which
+This essentially means that you press the ~leader key~, and then a menu pops up in your bar,
+which shows which keys to press next. Here you will get reasonable submenus making key combos easy to use - i.e ~LEAD o~ opens the /application launcher/ menu. so ~LEAD o SHIFT+p~ opens my password manager, [[https://www.passwordstore.org/][pass]].
+
+*** TODO would be to have a dedicated key for it instead of a combo, but currently i don't know which
 
 *** Open leader menu
 #+BEGIN_SRC Conf[Space]
@@ -456,7 +463,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 10 -locker $locker
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 #+END_SRC

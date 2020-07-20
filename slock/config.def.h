@@ -21,8 +21,7 @@ static const int failonclear = 1;
 /* default message */
 static const char * message = "PLEASE AUTHENTICATE";
 
-/* text color */
-static const char * text_color = &colorname[TEXT];
-
 /* text size (must be a valid size) */
 static const char * font_name = "10x20";
+
+static const int hideScreen = 1;
