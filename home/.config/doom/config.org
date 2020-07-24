@@ -52,6 +52,13 @@
 )
 
 #+END_SRC
+*** Auto fill
+#+BEGIN_SRC emacs-lisp
+(after! org
+ (auto-fill-mode 1)
+)
+
+#+END_SRC
 *** Org agenda
 #+BEGIN_SRC emacs-lisp
 (setq org-agenda-files '("~/Documents/org/inbox.org"

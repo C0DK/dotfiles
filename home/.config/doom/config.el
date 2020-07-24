@@ -30,6 +30,10 @@
    (setq org-directory "~/Documents/org/")
 )
 
+(after! org
+ (auto-fill-mode 1)
+)
+
 (setq org-agenda-files '("~/Documents/org/inbox.org"
                          "~/Documents/org/gtd.org"
                          "~/Documents/org/wishlist.org"

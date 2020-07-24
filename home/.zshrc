@@ -76,6 +76,9 @@ HISTFILE=$ZSH_CACHE/history
 SAVEHIST=10000
 HISTSIZE=12000
 setopt AUTO_CD
+# fzf
+export FZF_DEFAULT_COMMAND='rg --hidden --files '
+# export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 eval $(thefuck --alias)
 
