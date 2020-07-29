@@ -254,7 +254,7 @@ Basically a shorthand for opening often used programs.
 #+BEGIN_SRC Conf[Space]
 set $mode_open (e)ditor, (t)erm, (b)rowser, (s)potify, (Shift+s)kype, (m)essenger, (k)eybase, (p)dfreader, (Shift+p)ass, (Shift+t)hunderbird, (c)hrome
 mode "$mode_open" {
-   bindsym e exec --no-startup-id emacs, mode "default"
+    bindsym e exec --no-startup-id emacs, mode "default"
     bindsym t exec --no-startup-id $term -e sh -c "fresh && zsh", mode "default"
     bindsym b exec --no-startup-id $browser, mode "default"
     bindsym c exec --no-startup-id google-chrome-stable, mode "default"
@@ -275,9 +275,10 @@ mode "$mode_open" {
 *** Settings mode
 Configuration of the system. Much like opening "settings" on your phone
 #+BEGIN_SRC Conf[Space]
-set $mode_settings (b)luetooth, (p)ulse audio, (l)xappearance, (n)mtui, (N)itrogen, (k)ill, (b)menu
+set $mode_settings (a)randr (b)luetooth, (p)ulse audio, (l)xappearance, (n)mtui, (N)itrogen, (k)ill, (b)menu
 mode "$mode_settings" {
 	 bindsym b exec blueman-manager, mode "default"
+	 bindsym a exec arandr, mode "default"
 	 bindsym p exec pavucontrol, mode "default"
 	 # bindsym s exec stalonetray, mode "default"
 	 bindsym l exec lxappearance, mode "default"

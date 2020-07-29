@@ -58,6 +58,8 @@ alias lssize='sudo du -h . | sort -rh | head -10'
 alias weather="wttr"
 alias cleanwttr="clean && wttr"
 alias cleanweather="cleanwttr"
+# python haxs
+alias pytest-watch="while sleep 1 ; do find . -name '*.py' | entr -d -c pytest . ; done"
 
 alias fibonacci='echo "1, 2, 3, 5, 8, 13, 21, 34, 55, 89"'
 alias fib='fibonacci'
@@ -117,6 +119,11 @@ pasteinit() {
 
 pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
+}
+django-test-watch() {
+ while sleep 1 ; do
+    find . -name '*.py' | entr -d -c python manage.py test $@;
+ done
 }
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
