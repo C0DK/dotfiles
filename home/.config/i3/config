@@ -95,8 +95,6 @@ bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 bindsym $mod+o mode "$mode_leader"
 set $mode_leader (s)ystem, (o)pen, (c)onfig, (a)ction, ser(v)ices
 
@@ -115,7 +113,7 @@ mode "$mode_leader" {
 
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-   bindsym l exec --no-startup-id $locker lock, mode "default"
+   bindsym l exec --no-startup-id $locker, mode "default"
     bindsym s exec --no-startup-id i3exit suspend, mode "default"
     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
@@ -129,9 +127,9 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-set $mode_open (e)ditor, (t)erm, (b)rowser, (s)potify, (Shift+s)kype, (m)essenger, (k)eybase, (p)dfreader, (Shift+p)ass, (Shift+t)hunderbird, (c)hrome
+set $mode_open (e)ditor, (t)erm, (b)rowser, (s)potify, (Shift+s)kype, (m)essenger, (k)eybase, (p)dfreader, (Shift+p)ass, (Shift+m)ail, (c)hrome
 mode "$mode_open" {
-   bindsym e exec --no-startup-id emacs, mode "default"
+    bindsym e exec --no-startup-id emacs, mode "default"
     bindsym t exec --no-startup-id $term -e sh -c "fresh && zsh", mode "default"
     bindsym b exec --no-startup-id $browser, mode "default"
     bindsym c exec --no-startup-id google-chrome-stable, mode "default"
@@ -141,7 +139,7 @@ mode "$mode_open" {
     bindsym p exec --no-startup-id epdfview, mode "default"
     bindsym Shift+p exec --no-startup-id passmenu, mode "default"
     bindsym Shift+s exec --no-startup-id skypeforlinux, mode "default"
-    bindsym Shift+t exec --no-startup-id thunderbird, mode "default"
+    bindsym Shift+m exec --no-startup-id mailspring, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -149,9 +147,10 @@ mode "$mode_open" {
     bindsym Escape mode "default"
 }
 
-set $mode_settings (b)luetooth, (p)ulse audio, (l)xappearance, (n)mtui, (N)itrogen, (k)ill, (b)menu
+set $mode_settings (a)randr, (b)luetooth, (p)ulse audio, (l)xappearance, (n)mtui, (N)itrogen, (k)ill, (b)menu, (w)idescreen-mode
 mode "$mode_settings" {
 	 bindsym b exec blueman-manager, mode "default"
+	 bindsym a exec arandr, mode "default"
 	 bindsym p exec pavucontrol, mode "default"
 	 # bindsym s exec stalonetray, mode "default"
 	 bindsym l exec lxappearance, mode "default"
@@ -159,6 +158,18 @@ mode "$mode_settings" {
 	 bindsym n exec "alacritty -e nmtui", mode "default"
 	 bindsym k exec "killall nitrogen; killall lxappearance; killall pavucontrol; killall stalonetray; killall blueman-manager; killall nmtui; killall bmenu", mode "default"
      bindsym b exec alacritty -e 'bmenu'
+     bindsym w mode "$mode_widescreen"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym q mode "default"
+    bindsym Escape mode "default"
+}
+set $mode_widescreen set mode to widescreen? (y)es, (n)o
+mode "$mode_widescreen" {
+     bindsym y exec alacritty -e 'widescreenmode on', mode "default"
+     bindsym n exec alacritty -e 'widescreenmode off', mode "default"
+     bindsym f exec flameshot gui
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -183,10 +194,10 @@ mode "$mode_actions" {
 
 bindsym $mod+r mode "resize"
 mode "resize" {
-    bindsym j resize shrink width 5 px or 5 ppt
-    bindsym k resize grow height 5 px or 5 ppt
-    bindsym l resize shrink height 5 px or 5 ppt
-    bindsym semicolon resize grow width 5 px or 5 ppt
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
     # same bindings, but for the arrow keys
     bindsym Left resize shrink width 10 px or 10 ppt
@@ -238,8 +249,8 @@ client.placeholder      $background $color10 $foreground $color0
 
 client.background       $background
 
-gaps inner 0
-gaps outer 0
+gaps inner 60
+gaps outer 30
 
 focus_follows_mouse no
 no_focus [window_role=".*"]
@@ -248,6 +259,7 @@ focus_on_window_activation no
 assign [class="Skype"] $ws4
 assign [class="Slack"] $ws4
 assign [class="Thunderbird"] $ws4
+assign [class="Mailspring"] $ws4
 assign [class="qutebrowser"] $ws3
 assign [class="Keybase"] $ws4
 assign [class="Caprine"] $ws4
@@ -256,6 +268,7 @@ for_window [instance="w1term"] move to workspace $ws1
 for_window [class="Spotify"] move to workspace $ws5
 for_window [class="jetbrains"] move to workspace $ws2
 
+for_window [class=".*"] border pixel 0
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
@@ -273,11 +286,12 @@ for_window [class="Blueman-manager"] floating enable sticky enable
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Skype"] floating disable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [title="nmtui"] floating enable border normal
 
 exec --no-startup-id alacritty --class=w1term -e "tmux_ws"
 exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/emacs'
 exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/qutebrowser'
-exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/thunderbird'
+exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/mailspring'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/slack'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/caprine'
 exec --no-startup-id i3-msg 'workspace $ws4; exec run_keybase'

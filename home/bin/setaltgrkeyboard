@@ -1,2 +1,2 @@
-#/bin/sh
+#!/bin/sh
 setxkbmap us -variant altgr-intl -device $(xinput list --id-only 'OLKB Preonic')

@@ -67,6 +67,7 @@ alias zshsource='source ~/.zshrc'
 
 alias la="ls -la"
 alias ls='ls --color=auto'
+alias update='yay -Syu'
 
 # ZSH stuff
 export XDG_CONFIG_HOME="$HOME/.config"

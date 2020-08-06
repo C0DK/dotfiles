@@ -41,9 +41,11 @@
 	offset-x = 0
 	offset-y = 0
 
-	bottom = false
+	bottom = true
 
-	background = ${xrdb:background}
+	;background = ${xrdb:background}
+	background = #00FFFFFF
+	;background =  #FF000000
 	foreground = ${xrdb:foreground}
 
 	border-bottom-size  = 0
@@ -81,14 +83,14 @@
 	interval = 600
 	format-padding = 1
 	format-foreground = ${xrdb:color1}
-	format-background = ${xrdb:background}
+	;format-background = ${xrdb:background}
 [module/zoomRunning]
 	type = custom/script
 	exec = "pgrep zoom > /dev/null && echo ' ' || echo ''"
 	interval = 1
 	format-padding = 1
 	format-foreground = ${xrdb:color1}
-	format-background = ${xrdb:background}
+	;format-background = ${xrdb:background}
 [module/passAge]
 	type = custom/script
 	exec = "~/bin/passage | wc -l"
@@ -97,28 +99,28 @@
 	interval = 60
 	format-padding = 1
 	format-foreground = ${xrdb:color1}
-	format-background = ${xrdb:background}
+	;format-background = ${xrdb:background}
 [module/timer]
 	type = custom/script
 	exec = ~/bin/timer_read
 	interval = 1
 	format-padding = 1
 	format-foreground = ${xrdb:color5}
-	format-background = ${xrdb:background}
+	;format-background = ${xrdb:background}
 [module/gitPushed]
 	type = custom/script
 	exec = ~/.config/polybar/is_git_pushed.sh 
 	interval = 4
 	format-padding = 1
-	format-background = ${xrdb:background}
 	format-foreground = ${xrdb:color1}
+	;format-background = ${xrdb:background}
 [module/bluetooth]
 	type = custom/script
 	exec = ~/.config/polybar/bluetooth.sh 
 	interval = 2
 	format-padding = 1
-	format-background = ${xrdb:background}
 	format-foreground = ${xrdb:foreground}
+	;format-background = ${xrdb:background}
 [module/network]
 	type          = internal/network
 	interface     = wlp1s0
@@ -141,7 +143,7 @@
 	format-padding = 0
 
 
-	label-background = ${xrdb:background}
+	;label-background = ${xrdb:background}
 	label-foreground = ${xrdb:foreground}
 	label-padding    = 0
 
@@ -155,23 +157,23 @@
 	format-charging = <label-charging>
 
 	format-charging-prefix            = "⚡"
-	format-charging-prefix-background = ${xrdb:background}
+	;format-charging-prefix-background = ${xrdb:background}
 	format-charging-prefix-foreground = ${xrdb:color3}
 	format-charging-prefix-padding    = 1
 
 	label-charging            = "%percentage%%"
-	label-charging-background = ${xrdb:background}
+	;label-charging-background = ${xrdb:background}
 	label-charging-foreground = ${xrdb:foreground}
 	label-charging-padding    = 1
 
 	format-discharging = <ramp-capacity> <label-discharging>
 
-	format-discharging-prefix-background = ${xrdb:background}
+	;format-discharging-prefix-background = ${xrdb:background}
 	format-discharging-prefix-foreground = ${xrdb:foreground}
 	format-discharging-prefix-padding    = 1
 
 	label-discharging            = "%percentage%%"
-	label-discharging-background = ${xrdb:background}
+	;label-discharging-background = ${xrdb:background}
 	label-discharging-foreground = ${xrdb:foreground}
 	label-discharging-padding    = 1
 	ramp-capacity-0 = 
@@ -185,12 +187,12 @@
 	format-full = <label-full>
 
 	format-full-prefix            = ""
-	format-full-prefix-background = ${xrdb:background}
+	;format-full-prefix-background = ${xrdb:background}
 	format-full-prefix-foreground = ${xrdb:foreground}
 	format-full-prefix-padding    = 1
 
 	label-full            = "%percentage%%"
-	label-full-background = ${xrdb:background}
+	;label-full-background = ${xrdb:background}
 	label-full-foreground = ${xrdb:foreground}
 	label-full-padding    = 1
 [module/volume]
@@ -204,14 +206,14 @@
 	master-mixer = Master
 
 	label-volume            = " %percentage%%"
-	label-volume-background = ${xrdb:background}
+	;label-volume-background = ${xrdb:background}
 	label-volume-foreground = ${xrdb:foreground}
 	label-volume-padding    = 3
 
 	format-muted = <label-muted>
 
 	label-muted            = " 0%"
-	label-muted-background = ${xrdb:background}
+	;label-muted-background = ${xrdb:background}
 	label-muted-foreground = ${xrdb:foreground}
 	label-muted-padding    = 3
 
@@ -265,15 +267,15 @@
 
 	format-connected-prefix            = ""
 	format-connected-prefix-padding    = 1
-	format-connected-prefix-background = ${xrdb:background}
+	;format-connected-prefix-background = ${xrdb:background}
 	format-connected-prefix-foreground = ${xrdb:color2}
 
 	label-connected            = "%essid% "
-	label-connected-background = ${xrdb:background}
+	;label-connected-background = ${xrdb:background}
 	label-connected-foreground = ${xrdb:foreground}
 	label-connected-padding    = 1
 
-	ramp-signal-background    = ${xrdb:background}
+	;ramp-signal-background    = ${xrdb:background}
 	ramp-signal-foreground    = ${xrdb:foreground}
 	ramp-connected-foreground = ${xrdb:foreground}
 	ramp-signal-padding       = 1
@@ -282,11 +284,11 @@
 
 	format-disconnected-prefix            = ""
 	format-disconnected-prefix-padding    = 1
-	format-disconnected-prefix-background = ${xrdb:background}
+	;format-disconnected-prefix-background = ${xrdb:background}
 	format-disconnected-prefix-foreground = ${xrdb:foreground}
 
 	label-disconnected            = "DISCONNECTED"
-	label-disconnected-background = ${xrdb:background}
+	;label-disconnected-background = ${xrdb:background}
 	label-disconnected-foreground = ${xrdb:foreground}
 	label-disconnected-padding    = 1
 
@@ -303,22 +305,22 @@
 	label-mode-padding    = 2
 
 	label-focused            = %name%
-	label-focused-background = ${xrdb:background}
+	;label-focused-background = ${xrdb:background}
 	label-focused-foreground = ${xrdb:foreground}
 	label-focused-padding    = 2
 
 	label-unfocused            = %name%
-	label-unfocused-background = ${xrdb:background}
+	;label-unfocused-background = ${xrdb:background}
 	label-unfocused-foreground = ${xrdb:color0}
 	label-unfocused-padding    = 2
 
 	label-visible            = %name%
-	label-visible-background = ${xrdb:background}
+	;label-visible-background = ${xrdb:background}
 	label-visible-foreground = ${xrdb:color7}
 	label-visible-padding    = 2
 
 	label-urgent            = %name%
-	label-urgent-background = ${xrdb:background}
+	;label-urgent-background = ${xrdb:background}
 	label-urgent-foreground = ${xrdb:color1}
 	label-urgent-padding    = 2
 
