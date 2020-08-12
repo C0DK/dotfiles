@@ -60,6 +60,7 @@ alias cleanwttr="clean && wttr"
 alias cleanweather="cleanwttr"
 # python haxs
 alias pytest-watch="while sleep 1 ; do find . -name '*.py' | entr -d -c pytest . ; done"
+alias expecthon-watch="while sleep 1 ; do find . -name '*.py' | entr -d -c pytest --cov=expecthon -p no:sugar . ; done"
 
 alias fibonacci='echo "1, 2, 3, 5, 8, 13, 21, 34, 55, 89"'
 alias fib='fibonacci'

@@ -400,7 +400,7 @@ client.background       $background
 #+END_SRC
 ** Gaps
 #+BEGIN_SRC Conf[Space]
-gaps inner 0
+gaps inner 20
 gaps outer 0
 #+END_SRC
 ** focus
