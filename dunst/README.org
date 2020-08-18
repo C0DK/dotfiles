@@ -1,0 +1,173 @@
+:PROPERTIES:
+#+TITLE: Dunst Configuration
+#+PROPERTY: header-args  :tangle dunstrc :comments both
+#+STARTUP: showeverything
+[[https://wiki.archlinux.org/index.php/Dunst][Dunst]] is a lightweight replacement for the notification-daemons provided by most desktop environments.
+
+* Table Of Content :toc:
+- [[#globals][Globals]]
+  - [[#colors][Colors]]
+  - [[#font][Font]]
+  - [[#size][Size]]
+  - [[#format][Format]]
+  - [[#history][History]]
+- [[#colors-of-urgency-levels][Colors of urgency levels]]
+  - [[#urgency-low][Urgency Low]]
+  - [[#urgency-normal][Urgency Normal]]
+  - [[#urgency-critical][Urgency Critical]]
+
+* Globals
+#+BEGIN_SRC conf
+[global]
+#+END_SRC
+
+** Colors
+#+BEGIN_SRC conf
+    frame_color = "#2E3440"
+    separator_color = "#44475a"
+#+END_SRC
+** Font
+#+BEGIN_SRC conf
+    font = SauceCodePro Nerd Font 10
+#+END_SRC
+** Size
+The geometry of the window:
+#+BEGIN_EXAMPLE
+   [{width}]x{height}[+/-{x}+/-{y}]
+#+END_EXAMPLE
+#+BEGIN_SRC conf
+    frame_width = 1
+    geometry = "500x4-25+25"
+#+END_SRC
+** Format
+*** Message format
+The format of the message.  Possible variables are:
+#+BEGIN_EXAMPLE
+%a  appname
+%s  summary
+%b  body
+%i  iconname (including its path)
+%I  iconname (without its path)
+%p  progress value if set ([  0%] to [100%]) or nothing
+#+END_EXAMPLE
+#+BEGIN_SRC conf
+    format = "%a\n<b>%s </b>%p\n%b"
+#+END_SRC
+*** Use markup
+Allow a small subset of html markup:
+#+BEGIN_EXAMPLE
+  <b>bold</b>
+  <i>italic</i>
+  <s>strikethrough</s>
+  <u>underline</u>
+
+#+END_EXAMPLE
+[[http://developer.gnome.org/pango/stable/PangoMarkupFormat.html][complete reference]]
+#+BEGIN_SRC conf
+    markup = yes
+#+END_SRC
+*** Sorting
+Sort messages by urgency.
+#+BEGIN_SRC conf
+    sort = yes
+#+END_SRC
+*** Shrink
+Shrink window if it's smaller than the width.
+#+BEGIN_SRC conf
+    shrink = yes
+#+END_SRC
+
+*** Indicate hidden
+Show how many messages are currently hidden
+#+BEGIN_SRC conf
+    indicate_hidden = yes
+#+END_SRC
+*** Notification on active screen
+Display notification on focused monitor.
+#+BEGIN_SRC conf
+    follow = keyboard
+#+END_SRC
+*** Idle Threshold
+Don't remove messages, if the user is idle (no mouse or keyboard input) for
+longer than idle_threshold seconds. Set to 0 to disable.
+#+BEGIN_SRC conf
+    idle_threshold = 120
+#+END_SRC
+*** Show indicators
+Display indicators for URLs (U) and actions (A).
+#+BEGIN_SRC conf
+    show_indicators = yes
+#+END_SRC
+*** Padding
+Padding between text and separator / border of box
+#+BEGIN_SRC conf
+    padding = 8
+    horizontal_padding = 10
+#+END_SRC
+*** Startup Notification
+Print a notification on startup (mainly for error detection)
+#+BEGIN_SRC conf
+    startup_notification = false
+#+END_SRC
+*** Misc
+#+BEGIN_SRC conf
+    alignment = left
+    word_wrap = yes
+    ignore_newline = no
+    show_age_threshold = -1
+    transparency = 05
+    line_height = 0
+    separator_height = 1
+    padding = 8
+    horizontal_padding = 10
+#+END_SRC
+
+** History
+*** History length
+Maximum amount of notifications kept in history
+#+BEGIN_SRC conf
+    history_length = 20
+#+END_SRC
+*** Sticky History
+Should a notification popped up from history be sticky or timeout
+as if it would normally do.
+#+BEGIN_SRC conf
+    sticky_history = yes
+#+END_SRC
+* Colors of urgency levels
+The colors of the different types of urgency
+** Urgency Low
+#+BEGIN_SRC conf
+[urgency_low]
+    background = "#2E3440"
+    foreground = "#4C566A"
+#+END_SRC
+*** Timeout
+Display message for 3 seconds
+#+BEGIN_SRC conf
+    timeout = 3
+#+END_SRC
+
+** Urgency Normal
+#+BEGIN_SRC conf
+[urgency_normal]
+    background = "#2E3440"
+    foreground = "#D8DEE9"
+#+END_SRC
+*** Timeout
+Display message for 5 seconds
+#+BEGIN_SRC conf
+    timeout = 5
+#+END_SRC
+
+** Urgency Critical
+#+BEGIN_SRC conf
+[urgency_critical]
+    background = "#2E3440"
+    foreground = "#BF616A"
+#+END_SRC
+*** Timeout
+Display message until dismissed.
+#+BEGIN_SRC conf
+    timeout = 0
+#+END_SRC

@@ -1,0 +1,23 @@
+# Displayed Info
+# I want to focus on the static information (unlike CPU usage etc)
+
+# [[file:README.org::*Displayed Info][Displayed Info:1]]
+print_info() {
+    info title
+    info underline
+
+    info "Model" model
+    info "Resolution" resolution
+    info "CPU" cpu
+    info "GPU" gpu
+    prin ""
+    info "OS" distro
+    info "Host" model
+    info "Kernel" kernel
+    info "Packages" packages
+    info "Shell" shell
+    prin ""
+    info "Uptime" uptime
+
+}
+# Displayed Info:1 ends here

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Returns list of all passwords that are older than X months.
+# credit (for the code, not the idea!) @aelius on keybase
+# -mtime is the amount of days
+find ~/.password-store/ -path ./.git -prune -o -type f -iname '*.gpg' -mtime +150

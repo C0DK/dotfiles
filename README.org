@@ -1,0 +1,21 @@
+#+TITLE: .Files
+
+This contains all my dotfile / configuration files for all the services i currently use or have used.
+
+* Table Of Content :toc:
+- [[#how-to-install][How To install]]
+- [[#backlog--todos][Backlog / Todo's:]]
+  - [[#create-a-singular-color-scheme-script-or-make-all-software-rely-on-xressources][Create a singular color scheme script (or make all software rely on xressources)]]
+  - [[#singular-install-script-that-install-dependencies-and-compiles-dmenu-and-slock][singular install script that install dependencies and compiles dmenu and slock]]
+  - [[#move-all-folders-into-root][Move all folders into root]]
+  - [[#try-xmonad][try xmonad]]
+
+* How To install
+Go into each project and read the =README= - if you just want to copy all the configuration files to the correct folders (and presumably have all the packaes installed), then you can run the [[file:create_links.sh][create_links.sh]] script.
+
+
+* Backlog / Todo's:
+** TODO Create a singular color scheme script (or make all software rely on xressources)
+** TODO singular install script that install dependencies and compiles dmenu and slock
+** TODO Move all folders into root
+** TODO try xmonad

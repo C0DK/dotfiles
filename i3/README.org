@@ -432,7 +432,7 @@ for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Alacritty"] floating disable border pixel 1
-for_window [instance="forceFloat"] floating enable move scratchpad border normal
+for_window [instance="forceFloat"] floating enable move scratchpad border normal sticky enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
@@ -457,6 +457,7 @@ exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/qutebrowser'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/mailspring'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/slack'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/caprine'
+exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/whatsapp-web'
 exec --no-startup-id i3-msg 'workspace $ws4; exec run_keybase'
 exec --no-startup-id i3-msg 'workspace $ws5; exec /usr/bin/spotify'
 exec alacritty --class='forceFloat' -e 'tmux_scratchpad'

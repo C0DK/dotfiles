@@ -1,0 +1,315 @@
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+
+set $locker slock
+set $term alacritty
+set $browser qutebrowser
+
+set $mod Mod4
+
+floating_modifier $mod
+
+bindsym $mod+q kill
+
+bindsym Ctrl+Return exec --no-startup-id dmenu_run
+
+bindsym $mod+Shift+p exec --no-startup-id flameshot gui
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+a focus parent
+
+# split orientation
+bindsym $mod+shift+h split h
+bindsym $mod+shift+v split v
+bindsym $mod+shift+q split toggle
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+Shift+s sticky toggle
+
+bindsym $mod+Tab scratchpad show
+
+bindsym $mod+Shift+minus move scratchpad
+
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+bindsym $mod+b workspace back_and_forth
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+
+bindsym $mod+Ctrl+1 move container to workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4
+bindsym $mod+Ctrl+5 move container to workspace $ws5
+bindsym $mod+Ctrl+6 move container to workspace $ws6
+bindsym $mod+Ctrl+7 move container to workspace $ws7
+bindsym $mod+Ctrl+8 move container to workspace $ws8
+
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+
+bindsym $mod+o mode "$mode_leader"
+set $mode_leader (s)ystem, (o)pen, (c)onfig, (a)ction, ser(v)ices
+
+mode "$mode_leader" {
+    bindsym s mode "$mode_system"
+    bindsym o mode "$mode_open"
+    bindsym c mode "$mode_settings"
+    bindsym a mode "$mode_actions"
+
+    bindsym $mod+Shift+p exec --no-startup-id flameshot gui
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym q mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+   bindsym l exec --no-startup-id $locker, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym q mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_open (e)ditor, (t)erm, (b)rowser, (s)potify, (Shift+s)kype, (m)essenger, (k)eybase, (p)dfreader, (Shift+p)ass, (Shift+m)ail, (c)hrome
+mode "$mode_open" {
+    bindsym e exec --no-startup-id emacs, mode "default"
+    bindsym t exec --no-startup-id $term -e sh -c "fresh && zsh", mode "default"
+    bindsym b exec --no-startup-id $browser, mode "default"
+    bindsym c exec --no-startup-id google-chrome-stable, mode "default"
+    bindsym s exec --no-startup-id spotify, mode "default"
+    bindsym m exec --no-startup-id caprine, mode "default"
+    bindsym k exec --no-startup-id run_keybase, mode "default"
+    bindsym p exec --no-startup-id epdfview, mode "default"
+    bindsym Shift+p exec --no-startup-id passmenu, mode "default"
+    bindsym Shift+s exec --no-startup-id skypeforlinux, mode "default"
+    bindsym Shift+m exec --no-startup-id mailspring, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym q mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_settings (a)randr, (b)luetooth, (p)ulse audio, (l)xappearance, (n)mtui, (N)itrogen, (k)ill, (b)menu, (w)idescreen-mode
+mode "$mode_settings" {
+	 bindsym b exec blueman-manager, mode "default"
+	 bindsym a exec arandr, mode "default"
+	 bindsym p exec pavucontrol, mode "default"
+	 # bindsym s exec stalonetray, mode "default"
+	 bindsym l exec lxappearance, mode "default"
+	 bindsym shift+n --no-startup-id exec nitrogen, mode "default"
+	 bindsym n exec "alacritty -e nmtui", mode "default"
+	 bindsym k exec "killall nitrogen; killall lxappearance; killall pavucontrol; killall stalonetray; killall blueman-manager; killall nmtui; killall bmenu", mode "default"
+     bindsym b exec alacritty -e 'bmenu'
+     bindsym w mode "$mode_widescreen"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym q mode "default"
+    bindsym Escape mode "default"
+}
+set $mode_widescreen set mode to widescreen? (y)es, (n)o
+mode "$mode_widescreen" {
+     bindsym y exec alacritty -e 'widescreenmode on', mode "default"
+     bindsym n exec alacritty -e 'widescreenmode off', mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym q mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_actions (b)ackup, reload (i)3, restart (Shift+i)3, restart (d)unst, (u)pdate, launch (p)ostgres
+mode "$mode_actions" {
+	 bindsym b exec --no-startup-id $term -e 'backup | less', mode "default"
+	 bindsym u exec --no-startup-id $term -e 'yay -Syu', mode "default"
+	 bindsym Shift+i mode "default", restart
+     bindsym i mode "default", reload
+     bindsym p exec --no-startup-id sudo systemctl restart postgresql.service, mode "default"
+     bindsym d --release exec "killall dunst; exec notify-send 'restart dunst'", mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym q mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # exit resize mode: Enter or Escape
+    bindsym Return mode "default"
+    bindsym q mode "default"
+    bindsym Escape mode "default"
+}
+
+font xft:SauceCodePro Nerd Font Mono 9
+
+workspace_layout tabbed
+
+title_align center
+
+hide_edge_borders both
+default_border pixel 1
+
+
+
+set_from_resource $background background
+set_from_resource $foreground foreground
+set_from_resource $color0     color0
+set_from_resource $color1     color1
+set_from_resource $color2     color2
+set_from_resource $color3     color3
+set_from_resource $color4     color4
+set_from_resource $color5     color5
+set_from_resource $color6     color6
+set_from_resource $color7     color7
+set_from_resource $color8     color8
+set_from_resource $color9     color9
+set_from_resource $color10    color10
+set_from_resource $color11    color11
+set_from_resource $color12    color12
+set_from_resource $color13    color13
+set_from_resource $color14    color14
+set_from_resource $color15    color15
+
+client.focused          $color0 $color0 $foreground $color0
+client.focused_inactive $color0 $color0 $foreground $color0
+client.unfocused        $background $color0 $color8 $color0
+client.urgent           $background  $color1 $foreground $color0
+client.placeholder      $background $color10 $foreground $color0
+
+client.background       $background
+
+gaps inner 20
+gaps outer 0
+
+focus_follows_mouse no
+no_focus [window_role=".*"]
+focus_on_window_activation no
+
+assign [class="Skype"] $ws4
+assign [class="Slack"] $ws4
+assign [class="Thunderbird"] $ws4
+assign [class="Mailspring"] $ws4
+assign [class="qutebrowser"] $ws3
+assign [class="Keybase"] $ws4
+assign [class="Caprine"] $ws4
+assign [instance="w1term"] $ws1
+for_window [instance="w1term"] move to workspace $ws1
+for_window [class="Spotify"] move to workspace $ws5
+for_window [class="jetbrains"] move to workspace $ws2
+
+for_window [class=".*"] border pixel 0
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Alacritty"] floating disable border pixel 1
+for_window [instance="forceFloat"] floating enable move scratchpad border normal sticky enable
+for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [title="MuseScore: Play Panel"] floating enable
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [title="About Pale Moon"] floating enable
+for_window [class="Pavucontrol"] floating enable sticky enable
+for_window [class="lxappearane"] floating enable sticky enable
+for_window [class="nitrogen"] floating enable sticky enable
+for_window [class="Arandr"] floating enable border none, resize set 700 600, move position center
+for_window [class="Blueman-manager"] floating enable sticky enable
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="Skype"] floating disable border normal
+for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [title="nmtui"] floating enable border normal
+
+exec --no-startup-id alacritty --class=w1term -e "tmux_ws"
+exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/emacs'
+exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/qutebrowser'
+exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/mailspring'
+exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/slack'
+exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/caprine'
+exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/whatsapp-web'
+exec --no-startup-id i3-msg 'workspace $ws4; exec run_keybase'
+exec --no-startup-id i3-msg 'workspace $ws5; exec /usr/bin/spotify'
+exec alacritty --class='forceFloat' -e 'tmux_scratchpad'
+
+exec --no-startup-id volumeicon
+exec --no-startup-id ~/.config/polybar/launch.sh
+
+exec --no-startup-id flameshot
+exec --no-startup-id redshift
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id sleep 10; picom -b
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id pamac-tray
+exec --no-startup-id clipit
+exec --no-startup-id xautolock -time 10 -locker $locker
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor

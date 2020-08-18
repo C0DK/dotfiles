@@ -1,0 +1,9 @@
+#+TITLE: Scripts
+
+This folder contains random scripts that i use for various things. Some are dependencies of my various polybar and i3 configs, however it should be obvious from the relevant configs which.
+
+Use at own discretion.
+
+
+* Backlog
+** TODO add more descriptions pr script, maybe to this files

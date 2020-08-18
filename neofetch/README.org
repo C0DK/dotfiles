@@ -1,0 +1,31 @@
+#+TITLE: Neofetch Configuration
+#+PROPERTY: header-args  :tangle config :comments both
+#+STARTUP: showeverything
+[[https://github.com/dylanaraps/neofetch][Neofetch]] displays information about your operating system, software and hardware in an aesthetic and visually pleasing way.
+
+
+* Table Of Content :toc:
+- [[#displayed-info][Displayed Info]]
+
+* Displayed Info
+I want to focus on the static information (unlike CPU usage etc)
+#+BEGIN_SRC conf
+print_info() {
+    info title
+    info underline
+
+    info "Model" model
+    info "Resolution" resolution
+    info "CPU" cpu
+    info "GPU" gpu
+    prin ""
+    info "OS" distro
+    info "Host" model
+    info "Kernel" kernel
+    info "Packages" packages
+    info "Shell" shell
+    prin ""
+    info "Uptime" uptime
+
+}
+#+END_SRC

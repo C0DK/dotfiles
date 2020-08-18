@@ -1,0 +1,15 @@
+#!/bin/sh
+if [ $* = "on" ]; then
+    setaltgrkeyboard
+    i3-msg gaps inner all set 40
+    xrandr --output eDP1 --off
+    xrandr --output HDMI1 --auto --primary --mode 3440x1440
+    # TODO create tmux session on all workspaces
+else
+    i3-msg gaps inner all set 0
+    xrandr --output eDP1 --auto --primary
+    xrandr --output HDMI1 --off
+    # TODO delete tmux session on all workspaces
+fi
+nitrogen --restore
+~/.config/polybar/launch.sh

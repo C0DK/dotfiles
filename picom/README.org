@@ -1,0 +1,86 @@
+#+TITLE:  Picom Configuration
+#+PROPERTY: header-args  :tangle picom.conf :comments both
+#+STARTUP: showeverything
+[[https://wiki.archlinux.org/index.php/Picom][Picom]] is a standalone compositor for Xorg, suitable for use with window managers
+that do not provide compositing. Picom is a fork of compton, which is a fork of
+xcompmgr-dana, which in turn is a fork of xcompmgr.
+
+* Table Of Content :toc:
+- [[#backend][Backend]]
+  - [[#type][Type]]
+  - [[#misc][Misc]]
+- [[#shadows][Shadows]]
+  - [[#shape--style][Shape / Style]]
+  - [[#exclude-shadows-on-some-things][Exclude shadows on some things]]
+- [[#opacity][Opacity]]
+  - [[#when--where][When / Where]]
+  - [[#blur][Blur]]
+  - [[#fading][Fading]]
+
+* Backend
+** Type
+GLX backend is typically much faster but depends on a sane driver.
+#+BEGIN_SRC conf
+backend = "glx";
+#+END_SRC
+** Misc
+No clue to be honest. Just from default.
+#+BEGIN_SRC conf
+glx-no-stencil = true;
+glx-copy-from-front = false;
+#+END_SRC
+* Shadows
+#+BEGIN_SRC conf
+shadow = true;
+#+END_SRC
+** Shape / Style
+I like them close and very dark. I use shadows /functionally/ as i once said -
+to show depth, not because it looks good.
+#+BEGIN_SRC conf
+shadow-radius = 3;
+shadow-offset-x = 2;
+shadow-offset-y = 2;
+shadow-opacity = 0.9;
+#+END_SRC
+** Exclude shadows on some things
+#+BEGIN_SRC conf
+shadow-exclude = [
+    "! name~=''",
+    "name = 'Notification'",
+    "name = 'Plank'",
+    "name = 'Docky'",
+    "name = 'Kupfer'",
+    "name = 'xfce4-notifyd'",
+    "name = 'cpt_frame_window'",
+    "name *= 'compton'",
+    "name *= 'picom'",
+    "class_g = 'Polybar'",
+    "class_g = 'Firefox' && argb",
+    "class_g = 'Conky'",
+    "class_g = 'Kupfer'",
+    "class_g = 'Synapse'",
+    "class_g ?= 'Notify-osd'",
+    "class_g ?= 'Cairo-dock'",
+    "class_g ?= 'Xfce4-notify'",
+    "class_g ?= 'Xfce4-power-manager'",
+    "_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
+];
+#+END_SRC
+
+* Opacity
+I don't use opacity, as you cannot target *only* background. I'd love to have a
+transparent editor, for instance, but i don't want my font to be transparent.
+** When / Where
+#+BEGIN_SRC conf
+inactive-opacity = 1;
+active-opacity = 1;
+frame-opacity = 1;
+inactive-opacity-override = false;
+#+END_SRC
+** Blur
+No.
+** Fading
+Fade windows during opacity changes. Not really applicable.
+#+BEGIN_SRC conf
+fading = false;
+#+END_SRC
