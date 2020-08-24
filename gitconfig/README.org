@@ -9,7 +9,7 @@ This file contains some of my various configurations for git.
 
 * Config
 :PROPERTIES:
-:header-args: :tangle .gitconfig :comments both :padline yes
+:header-args: :tangle .gitconfig
 :END:
 ** Alias
 TODO format a bit
