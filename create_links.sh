@@ -8,6 +8,7 @@ stow doom -t ~/.config/doom
 stow zsh -t ~/
 stow gitconfig -t ~/
 stow vim -t ~/
+stow tmux -t ~/
 stow xresources -t ~/
 stow neofetch -t ~/.config/neofetch
 stow spicetify_theme -t ~/.config/spicetify/Themes/custom
