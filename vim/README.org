@@ -1,0 +1,53 @@
+#+TITLE: VIM Configuration File
+This file contains some of my various configurations for the terminal editor VIM.
+* Table Of Content :toc:
+- [[#config-file][Config file]]
+  - [[#plugins][Plugins]]
+  - [[#deoplete][Deoplete]]
+  - [[#set-theme][Set theme]]
+  - [[#show-line-numbers][Show line numbers]]
+  - [[#tabsize][Tabsize]]
+  - [[#][????]]
+
+* Config file
+:PROPERTIES:
+:header-args: :tangle .vimrc :padline yes
+:END:
+** Plugins
+I use [[https://github.com/junegunn/vim-plug][vim-plug]] for plugins.
+#+BEGIN_SRC nvim
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'xolox/vim-misc'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'derekwyatt/vim-scala'
+Plug 'arcticicestudio/nord-vim'
+call plug#end()
+#+END_SRC
+** Deoplete
+Use [[https://github.com/Shougo/deoplete.nvim][deoplete]] for auto completion in vim.
+#+BEGIN_SRC nvim
+let g:deoplete#enable_at_startup = 1
+#+END_SRC
+** Set theme
+#+BEGIN_SRC nvim
+let g:airline_theme='deus'
+let g:airline_powerline_fonts = 1
+#+END_SRC
+** Show line numbers
+#+BEGIN_SRC nvim
+set number
+#+END_SRC
+** Tabsize
+I want my tabs to be 4 spaces big. Sue me.
+#+BEGIN_SRC nvim
+set tabstop=4
+#+END_SRC
+
+** ????
+no clue what this is
+#+BEGIN_SRC nvim
+set t_Co=16
+#+END_SRC

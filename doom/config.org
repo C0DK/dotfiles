@@ -55,9 +55,9 @@
 *** Auto fill
 #+BEGIN_SRC emacs-lisp
 (after! org
- (auto-fill-mode 1)
-)
-
+  (auto-fill-mode 1)
+  )
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
 #+END_SRC
 *** Org agenda
 #+BEGIN_SRC emacs-lisp

@@ -1,7 +1,5 @@
 #+TITLE: I3 Configuration file
 #+PROPERTY: header-args :tangle config
-#+STARTUP: showeverything
-
 
 This is my I3 configuration file.
 
@@ -44,7 +42,7 @@ Copy the ~config~ file from this folder into your ~.config/i3/~ folder
 (probably). See [[https://i3wm.org/docs/userguide.html#configuring][the config]], for up to date details.
 * Constants
 ** Workspace names
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 set $ws1 "1:"
 set $ws2 "2:"
 set $ws3 "3:"
@@ -56,7 +54,7 @@ set $ws8 "8:"
 set $ws9 "9:"
 #+END_SRC
 ** Default programs
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 set $locker slock
 set $term alacritty
 set $browser qutebrowser
@@ -64,30 +62,30 @@ set $browser qutebrowser
 * Binding keys
 ** Modify key
 set the modifier key to the windows key
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 set $mod Mod4
 #+END_SRC
 ** Floating Modifier
 Used when holding down said key while
 moving the mouse to drag around floating windows.
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 floating_modifier $mod
 #+END_SRC
 ** Close focused window
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+q kill
 #+END_SRC
 ** Open application launcher
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym Ctrl+Return exec --no-startup-id dmenu_run
 #+END_SRC
 ** Take a screenshot
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+Shift+p exec --no-startup-id flameshot gui
 #+END_SRC
 ** Changing focus
 changing which window is in focus
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -99,7 +97,7 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 #+END_SRC
 ** Move focused window
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 # move focused window
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
@@ -107,65 +105,65 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 #+END_SRC
 ** Moves focus to parent container
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+a focus parent
 #+END_SRC
 ** Change container visualization
 *** Change split orientation
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 # split orientation
 bindsym $mod+shift+h split h
 bindsym $mod+shift+v split v
 bindsym $mod+shift+q split toggle
 #+END_SRC
 *** Set container layout type
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 #+END_SRC
 *** Toggle full screen
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+f fullscreen toggle
 #+END_SRC
 *** Toggle full screen
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+Shift+space floating toggle
 #+END_SRC
 *** Toggle floating
 Toggles whether the current container/window is floating
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+space focus mode_toggle
 #+END_SRC
 *** Toggle Sticky
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+Shift+s sticky toggle
 #+END_SRC
 ** Scratchpad
 *** Iterates through scratchpads
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+Tab scratchpad show
 #+END_SRC
 *** Moves focused window to scratchpad
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+Shift+minus move scratchpad
 #+END_SRC
 ** Workspaces
 *** Move to neighbor workspace
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 #+END_SRC
 *** Move to previous workspace
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 #+END_SRC
 *** Go back to previous workspace
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+b workspace back_and_forth
 #+END_SRC
 *** Go to workspace
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -177,7 +175,7 @@ bindsym $mod+8 workspace $ws8
 
 #+END_SRC
 *** Move container to workspace
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+Ctrl+1 move container to workspace $ws1
 bindsym $mod+Ctrl+2 move container to workspace $ws2
 bindsym $mod+Ctrl+3 move container to workspace $ws3
@@ -188,7 +186,7 @@ bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
 #+END_SRC
 *** Move container and go to workspace
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
@@ -206,12 +204,12 @@ which shows which keys to press next. Here you will get reasonable submenus maki
 *** TODO would be to have a dedicated key for it instead of a combo, but currently i don't know which
 
 *** Open leader menu
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+o mode "$mode_leader"
 set $mode_leader (s)ystem, (o)pen, (c)onfig, (a)ction, ser(v)ices
 #+END_SRC
 *** Main mode
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 mode "$mode_leader" {
     bindsym s mode "$mode_system"
     bindsym o mode "$mode_open"
@@ -227,7 +225,7 @@ mode "$mode_leader" {
 #+END_SRC
 *** System mode
 Things like locking, shutting down etc.
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
    bindsym l exec --no-startup-id $locker, mode "default"
@@ -246,8 +244,8 @@ mode "$mode_system" {
 #+END_SRC
 *** Application launch mode
 Basically a shorthand for opening often used programs.
-#+BEGIN_SRC Conf[Space]
-set $mode_open (e)ditor, (t)erm, (b)rowser, (s)potify, (Shift+s)kype, (m)essenger, (k)eybase, (p)dfreader, (Shift+p)ass, (Shift+m)ail, (c)hrome
+#+BEGIN_SRC conf
+set $mode_open (e)ditor, (t)erm, (b)rowser, (s)potify, (Shift+s)kype, (m)essenger, (k)eybase, (p)dfreader, (Shift+p)ass, (Shift+m)ail, (c)hrome, (r)ecorder
 mode "$mode_open" {
     bindsym e exec --no-startup-id emacs, mode "default"
     bindsym t exec --no-startup-id $term -e sh -c "fresh && zsh", mode "default"
@@ -257,6 +255,7 @@ mode "$mode_open" {
     bindsym m exec --no-startup-id caprine, mode "default"
     bindsym k exec --no-startup-id run_keybase, mode "default"
     bindsym p exec --no-startup-id epdfview, mode "default"
+    bindsym r exec --no-startup-id kazam, mode "default"
     bindsym Shift+p exec --no-startup-id passmenu, mode "default"
     bindsym Shift+s exec --no-startup-id skypeforlinux, mode "default"
     bindsym Shift+m exec --no-startup-id mailspring, mode "default"
@@ -269,7 +268,7 @@ mode "$mode_open" {
 #+END_SRC
 *** Settings mode
 Configuration of the system. Much like opening "settings" on your phone
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 set $mode_settings (a)randr, (b)luetooth, (p)ulse audio, (l)xappearance, (n)mtui, (N)itrogen, (k)ill, (b)menu, (w)idescreen-mode
 mode "$mode_settings" {
 	 bindsym b exec blueman-manager, mode "default"
@@ -302,7 +301,7 @@ mode "$mode_widescreen" {
 *** Actions mode
 Various actions that are done frequently.
 Shorthand for running some commands or stuff like that.
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 set $mode_actions (b)ackup, reload (i)3, restart (Shift+i)3, restart (d)unst, (u)pdate, launch (p)ostgres
 mode "$mode_actions" {
 	 bindsym b exec --no-startup-id $term -e 'backup | less', mode "default"
@@ -324,7 +323,7 @@ These bindings trigger as soon as you enter the resize mode
 - Pressing right will grow the window’s width.
 - Pressing up will shrink the window’s height.
 - Pressing down will grow the window’s height.
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 bindsym $mod+r mode "resize"
 mode "resize" {
     bindsym h resize shrink width 10 px or 10 ppt
@@ -346,13 +345,13 @@ mode "resize" {
 #+END_SRC
 *  Visuals
 ** Font
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 font xft:SauceCodePro Nerd Font Mono 9
 #+END_SRC
 ** Workspace layout
 Whether multiple things should render
 as tabs or stacking.
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 workspace_layout tabbed
 
 title_align center
@@ -360,14 +359,13 @@ title_align center
 ** Borders
 We want as simple borders as possible, very thin and hide them when we they
 aren't on the border towards something else (i.e in fullscreen mode)
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 hide_edge_borders both
-default_border pixel 1
-#+END_SRC
-#+BEGIN_SRC Conf[Space]
+default_border none
+default_floating_border none
 #+END_SRC
 ** Colors
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 set_from_resource $background background
 set_from_resource $foreground foreground
 set_from_resource $color0     color0
@@ -388,7 +386,7 @@ set_from_resource $color14    color14
 set_from_resource $color15    color15
 #+END_SRC
 ** Theming
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 client.focused          $color0 $color0 $foreground $color0
 client.focused_inactive $color0 $color0 $foreground $color0
 client.unfocused        $background $color0 $color8 $color0
@@ -399,12 +397,12 @@ client.background       $background
 
 #+END_SRC
 ** Gaps
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 gaps inner 20
 gaps outer 0
 #+END_SRC
 ** focus
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 focus_follows_mouse no
 no_focus [window_role=".*"]
 focus_on_window_activation no
@@ -412,7 +410,7 @@ focus_on_window_activation no
 * Behavior of various programs
 ** Default workspaces
 Specify where specific windows/programs should open by default.
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 assign [class="Skype"] $ws4
 assign [class="Slack"] $ws4
 assign [class="Thunderbird"] $ws4
@@ -426,13 +424,13 @@ for_window [class="Spotify"] move to workspace $ws5
 for_window [class="jetbrains"] move to workspace $ws2
 #+END_SRC
 ** Specify floating state of windows
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 for_window [class=".*"] border pixel 0
 for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lightdm-settings"] floating enable sticky enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Alacritty"] floating disable border pixel 1
-for_window [instance="forceFloat"] floating enable move scratchpad border normal sticky enable
+for_window [instance="forceFloat"] floating enable sticky enable move scratchpad border normal
 for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
@@ -449,7 +447,7 @@ for_window [title="nmtui"] floating enable border normal
 #+END_SRC
 ** Auto start
 Programs we want to launch when the system starts
-#+BEGIN_SRC Conf[Space]
+#+BEGIN_SRC conf
 
 exec --no-startup-id alacritty --class=w1term -e "tmux_ws"
 exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/emacs'

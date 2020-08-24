@@ -6,7 +6,6 @@
 * Table Of Content :toc:
 - [[#colors][Colors]]
 - [[#base][Base]]
-  - [[#unused-non-transparent][Unused (non transparent)]]
 - [[#modules][Modules]]
   - [[#any-new-updates][Any new Updates?]]
   - [[#is-zoom-running][Is Zoom running?]]
@@ -62,45 +61,7 @@ offset-y = 0
 
 bottom = true
 
-background = #00FFFFFF
-foreground = ${xrdb:foreground}
-
-border-bottom-size  = 0
-border-top-size     = 0
-
-border-left-size  = 0
-border-right-size = 0
-
-border-bottom-color = ${xrdb:background}
-border-top-color    = ${xrdb:background}
-
-border-left-color = ${xrdb:background}
-border-right-colo = ${xrdb:background}
-spacing            = 0
-padding-left       = 1
-padding-right      = 1
-module-margin-left = 0
-
-font-1 = SauceCodePro Nerd Font:size=4;2
-font-0 = Source Code Pro:size=4;2
-
-modules-left   = workspaces
-modules-center = gitPushed newUpdates passAge zoomRunning
-modules-right  =  timer bluetooth essid volume battery date
-
-fixed-center = true
-#+END_SRC
-** Unused (non transparent)
-#+BEGIN_SRC conf :tangle no
-[bar/base]
-dpi      = 192
-width    = 100%
-height   = 20
-offset-x = 0
-offset-y = 0
-
-bottom = true
-
+;background = #00FFFFFF
 background = ${xrdb:background}
 foreground = ${xrdb:foreground}
 

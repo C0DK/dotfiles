@@ -1,0 +1,104 @@
+#+TITLE:  TMUX Configuration file
+
+
+
+
+
+* Table Of Content :toc:
+- [[#configuration][Configuration]]
+  - [[#mouse][Mouse]]
+  - [[#bind-keys][Bind keys]]
+  - [[#statusbar][Statusbar]]
+
+* Configuration
+:PROPERTIES:
+:header-args: :tangle .tmux.conf :comments both :padline yes
+:END:
+** Mouse
+Enable mouse marking
+#+BEGIN_SRC conf
+set -g mouse on
+#+END_SRC
+
+** Bind keys
+*** Set leader key
+#+BEGIN_SRC conf
+set-option -g prefix C-a
+#+END_SRC
+*** Make it possible to repeat to send it further down
+#+BEGIN_SRC conf
+unbind-key C-a
+bind-key C-a send-prefix
+set -g base-index 1
+#+END_SRC
+*** ???
+#+BEGIN_SRC
+set -sg escape-time 0
+#+END_SRC
+*** Actions
+#+BEGIN_SRC conf
+bind-key : command-prompt
+bind-key v split-window -h
+bind-key s split-window -v
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+#+END_SRC
+*** Toggle full screen
+#+BEGIN_SRC conf
+unbind-key f
+bind-key f resize-pane -Z
+#+END_SRC
+*** Select pane
+#+BEGIN_SRC conf
+bind-key -n M-h select-pane -L
+bind-key -n M-j select-pane -D
+bind-key -n M-k select-pane -U
+bind-key -n M-l select-pane -R
+bind-key -n M-Left select-pane -L
+bind-key -n M-Down select-pane -D
+bind-key -n M-Up select-pane -U
+bind-key -n M-Right select-pane -R
+#+END_SRC
+*** Changing window
+#+BEGIN_SRC conf
+bind-key -n M-1 select-window -t 1
+bind-key -n M-2 select-window -t 2
+bind-key -n M-3 select-window -t 3
+bind-key -n M-4 select-window -t 4
+bind-key -n M-5 select-window -t 5
+bind-key -n M-6 select-window -t 6
+bind-key -n M-7 select-window -t 7
+bind-key -n M-8 select-window -t 8
+bind-key -n M-9 select-window -t 9
+bind-key -n M-0 select-window -t 0
+#+END_SRC
+*** Create new window
+#+BEGIN_SRC conf
+bind-key -n M-c new-window
+bind-key -n M-Enter new-window
+#+END_SRC
+*** Create new pane
+#+BEGIN_SRC conf
+bind-key -n M-v split-window -h
+bind-key -n M-s split-window -v
+#+END_SRC
+*** Kill pane
+#+BEGIN_SRC conf
+bind-key -n M-d kill-pane
+#+END_SRC
+*** Kill window
+#+BEGIN_SRC conf
+bind-key -n M-q kill-window
+#+END_SRC
+** Statusbar
+*** Position
+#+BEGIN_SRC conf
+set -g status-position top
+#+END_SRC
+*** Colors
+#+BEGIN_SRC conf
+set -g status-bg 'colour0'
+set -g status-fg 'white'
+#+END_SRC

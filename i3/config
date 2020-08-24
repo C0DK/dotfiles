@@ -127,7 +127,7 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-set $mode_open (e)ditor, (t)erm, (b)rowser, (s)potify, (Shift+s)kype, (m)essenger, (k)eybase, (p)dfreader, (Shift+p)ass, (Shift+m)ail, (c)hrome
+set $mode_open (e)ditor, (t)erm, (b)rowser, (s)potify, (Shift+s)kype, (m)essenger, (k)eybase, (p)dfreader, (Shift+p)ass, (Shift+m)ail, (c)hrome, (r)ecorder
 mode "$mode_open" {
     bindsym e exec --no-startup-id emacs, mode "default"
     bindsym t exec --no-startup-id $term -e sh -c "fresh && zsh", mode "default"
@@ -137,6 +137,7 @@ mode "$mode_open" {
     bindsym m exec --no-startup-id caprine, mode "default"
     bindsym k exec --no-startup-id run_keybase, mode "default"
     bindsym p exec --no-startup-id epdfview, mode "default"
+    bindsym r exec --no-startup-id kazam, mode "default"
     bindsym Shift+p exec --no-startup-id passmenu, mode "default"
     bindsym Shift+s exec --no-startup-id skypeforlinux, mode "default"
     bindsym Shift+m exec --no-startup-id mailspring, mode "default"
@@ -217,9 +218,8 @@ workspace_layout tabbed
 title_align center
 
 hide_edge_borders both
-default_border pixel 1
-
-
+default_border none
+default_floating_border none
 
 set_from_resource $background background
 set_from_resource $foreground foreground
@@ -269,10 +269,10 @@ for_window [class="jetbrains"] move to workspace $ws2
 
 for_window [class=".*"] border pixel 0
 for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lightdm-settings"] floating enable sticky enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Alacritty"] floating disable border pixel 1
-for_window [instance="forceFloat"] floating enable move scratchpad border normal sticky enable
+for_window [instance="forceFloat"] floating enable sticky enable move scratchpad border normal
 for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
