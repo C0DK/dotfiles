@@ -1,0 +1,84 @@
+#+TITLE: Qutebrwoser Configuration File
+This is just my simple configuration file for [[https://qutebrowser.org][qutebrowser]], the minimal VI-bindings browser.
+
+* Table Of Content :toc:
+- [[#config][Config]]
+  - [[#define-color-scheme][Define color scheme]]
+  - [[#colors][Colors]]
+
+* Config
+:PROPERTIES:
+:header-args: :tangle config.py
+:END:
+[[https://github.com/KnownAsDon/QuteBrowser-Nord-Theme/raw/master/config.py][Inspiration]].
+** Define color scheme
+#+BEGIN_SRC python
+nord = {
+    0: "#2E3440",
+    1: "#3B4252",
+    2: "#434C5E",
+    3: "#4C566A",
+    4: "#D8DEE9",
+    5: "#E5E9F0",
+    6: "#ECEFF4",
+    7: "#8FBCBB",
+    8: "#88C0D0",
+    9: "#81A1C1",
+    10: "#5E81AC",
+    11: "#BF616A",
+    12: "#D08770",
+    13: "#EBCB8B",
+    14: "#A3BE8C",
+    15: "#B48EAD",
+}
+bg_color = nord[0]
+fg_color = nord[4]
+#+END_SRC
+** Colors
+
+*** Completion
+Completion is everything in =:=
+**** Header color
+#+BEGIN_SRC python
+c.colors.completion.category.bg = bg_color
+c.colors.completion.category.fg = fg_color
+#+END_SRC
+**** Borders
+#+BEGIN_SRC python
+border_color = nord[1]
+c.colors.completion.category.border.bottom = border_color
+c.colors.completion.category.border.top = border_color
+#+END_SRC
+**** Even / odd background
+use same colors (no switching colors back and forth)
+#+BEGIN_SRC python
+c.colors.completion.even.bg = bg_color
+c.colors.completion.odd.bg = bg_color
+#+END_SRC
+**** Foreground on main container
+#+BEGIN_SRC python
+c.colors.completion.fg = nord[3]
+#+END_SRC
+**** Selected row
+the row that you have currently selected
+#+BEGIN_SRC python
+selected_bg = nord[0]
+
+c.colors.completion.item.selected.bg = selected_bg
+c.colors.completion.item.selected.border.bottom = selected_bg
+c.colors.completion.item.selected.border.top = selected_bg
+
+c.colors.completion.item.selected.fg = fg_color
+#+END_SRC
+**** color of match
+The color that the =match= is. This is the area
+#+BEGIN_SRC python
+match_color_fg = nord[6]
+c.colors.completion.item.selected.match.fg = match_color_fg
+c.colors.completion.match.fg = match_color_fg
+#+END_SRC
+**** Scrollbar
+#+BEGIN_SRC python
+c.colors.completion.scrollbar.bg = bg_color
+c.colors.completion.scrollbar.fg = fg_color
+#+END_SRC
