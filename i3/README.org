@@ -43,15 +43,14 @@ Copy the ~config~ file from this folder into your ~.config/i3/~ folder
 * Constants
 ** Workspace names
 #+BEGIN_SRC conf
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
+set $ws_shell "1:SHELL"
+set $ws_dev "2:DEV"
+set $ws_web "3:WEB"
+set $ws_com "4:COMMS"
+set $ws_mus "5:MUSIC"
+set $ws_misc_1 "6:MISC"
+set $ws_misc_2 "7:MISC 2"
+set $ws_misc_3 "8:MISC 3"
 #+END_SRC
 ** Default programs
 #+BEGIN_SRC conf
@@ -164,37 +163,37 @@ bindsym $mod+b workspace back_and_forth
 #+END_SRC
 *** Go to workspace
 #+BEGIN_SRC conf
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
+bindsym $mod+1 workspace $ws_shell
+bindsym $mod+2 workspace $ws_dev
+bindsym $mod+3 workspace $ws_web
+bindsym $mod+4 workspace $ws_com
+bindsym $mod+5 workspace $ws_mus
+bindsym $mod+6 workspace $ws_misc_1
+bindsym $mod+7 workspace $ws_misc_2
+bindsym $mod+8 workspace $ws_misc_3
 
 #+END_SRC
 *** Move container to workspace
 #+BEGIN_SRC conf
-bindsym $mod+Ctrl+1 move container to workspace $ws1
-bindsym $mod+Ctrl+2 move container to workspace $ws2
-bindsym $mod+Ctrl+3 move container to workspace $ws3
-bindsym $mod+Ctrl+4 move container to workspace $ws4
-bindsym $mod+Ctrl+5 move container to workspace $ws5
-bindsym $mod+Ctrl+6 move container to workspace $ws6
-bindsym $mod+Ctrl+7 move container to workspace $ws7
-bindsym $mod+Ctrl+8 move container to workspace $ws8
+bindsym $mod+Ctrl+1 move container to workspace $ws_shell
+bindsym $mod+Ctrl+2 move container to workspace $ws_dev
+bindsym $mod+Ctrl+3 move container to workspace $ws_web
+bindsym $mod+Ctrl+4 move container to workspace $ws_com
+bindsym $mod+Ctrl+5 move container to workspace $ws_mus
+bindsym $mod+Ctrl+6 move container to workspace $ws_misc_1
+bindsym $mod+Ctrl+7 move container to workspace $ws_misc_2
+bindsym $mod+Ctrl+8 move container to workspace $ws_misc_3
 #+END_SRC
 *** Move container and go to workspace
 #+BEGIN_SRC conf
-bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+1 move container to workspace $ws_shell; workspace $ws_shell
+bindsym $mod+Shift+2 move container to workspace $ws_dev; workspace $ws_dev
+bindsym $mod+Shift+3 move container to workspace $ws_web; workspace $ws_web
+bindsym $mod+Shift+4 move container to workspace $ws_com; workspace $ws_com
+bindsym $mod+Shift+5 move container to workspace $ws_mus; workspace $ws_mus
+bindsym $mod+Shift+6 move container to workspace $ws_misc_1; workspace $ws_misc_1
+bindsym $mod+Shift+7 move container to workspace $ws_misc_2; workspace $ws_misc_2
+bindsym $mod+Shift+8 move container to workspace $ws_misc_3; workspace $ws_misc_3
 #+END_SRC
 ** Leader key
 I use a nicely drafted leaderkey to make i3 more like doom emacs / spacemacs.
@@ -411,17 +410,18 @@ focus_on_window_activation no
 ** Default workspaces
 Specify where specific windows/programs should open by default.
 #+BEGIN_SRC conf
-assign [class="Skype"] $ws4
-assign [class="Slack"] $ws4
-assign [class="Thunderbird"] $ws4
-assign [class="Mailspring"] $ws4
-assign [class="qutebrowser"] $ws3
-assign [class="Keybase"] $ws4
-assign [class="Caprine"] $ws4
-assign [instance="w1term"] $ws1
-for_window [instance="w1term"] move to workspace $ws1
-for_window [class="Spotify"] move to workspace $ws5
-for_window [class="jetbrains"] move to workspace $ws2
+assign [class="Skype"] $ws_com
+assign [class="Slack"] $ws_com
+assign [class="Thunderbird"] $ws_com
+assign [class="Mailspring"] $ws_com
+assign [class="qutebrowser"] $ws_web
+assign [class="Keybase"] $ws_com
+assign [class="Caprine"] $ws_com
+assign [class="whatsapp-web"] $ws_com
+assign [instance="w1term"] $ws_dev
+for_window [instance="w1term"] move to workspace $ws_shell
+for_window [class="Spotify"] move to workspace $ws_mus
+for_window [class="jetbrains"] move to workspace $ws_dev
 #+END_SRC
 ** Specify floating state of windows
 #+BEGIN_SRC conf
@@ -450,14 +450,14 @@ Programs we want to launch when the system starts
 #+BEGIN_SRC conf
 
 exec --no-startup-id alacritty --class=w1term -e "tmux_ws"
-exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/emacs'
-exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/qutebrowser'
-exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/mailspring'
-exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/slack'
-exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/caprine'
-exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/whatsapp-web'
-exec --no-startup-id i3-msg 'workspace $ws4; exec run_keybase'
-exec --no-startup-id i3-msg 'workspace $ws5; exec /usr/bin/spotify'
+exec --no-startup-id i3-msg 'workspace $ws_dev; exec /usr/bin/emacs'
+exec --no-startup-id i3-msg 'workspace $ws_web; exec /usr/bin/qutebrowser'
+exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/mailspring'
+exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/slack'
+exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/caprine'
+exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/whatsapp-web'
+exec --no-startup-id i3-msg 'workspace $ws_com; exec run_keybase'
+exec --no-startup-id i3-msg 'workspace $ws_mus; exec /usr/bin/spotify'
 exec alacritty --class='forceFloat' -e 'tmux_scratchpad'
 
 exec --no-startup-id volumeicon
