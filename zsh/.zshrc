@@ -156,6 +156,14 @@ alias wolframalpha='wa'
 alias zshsource='source ~/.zshrc'
 # Refresh config:1 ends here
 
+# Gimmics
+
+# [[file:README.org::*Gimmics][Gimmics:1]]
+alias fucking='sudo'
+alias please='sudo'
+alias killme='shutdown -r now'
+# Gimmics:1 ends here
+
 # Set XDG stuff
 
 # [[file:README.org::*Set XDG stuff][Set XDG stuff:1]]

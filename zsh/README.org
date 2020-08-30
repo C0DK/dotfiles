@@ -156,6 +156,12 @@ alias wolframalpha='wa'
 #+BEGIN_SRC sh
 alias zshsource='source ~/.zshrc'
 #+END_SRC
+*** Gimmics
+#+BEGIN_SRC sh
+alias fucking='sudo'
+alias please='sudo'
+alias killme='shutdown -r now'
+#+END_SRC
 ** Set XDG stuff
 #+BEGIN_SRC sh
 export XDG_CONFIG_HOME="$HOME/.config"
