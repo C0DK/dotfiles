@@ -22,6 +22,7 @@
   - [[#vi-mode][VI mode]]
   - [[#ignore-spaces-in-history][Ignore spaces in history]]
   - [[#enable-p10k-prompt][Enable P10k prompt]]
+  - [[#use-different-pager-for-man-pages][Use different pager for man pages]]
 - [[#profile][.profile]]
 - [[#powerlevel10k][Powerlevel10k]]
 
@@ -212,7 +213,11 @@ To customize prompt edit the other heading edit.
 #+BEGIN_SRC sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #+END_SRC
-
+** Use different pager for man pages
+This requires [[https://linux.die.net/man/1/most][most]]. (=yay most=)
+#+BEGIN_SRC sh
+export PAGER="most"
+#+END_SRC
 
 * .profile
 :PROPERTIES:

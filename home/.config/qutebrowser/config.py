@@ -337,3 +337,6 @@ c.url.searchengines = {
     "arch": "https://wiki.archlinux.org/?search={}",
     "maps": "https://www.google.com/maps/search/{}/",
 }
+
+# Disable notifications globally
+c.content.notifications = False

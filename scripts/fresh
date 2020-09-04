@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 cd ~/bin/
-clear && neofetch && fortune 20% ~/Documents/fortune/ all
+clear && neofetch && fortune 20% ~/Documents/fortune/own ~/Documents/fortune/misc all
