@@ -61,8 +61,8 @@ offset-y = 0
 
 bottom = true
 
-;background = #00FFFFFF
-background = ${xrdb:background}
+background = #00FFFFFF
+;background = ${xrdb:background}
 foreground = ${xrdb:foreground}
 
 border-bottom-size  = 0

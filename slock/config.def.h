@@ -22,6 +22,6 @@ static const int failonclear = 1;
 static const char * message = "PLEASE AUTHENTICATE";
 
 /* text size (must be a valid size) */
-static const char * font_name = "10x20";
+static const char * font_name = "6x13";
 
 static const int hideScreen = 1;

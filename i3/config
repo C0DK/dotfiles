@@ -1,4 +1,4 @@
-set $ws_shell "1:SH"
+set $ws_shell "1:SHELL"
 set $ws_dev "2:DEV"
 set $ws_web "3:WEB"
 set $ws_com "4:COMMS"
@@ -247,7 +247,7 @@ client.placeholder      $background $color10 $foreground $color0
 
 client.background       $background
 
-gaps inner 20
+gaps inner 0
 gaps outer 0
 
 focus_follows_mouse no
@@ -258,6 +258,7 @@ assign [class="Skype"] $ws_com
 assign [class="Slack"] $ws_com
 assign [class="Thunderbird"] $ws_com
 assign [class="Mailspring"] $ws_com
+assign [class="discord"] $ws_com
 assign [class="qutebrowser"] $ws_web
 assign [class="Keybase"] $ws_com
 assign [class="Caprine"] $ws_com
@@ -265,6 +266,7 @@ assign [class="whatsapp-web"] $ws_com
 assign [instance="w1term"] $ws_dev
 for_window [instance="w1term"] move to workspace $ws_shell
 for_window [class="Spotify"] move to workspace $ws_mus
+for_window [class="discord"] move to workspace $ws_com
 for_window [class="jetbrains"] move to workspace $ws_dev
 
 for_window [class=".*"] border pixel 0
@@ -272,7 +274,7 @@ for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="Lightdm-settings"] floating enable sticky enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Alacritty"] floating disable border pixel 1
-for_window [instance="forceFloat"] floating enable sticky enable move scratchpad border normal
+for_window [instance="forceFloat"] floating enable sticky enable move scratchpad
 for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
@@ -293,6 +295,7 @@ exec --no-startup-id i3-msg 'workspace $ws_web; exec /usr/bin/qutebrowser'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/mailspring'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/slack'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/caprine'
+exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/discord'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/whatsapp-web'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec run_keybase'
 exec --no-startup-id i3-msg 'workspace $ws_mus; exec /usr/bin/spotify'

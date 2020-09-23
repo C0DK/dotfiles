@@ -397,7 +397,7 @@ client.background       $background
 #+END_SRC
 ** Gaps
 #+BEGIN_SRC conf
-gaps inner 20
+gaps inner 0
 gaps outer 0
 #+END_SRC
 ** focus
