@@ -336,6 +336,7 @@ c.url.searchengines = {
     "translate": "https://translate.google.com/?text={}",
     "arch": "https://wiki.archlinux.org/?search={}",
     "maps": "https://www.google.com/maps/search/{}/",
+    "fontawesome": "https://fontawesome.com/icons?d=gallery&q={}",
 }
 
 # Disable notifications globally

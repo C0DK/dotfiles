@@ -21,7 +21,7 @@ Stretch cursor to the glyph width
 #+END_SRC
 ** Color themes
 #+BEGIN_SRC emacs-lisp
-(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 12))
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 15))
 (setq doom-theme 'doom-nord)
 ;; Edit org coloring levels, so it follows the official palette.
 (custom-set-faces
