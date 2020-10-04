@@ -117,7 +117,7 @@ alias kz="killall zoom"
 alias django="python3 manage.py"
 alias tasks='grep --exclude-dir=.git -rEI "TODO|FIXME|todo" . 2>/dev/null'
 alias pytest-watch="while sleep 1 ; do find . -name '*.py' | entr -d -c pytest . ; done"
-alias expecthon-watch="while sleep 1 ; do find . -name '*.py' | entr -d -c pytest --cov=expecthon -p no:sugar . ; done"
+alias expecthon-watch="while sleep 1 ; do find . -name '*.py' | entr -d -c pytest --cov=expecthon . ; done"
 django-test-watch() {
  while sleep 1 ; do
     find . -name '*.py' | entr -d -c python manage.py test $@;
@@ -223,3 +223,16 @@ setopt HIST_IGNORE_SPACE
 # [[file:README.org::*Enable P10k prompt][Enable P10k prompt:1]]
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # Enable P10k prompt:1 ends here
+
+# Use different pager for man pages
+# This requires [[https://linux.die.net/man/1/most][most]]. (=yay most=)
+
+# [[file:README.org::*Use different pager for man pages][Use different pager for man pages:1]]
+export PAGER="most"
+# Use different pager for man pages:1 ends here
+
+# Github CLI completion
+
+# [[file:README.org::*Github CLI completion][Github CLI completion:1]]
+eval "$(gh completion -s zsh)"
+# Github CLI completion:1 ends here

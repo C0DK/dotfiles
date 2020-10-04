@@ -23,6 +23,7 @@
   - [[#ignore-spaces-in-history][Ignore spaces in history]]
   - [[#enable-p10k-prompt][Enable P10k prompt]]
   - [[#use-different-pager-for-man-pages][Use different pager for man pages]]
+  - [[#github-cli-completion][Github CLI completion]]
 - [[#profile][.profile]]
 - [[#powerlevel10k][Powerlevel10k]]
 
@@ -217,6 +218,10 @@ To customize prompt edit the other heading edit.
 This requires [[https://linux.die.net/man/1/most][most]]. (=yay most=)
 #+BEGIN_SRC sh
 export PAGER="most"
+#+END_SRC
+** Github CLI completion
+#+BEGIN_SRC sh
+eval "$(gh completion -s zsh)"
 #+END_SRC
 
 * .profile
