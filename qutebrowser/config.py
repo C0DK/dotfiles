@@ -1,21 +1,3 @@
-#+TITLE: Qutebrwoser Configuration File
-This is just my simple configuration file for [[https://qutebrowser.org][qutebrowser]], the minimal VI-bindings browser.
-
-* Table Of Content :toc:
-- [[#config][Config]]
-  - [[#define-color-scheme][Define color scheme]]
-  - [[#colors][Colors]]
-  - [[#tabs][Tabs]]
-  - [[#search-engines][Search engines]]
-  - [[#notifications-disable][Notifications (DISABLE!!)]]
-
-* Config
-:PROPERTIES:
-:header-args: :tangle config.py
-:END:
-[[https://github.com/KnownAsDon/QuteBrowser-Nord-Theme/raw/master/config.py][Inspiration]].
-** Define color scheme
-#+BEGIN_SRC python
 nord = {
     0: "#2E3440",
     1: "#3B4252",
@@ -36,35 +18,19 @@ nord = {
 }
 bg_color = nord[0]
 fg_color = nord[4]
-#+END_SRC
-** Colors
 
-*** Completion
-Completion is everything in =:=
-**** Header color
-#+BEGIN_SRC python
 c.colors.completion.category.bg = bg_color
 c.colors.completion.category.fg = fg_color
-#+END_SRC
-**** Borders
-#+BEGIN_SRC python
+
 border_color = nord[1]
 c.colors.completion.category.border.bottom = border_color
 c.colors.completion.category.border.top = border_color
-#+END_SRC
-**** Even / odd background
-use same colors (no switching colors back and forth)
-#+BEGIN_SRC python
+
 c.colors.completion.even.bg = bg_color
 c.colors.completion.odd.bg = bg_color
-#+END_SRC
-**** Foreground on main container
-#+BEGIN_SRC python
+
 c.colors.completion.fg = nord[3]
-#+END_SRC
-**** Selected row
-the row that you have currently selected
-#+BEGIN_SRC python
+
 selected_bg = nord[0]
 
 c.colors.completion.item.selected.bg = selected_bg
@@ -72,43 +38,28 @@ c.colors.completion.item.selected.border.bottom = selected_bg
 c.colors.completion.item.selected.border.top = selected_bg
 
 c.colors.completion.item.selected.fg = fg_color
-#+END_SRC
-**** color of match
-The color that the =match= is. This is the area
-#+BEGIN_SRC python
+
 match_color_fg = nord[6]
 c.colors.completion.item.selected.match.fg = match_color_fg
 c.colors.completion.match.fg = match_color_fg
-#+END_SRC
-**** Scrollbar
-#+BEGIN_SRC python
+
 c.colors.completion.scrollbar.bg = bg_color
 c.colors.completion.scrollbar.fg = fg_color
-#+END_SRC
-**** Downloads
-#+BEGIN_SRC python
+
 c.colors.downloads.bar.bg = nord[0]
 c.colors.downloads.error.bg = nord[11]
 c.colors.downloads.error.fg = nord[6]
 c.colors.downloads.start.fg = nord[15]
-#+END_SRC
-**** Hints
-Background color for hints. Note that you can use a `rgba(...)` value
-#+BEGIN_SRC python
+
 c.colors.hints.bg = nord[0]
 c.hints.border = "1 px " + nord[3]
 c.colors.hints.fg = nord[4]
 c.colors.hints.match.fg = nord[3]
-#+END_SRC
-**** Keyhint
-The small box that pops up when you press =f=
-#+BEGIN_SRC python
+
 c.colors.keyhint.bg = nord[1]
 c.colors.keyhint.fg = nord[5]
 c.colors.keyhint.suffix.fg = nord[4]
-#+END_SRC
-**** Messages
-#+BEGIN_SRC python
+
 message_fg = nord[6]
 c.colors.messages.error.bg = nord[11]
 c.colors.messages.error.border = nord[11]
@@ -119,63 +70,39 @@ c.colors.messages.info.fg = message_fg
 c.colors.messages.warning.bg = nord[13]
 c.colors.messages.warning.border = nord[13]
 c.colors.messages.warning.fg = message_fg
-#+END_SRC
-**** Prompts
-#+BEGIN_SRC python
+
 c.colors.prompts.bg = nord[0]
 c.colors.prompts.fg = nord[6]
 c.colors.prompts.selected.bg = nord[1]
-#+END_SRC
-**** Statusbar
-#+BEGIN_SRC python
+
 statusbar_fg = nord[6]
-#+END_SRC
-***** Caret mode
-#+BEGIN_SRC python
+
 c.colors.statusbar.caret.bg = nord[10]
 c.colors.statusbar.caret.fg = statusbar_fg
-#+END_SRC
-***** Selection mode
-#+BEGIN_SRC python
+
 c.colors.statusbar.caret.selection.bg = nord[9]
 c.colors.statusbar.caret.selection.fg = statusbar_fg
-#+END_SRC
-***** Command mode
-#+BEGIN_SRC python
+
 c.colors.statusbar.command.bg = nord[1]
 c.colors.statusbar.command.fg = statusbar_fg
-#+END_SRC
-***** Commando mode (Incognito)
-#+BEGIN_SRC python
+
 c.colors.statusbar.command.private.bg = c.colors.statusbar.command.bg
 c.colors.statusbar.command.private.fg = c.colors.statusbar.command.fg
-#+END_SRC
-***** Insert mode
-#+BEGIN_SRC python
+
 c.colors.statusbar.insert.bg = nord[14]
 c.colors.statusbar.insert.fg = nord[6]
-#+END_SRC
-***** Normal mode
-#+BEGIN_SRC python
+
 c.colors.statusbar.normal.bg = nord[0]
 c.colors.statusbar.normal.fg = nord[3]
-#+END_SRC
-***** Passthrough / Paste mode
-#+BEGIN_SRC python
+
 c.colors.statusbar.passthrough.bg = nord[15]
 c.colors.statusbar.passthrough.fg = nord[6]
-#+END_SRC
-***** Incognito mode
-#+BEGIN_SRC python
+
 c.colors.statusbar.private.bg = nord[4]
 c.colors.statusbar.private.fg = nord[0]
-#+END_SRC
-***** Progress mode
-#+BEGIN_SRC python
+
 c.colors.statusbar.progress.bg = nord[1]
-#+END_SRC
-***** Url section
-#+BEGIN_SRC python
+
 c.colors.statusbar.url.error.fg = nord[11]
 c.colors.statusbar.url.fg = nord[3]
 c.colors.statusbar.url.hover.fg = nord[4]
@@ -183,10 +110,6 @@ c.colors.statusbar.url.success.http.fg = nord[12]
 c.colors.statusbar.url.success.https.fg = nord[3]
 c.colors.statusbar.url.warn.fg = nord[13]
 
-#+END_SRC
-**** Tabs
-We want the same colors always.
-#+BEGIN_SRC python
 c.colors.tabs.bar.bg = nord[1]
 c.colors.tabs.even.bg = c.colors.tabs.bar.bg
 c.colors.tabs.even.fg = nord[3]
@@ -197,28 +120,20 @@ c.colors.tabs.pinned.odd.bg = c.colors.tabs.odd.bg
 c.colors.tabs.pinned.odd.fg = c.colors.tabs.odd.fg
 c.colors.tabs.pinned.even.bg = c.colors.tabs.even.bg
 c.colors.tabs.pinned.even.fg = c.colors.tabs.even.fg
-#+END_SRC
-***** Indicator color
-#+BEGIN_SRC python
+
 c.colors.tabs.indicator.error = nord[11]
 c.colors.tabs.indicator.start = nord[7]
 c.colors.tabs.indicator.stop = nord[1]
-#+END_SRC
-***** Selectd tab color
-#+BEGIN_SRC python
+
 c.colors.tabs.selected.even.bg = nord[1]
 c.colors.tabs.selected.even.fg = nord[6]
 c.colors.tabs.selected.odd.bg = c.colors.tabs.selected.even.bg
 c.colors.tabs.selected.odd.fg = c.colors.tabs.selected.even.fg
-#+END_SRC
-** Tabs
-#+BEGIN_SRC python
+
 c.tabs.padding = {"bottom": 5, "left": 5, "right": 5, "top": 5}
 c.tabs.title.format = "{audio} {current_title}"
 c.tabs.last_close = close
-#+END_SRC
-** Search engines
-#+BEGIN_SRC python
+
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
     "wolfram-alpha": "https://www.wolframalpha.com/input/?i={}",
@@ -230,8 +145,5 @@ c.url.searchengines = {
     "maps": "https://www.google.com/maps/search/{}/",
     "fontawesome": "https://fontawesome.com/icons?d=gallery&q={}",
 }
-#+END_SRC
-** Notifications (DISABLE!!)
-#+BEGIN_SRC python
+
 c.content.notifications = False
-#+END_SRC

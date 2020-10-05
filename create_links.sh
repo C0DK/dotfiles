@@ -7,6 +7,7 @@ stow i3 -t ~/.config/i3
 stow doom -t ~/.config/doom
 stow zsh -t ~/
 stow gitconfig -t ~/
+stow qutebrowser -t ~/.config/qutebrowser/
 stow vim -t ~/
 stow tmux -t ~/
 stow xresources -t ~/
