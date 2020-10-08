@@ -204,7 +204,7 @@ c.colors.tabs.indicator.error = nord[11]
 c.colors.tabs.indicator.start = nord[7]
 c.colors.tabs.indicator.stop = nord[1]
 #+END_SRC
-***** Selectd tab color
+***** Selected tab color
 #+BEGIN_SRC python
 c.colors.tabs.selected.even.bg = nord[1]
 c.colors.tabs.selected.even.fg = nord[6]
@@ -217,6 +217,7 @@ c.tabs.padding = {"bottom": 5, "left": 5, "right": 5, "top": 5}
 c.tabs.title.format = "{audio} {current_title}"
 #c.tabs.last_close = close
 c.tabs.tabs_are_windows = True
+c.tabs.show = "multiple"
 #+END_SRC
 ** Search engines
 #+BEGIN_SRC python

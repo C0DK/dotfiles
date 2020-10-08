@@ -132,7 +132,9 @@ c.colors.tabs.selected.odd.fg = c.colors.tabs.selected.even.fg
 
 c.tabs.padding = {"bottom": 5, "left": 5, "right": 5, "top": 5}
 c.tabs.title.format = "{audio} {current_title}"
-c.tabs.last_close = close
+#c.tabs.last_close = close
+c.tabs.tabs_are_windows = True
+c.tabs.show = "multiple"
 
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
