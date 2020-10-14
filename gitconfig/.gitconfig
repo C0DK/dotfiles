@@ -28,6 +28,7 @@
 	aamend = !git add -A . && git amend
 	aamende = !git add -A . && git commit --amend
 	aamendp = !git add -A . && git amend && git push --force
+	aaamendp = !git add -A . && git amend && git push --force
 	amend-edit = commit --amend
 	staging = !git checkout staging && git pull origin staging
 	master = !git checkout master && git pull origin
@@ -103,5 +104,3 @@
 
 [pull]
 	rebase = true
-[init]
-	defaultBranch = main
