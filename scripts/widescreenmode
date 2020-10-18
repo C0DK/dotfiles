@@ -4,6 +4,8 @@ if [ $* = "on" ]; then
     i3-msg gaps inner all set 40
     xrandr --output eDP1 --off
     xrandr --output HDMI1 --auto --primary --mode 3440x1440
+    pactl set-card-profile 0 output:hdmi-stereo
+
     # TODO create tmux session on all workspaces
 else
     i3-msg gaps inner all set 0
