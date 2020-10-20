@@ -1,4 +1,6 @@
 #+TITLE: Qutebrwoser Configuration File
+#+OPTIONS: toc:4
+
 This is just my simple configuration file for [[https://qutebrowser.org][qutebrowser]], the minimal VI-bindings browser.
 
 * Table Of Content :toc:
@@ -8,6 +10,7 @@ This is just my simple configuration file for [[https://qutebrowser.org][qutebro
   - [[#tabs][Tabs]]
   - [[#search-engines][Search engines]]
   - [[#notifications-disable][Notifications (DISABLE!!)]]
+  - [[#downloads][Downloads]]
 
 * Config
 :PROPERTIES:
@@ -212,12 +215,18 @@ c.colors.tabs.selected.odd.bg = c.colors.tabs.selected.even.bg
 c.colors.tabs.selected.odd.fg = c.colors.tabs.selected.even.fg
 #+END_SRC
 ** Tabs
+*** format
 #+BEGIN_SRC python
 c.tabs.padding = {"bottom": 5, "left": 5, "right": 5, "top": 5}
 c.tabs.title.format = "{audio} {current_title}"
-#c.tabs.last_close = close
-c.tabs.tabs_are_windows = True
+#+END_SRC
+*** Only show tab bar if multiple tabs are open
+#+BEGIN_SRC python
 c.tabs.show = "multiple"
+#+END_SRC
+*** Tabs as windows
+#+BEGIN_SRC python
+#c.tabs.tabs_are_windows = True
 #+END_SRC
 ** Search engines
 #+BEGIN_SRC python
@@ -239,4 +248,9 @@ c.url.searchengines = {
 ** Notifications (DISABLE!!)
 #+BEGIN_SRC python
 c.content.notifications = False
+#+END_SRC
+** Downloads
+*** Hide when finished
+#+BEGIN_SRC
+c.downloads.remove_finished = 5000
 #+END_SRC
