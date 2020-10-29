@@ -215,7 +215,7 @@ To customize prompt edit the other heading edit.
 ** Use different pager for man pages
 This requires [[https://linux.die.net/man/1/most][most]]. (=yay most=)
 #+BEGIN_SRC sh
-export PAGER="most"
+export PAGER="less"
 #+END_SRC
 ** Github CLI completion
 #+BEGIN_SRC sh
