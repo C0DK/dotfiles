@@ -226,7 +226,7 @@ setopt HIST_IGNORE_SPACE
 # This requires [[https://linux.die.net/man/1/most][most]]. (=yay most=)
 
 # [[file:README.org::*Use different pager for man pages][Use different pager for man pages:1]]
-export PAGER="most"
+export PAGER="less"
 # Use different pager for man pages:1 ends here
 
 # Github CLI completion
