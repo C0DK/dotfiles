@@ -1,0 +1,20 @@
+#+TITLE: Topgrade Config
+
+[[https://github.com/r-darwish/topgrade][Topgrade]] is a great tool for updating all package managers on your system. It's
+freaking awesome to say the very least. Supports doom, tmux, vim, yarn, tldr and
+others. I can recommend it.
+
+* Config file
+:PROPERTIES:
+:header-args: :tangle topgrade.toml :padline yes
+:END:
+
+** Assume yes
+#+BEGIN_SRC toml
+assume_yes = true
+#+END_SRC
+** Cleanup
+After running it should cleanup all files, if possible
+#+begin_src toml
+cleanup = true
+#+end_src
