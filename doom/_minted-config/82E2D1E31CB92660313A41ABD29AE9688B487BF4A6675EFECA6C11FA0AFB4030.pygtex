@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nv}{after!} \PYG{n+nv}{org}
+  \PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}publish\PYGZhy{}project\PYGZhy{}alist}
+        \PYG{o}{`}\PYG{p}{((}\PYG{l+s}{\PYGZdq{}KBP\PYGZdq{}}
+           \PYG{l+s+ss}{:base\PYGZhy{}directory} \PYG{l+s}{\PYGZdq{}\PYGZti{}/Documents/org/kbp\PYGZdq{}}
+           \PYG{l+s+ss}{:publishing\PYGZhy{}directory} \PYG{l+s}{\PYGZdq{}/keybase/public/cabang/\PYGZdq{}}
+           \PYG{l+s+ss}{:publishing\PYGZhy{}function} \PYG{n+nv}{org\PYGZhy{}twbs\PYGZhy{}publish\PYGZhy{}to\PYGZhy{}html}
+           \PYG{c+c1}{;;:section\PYGZhy{}numbers nil}
+           \PYG{l+s+ss}{:with\PYGZhy{}headline\PYGZhy{}numbers} \PYG{n+no}{nil}
+           \PYG{c+c1}{;;:table\PYGZhy{}of\PYGZhy{}contents nil}
+           \PYG{l+s+ss}{:html\PYGZhy{}head\PYGZhy{}extra} \PYG{o}{,}\PYG{p}{(}\PYG{n+nb}{format} \PYG{l+s}{\PYGZdq{}\PYGZlt{}style type=\PYGZbs{}\PYGZdq{}text/css\PYGZbs{}\PYGZdq{}\PYGZgt{}\PYGZpc{}s\PYGZlt{}/style\PYGZgt{}\PYGZdq{}}
+                                     \PYG{p}{(}\PYG{n+nv}{with\PYGZhy{}temp\PYGZhy{}buffer}
+                                       \PYG{p}{(}\PYG{n+nv}{insert\PYGZhy{}file\PYGZhy{}contents} \PYG{l+s}{\PYGZdq{}\PYGZti{}/.config/doom/nord.css\PYGZdq{}}\PYG{p}{)}
+                                       \PYG{p}{(}\PYG{n+nv}{buffer\PYGZhy{}string}\PYG{p}{))}
+                                     \PYG{p}{)}
+           \PYG{p}{)))}
+\PYG{p}{)}
+\end{Verbatim}

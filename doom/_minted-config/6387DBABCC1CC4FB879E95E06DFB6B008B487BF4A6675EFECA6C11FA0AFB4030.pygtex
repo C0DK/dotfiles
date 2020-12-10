@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{;; el feed}
+\PYG{p}{(}\PYG{n+nv}{global\PYGZhy{}set\PYGZhy{}key} \PYG{p}{(}\PYG{n+nv}{kbd} \PYG{l+s}{\PYGZdq{}C\PYGZhy{}x w\PYGZdq{}}\PYG{p}{)} \PYG{l+s+ss}{\PYGZsq{}elfeed}\PYG{p}{)}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{elfeed\PYGZhy{}feeds}
+      \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}http://nullprogram.com/feed/\PYGZdq{}}
+        \PYG{l+s}{\PYGZdq{}https://node2.feed43.com/2538022243138888.xml\PYGZdq{}}
+        \PYG{l+s}{\PYGZdq{}https://www.dr.dk/nyheder/service/feeds/allenyheder\PYGZdq{}}
+        \PYG{p}{))}
+\end{Verbatim}

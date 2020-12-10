@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nv}{map!} \PYG{p}{(}\PYG{l+s+ss}{:leader} \PYG{p}{(}\PYG{l+s+ss}{:prefix} \PYG{l+s}{\PYGZdq{}o\PYGZdq{}} \PYG{l+s+ss}{:desc} \PYG{l+s}{\PYGZdq{}Ranger\PYGZdq{}} \PYG{l+s+ss}{:nv} \PYG{l+s}{\PYGZdq{}F\PYGZdq{}} \PYG{l+s+ss}{\PYGZsq{}ranger}\PYG{p}{)))}
+\PYG{p}{(}\PYG{n+nv}{after!} \PYG{n+nv}{ranger}
+  \PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{ranger\PYGZhy{}ignored\PYGZhy{}extensions} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}mkv\PYGZdq{}} \PYG{l+s}{\PYGZdq{}iso\PYGZdq{}} \PYG{l+s}{\PYGZdq{}mp4\PYGZdq{}}\PYG{p}{))}
+  \PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{ranger\PYGZhy{}show\PYGZhy{}hidden} \PYG{n+no}{t}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{ranger\PYGZhy{}cleanup\PYGZhy{}on\PYGZhy{}disable} \PYG{n+no}{t}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{ranger\PYGZhy{}cleanup\PYGZhy{}eagerly} \PYG{n+no}{t}\PYG{p}{)}
+\PYG{p}{)}
+\end{Verbatim}

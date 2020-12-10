@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{projectile\PYGZhy{}indexing\PYGZhy{}method} \PYG{l+s+ss}{\PYGZsq{}alien}
+      \PYG{n+nv}{projectile\PYGZhy{}sort\PYGZhy{}order} \PYG{l+s+ss}{\PYGZsq{}recently\PYGZhy{}active}
+      \PYG{n+nv}{projectile\PYGZhy{}globally\PYGZhy{}ignored\PYGZhy{}files} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}.DS\PYGZus{}Store\PYGZdq{}} \PYG{l+s}{\PYGZdq{}Icon\PYGZdq{}} \PYG{l+s}{\PYGZdq{}TAGS\PYGZdq{}}\PYG{p}{)}
+      \PYG{n+nv}{projectile\PYGZhy{}globally\PYGZhy{}ignored\PYGZhy{}file\PYGZhy{}suffixes} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}.elc\PYGZdq{}} \PYG{l+s}{\PYGZdq{}.pyc\PYGZdq{}} \PYG{l+s}{\PYGZdq{}.o\PYGZdq{}}\PYG{p}{)}
+      \PYG{n+nv}{projectile\PYGZhy{}globally\PYGZhy{}ignored\PYGZhy{}directories} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}node\PYGZus{}modules\PYGZdq{}}\PYG{p}{)}
+      \PYG{n+nv}{projectile\PYGZhy{}enable\PYGZhy{}caching} \PYG{n+no}{t}\PYG{p}{)}
+\end{Verbatim}

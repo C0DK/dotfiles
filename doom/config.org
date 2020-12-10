@@ -93,7 +93,7 @@ Stretch cursor to the glyph width
   '(add-to-list 'org-latex-packages-alist '("" "minted")))
 (setq org-latex-listings 'minted)
  (setq org-latex-minted-options
-     '(("frame" "lines") ("linenos=true") ))
+     '(("frame" "lines") ("linenos=false") ))
 (eval-after-load 'tex-mode
   '(setcar (cdr (cddaar tex-compile-commands)) " -shell-escape "))
 (eval-after-load 'ox-latex
@@ -203,6 +203,62 @@ Stretch cursor to the glyph width
  'org-babel-load-languages
  '((dot . t))) ; this line activates dot
 #+END_SRC
+
+*** IEEEtran export
+#+begin_src elisp
+(after! org
+    (setq org-latex-classes
+        '(
+            ("IEEEtran"
+                "\\documentclass{IEEEtran}
+                \\usepackage{cite}
+                \\usepackage{amsmath,amssymb,amsfonts}
+                \\usepackage{algorithmic}
+                \\usepackage{graphicx}
+                \\usepackage{textcomp}
+                \\usepackage{xcolor}
+                \\usepackage{hyperref}
+                [DEFAULT-PACKAGES]
+                [PACKAGES]
+                [EXTRA]"
+                ("\\section{%s}" . "\\section*{%s}")
+                ("\\subsection{%s}" . "\\subsection*{%s}")
+                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
+            )
+            ("article"
+                "\\documentclass[11pt]{article}
+                [DEFAULT-PACKAGES]
+                [PACKAGES]
+                [EXTRA]"
+                ("\\section{%s}" . "\\section*{%s}")
+                ("\\subsection{%s}" . "\\subsection*{%s}")
+                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
+            )
+
+            ("report" "\\documentclass[11pt]{report}"
+                ("\\part{%s}" . "\\part*{%s}")
+                ("\\chapter{%s}" . "\\chapter*{%s}")
+                ("\\section{%s}" . "\\section*{%s}")
+                ("\\subsection{%s}" . "\\subsection*{%s}")
+                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            )
+
+            ("book" "\\documentclass[11pt]{book}"
+                ("\\part{%s}" . "\\part*{%s}")
+                ("\\chapter{%s}" . "\\chapter*{%s}")
+                ("\\section{%s}" . "\\section*{%s}")
+                ("\\subsection{%s}" . "\\subsection*{%s}")
+                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            )
+        )
+    )
+)
+#+end_src
+**** TODO automatically handle /abstract/
 *** Change the character that displays on collapsed headings
 #+BEGIN_SRC emacs-lisp
 (setq org-ellipsis " ▼ ")

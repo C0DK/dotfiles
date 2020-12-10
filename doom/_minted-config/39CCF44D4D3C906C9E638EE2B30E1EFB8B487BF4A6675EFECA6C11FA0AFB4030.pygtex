@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nv}{setq\PYGZhy{}hook!} \PYG{n+nv}{python\PYGZhy{}mode} \PYG{n+nv}{python\PYGZhy{}indent\PYGZhy{}offset} \PYG{l+m+mi}{2}\PYG{p}{)}
+
+\PYG{p}{(}\PYG{n+nv}{add\PYGZhy{}hook!} \PYG{l+s+ss}{\PYGZsq{}python\PYGZhy{}mode\PYGZhy{}hook} \PYG{p}{(}\PYG{n+nv}{modify\PYGZhy{}syntax\PYGZhy{}entry} \PYG{n+nv}{?\PYGZus{}} \PYG{l+s}{\PYGZdq{}w\PYGZdq{}}\PYG{p}{))}
+\end{Verbatim}

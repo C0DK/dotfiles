@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{;;(after! org}
+\PYG{c+c1}{;;     (setq bibtex\PYGZhy{}completion\PYGZhy{}bibliography \PYGZdq{}\PYGZti{}/Documents/bibliography/references.bib\PYGZdq{}}
+\PYG{c+c1}{;;         bibtex\PYGZhy{}completion\PYGZhy{}library\PYGZhy{}path \PYGZdq{}\PYGZti{}/Documents/bibliography/bibtex\PYGZhy{}pdfs\PYGZdq{}}
+\PYG{c+c1}{;;         bibtex\PYGZhy{}completion\PYGZhy{}notes\PYGZhy{}path \PYGZdq{}\PYGZti{}/Documents/bibliography/helm\PYGZhy{}bibtex\PYGZhy{}notes\PYGZdq{})}
+\PYG{c+c1}{;; )}
+\end{Verbatim}

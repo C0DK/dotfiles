@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{;; newline on toc}
+\PYG{p}{(}\PYG{n+nv}{org\PYGZhy{}babel\PYGZhy{}do\PYGZhy{}load\PYGZhy{}languages}
+ \PYG{l+s+ss}{\PYGZsq{}org\PYGZhy{}babel\PYGZhy{}load\PYGZhy{}languages}
+ \PYG{o}{\PYGZsq{}}\PYG{p}{((}\PYG{n+nv}{plantuml} \PYG{o}{.} \PYG{n+no}{t}\PYG{p}{)))}
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}latex\PYGZhy{}toc\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}tableofcontents \PYGZbs{}\PYGZbs{}clearpage\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}agenda\PYGZhy{}prefix\PYGZhy{}format}
+        \PYG{p}{(}\PYG{k}{quote}
+         \PYG{p}{((}\PYG{n+nv}{agenda} \PYG{o}{.} \PYG{l+s}{\PYGZdq{} \PYGZpc{}i \PYGZpc{}\PYGZhy{}12:c\PYGZpc{}?\PYGZhy{}12t\PYGZpc{} s\PYGZdq{}}\PYG{p}{)}
+          \PYG{p}{(}\PYG{n+nv}{todo} \PYG{o}{.} \PYG{l+s}{\PYGZdq{}\PYGZpc{}l \PYGZpc{}i \PYGZpc{}\PYGZhy{}6:c\PYGZdq{}}\PYG{p}{)}
+          \PYG{p}{(}\PYG{n+nv}{tags} \PYG{o}{.} \PYG{l+s}{\PYGZdq{} \PYGZpc{}i \PYGZpc{}\PYGZhy{}12:c\PYGZdq{}}\PYG{p}{)}
+          \PYG{p}{(}\PYG{n+nb}{search} \PYG{o}{.} \PYG{l+s}{\PYGZdq{} \PYGZpc{}i \PYGZpc{}\PYGZhy{}12:c\PYGZdq{}}\PYG{p}{))))}
+\end{Verbatim}
