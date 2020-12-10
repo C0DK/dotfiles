@@ -6,6 +6,7 @@ This file contains some of my various configurations for git.
   - [[#alias][Alias]]
   - [[#user][User]]
   - [[#pull][Pull]]
+  - [[#init][init]]
 
 * Config
 :PROPERTIES:
@@ -126,3 +127,8 @@ TODO format a bit
 [pull]
 	rebase = true
 #+END_SRC
+** init
+#+begin_src conf
+[init]
+	defaultBranch = main
+#+end_src
