@@ -35,8 +35,9 @@ colors:
     white: '0xECEFF4'
 #+END_SRC
 * Transparency
+=background_opacity: 0.9=
 #+BEGIN_SRC yaml
-background_opacity: 0.9
+background_opacity: 1
 #+END_SRC
 * Font
 #+BEGIN_SRC yaml

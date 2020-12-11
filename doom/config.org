@@ -93,7 +93,7 @@ Stretch cursor to the glyph width
   '(add-to-list 'org-latex-packages-alist '("" "minted")))
 (setq org-latex-listings 'minted)
  (setq org-latex-minted-options
-     '(("frame" "lines") ("linenos=false") ))
+     '(("frame" "lines") ("linenos=true") ("xleftmargin=20pt") ))
 (eval-after-load 'tex-mode
   '(setcar (cdr (cddaar tex-compile-commands)) " -shell-escape "))
 (eval-after-load 'ox-latex
