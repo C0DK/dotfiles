@@ -244,6 +244,7 @@ c.url.searchengines = {
     "pypi": "https://pypi.org/search/?q={}",
     "urban-dictionary": "https://www.urbandictionary.com/define.php?term={}",
     "emoji": "https://emojipedia.org/search/?q={}",
+    "saxo": "https://www.saxo.com/dk/products/search?query={}",
 }
 #+END_SRC
 ** Notifications (DISABLE!!)

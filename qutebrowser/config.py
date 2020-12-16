@@ -150,6 +150,8 @@ c.url.searchengines = {
     "python-docs": "https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default",
     "pypi": "https://pypi.org/search/?q={}",
     "urban-dictionary": "https://www.urbandictionary.com/define.php?term={}",
+    "emoji": "https://emojipedia.org/search/?q={}",
+    "saxo": "https://www.saxo.com/dk/products/search?query={}",
 }
 
 c.content.notifications = False
