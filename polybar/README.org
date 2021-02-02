@@ -9,6 +9,7 @@
 - [[#modules][Modules]]
   - [[#any-new-updates][Any new Updates?]]
   - [[#is-zoom-running][Is Zoom running?]]
+  - [[#how-much-will-i-earn-this-month][How much will i earn this month?]]
   - [[#when-was-passwords-updated-last][When was passwords updated last?]]
   - [[#timer][Timer]]
   - [[#is-git-projects-pushed][Is Git projects pushed?]]
@@ -86,7 +87,7 @@ font-0 = Source Code Pro:size=4;2
 
 modules-left   = workspaces
 modules-center = gitPushed newUpdates passAge zoomRunning
-modules-right  =  timer bluetooth essid volume battery date
+modules-right  = clockifySalary timer bluetooth essid volume battery date
 
 fixed-center = true
 #+END_SRC
@@ -129,6 +130,14 @@ fi
 	interval = 1
 	format-padding = 1
 	format-foreground = ${xrdb:color1}
+#+END_SRC
+** How much will i earn this month?
+#+BEGIN_SRC conf
+[module/clockifySalary]
+	type = custom/script
+	exec = "~/bin/clockify_hours.py"
+	interval = 600
+	format-padding = 1
 #+END_SRC
 
 ** When was passwords updated last?

@@ -3,6 +3,8 @@
 *.log
 tmp/
 
+.env
+
 
 # `secret` sh files.
 tmux_work
