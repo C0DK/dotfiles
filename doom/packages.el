@@ -12,5 +12,7 @@
 (package! prettier-js)
 (package! ranger)
 (package! org-ref)
-
+(package! blacken)
+(package! python-black)
+(package! lsp-sonarlint)
 ;;;  packages.el ends here

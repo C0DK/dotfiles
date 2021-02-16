@@ -49,7 +49,16 @@ Stretch cursor to the glyph width
 *** Python
 #+BEGIN_SRC emacs-lisp
 
-(setq-hook! python-mode python-indent-offset 2)
+(use-package! python-black
+  :demand t
+  :after python)
+(add-hook! 'python-mode-hook #'python-black-on-save-mode)
+;; Feel free to throw your own personal keybindings here
+(map! :leader :desc "Blacken Buffer" "m b b" #'python-black-buffer)
+(map! :leader :desc "Blacken Region" "m b r" #'python-black-region)
+(map! :leader :desc "Blacken Statement" "m b s" #'python-black-statement)
+
+(setq-hook! python-mode python-indent-offset 4)
 
 (add-hook! 'python-mode-hook (modify-syntax-entry ?_ "w"))
 #+END_SRC
