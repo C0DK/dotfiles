@@ -1,3 +1,7 @@
+
+# print MOTD:
+fortune 20% ~/Documents/fortune/own ~/Documents/fortune/misc
+
 # Instant prompt
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -234,3 +238,5 @@ export PAGER="less"
 # [[file:README.org::*Github CLI completion][Github CLI completion:1]]
 eval "$(gh completion -s zsh)"
 # Github CLI completion:1 ends here
+#
+

@@ -19,6 +19,8 @@ This is just my simple configuration file for [[https://qutebrowser.org][qutebro
 [[https://github.com/KnownAsDon/QuteBrowser-Nord-Theme/raw/master/config.py][Inspiration]].
 ** Define color scheme
 #+BEGIN_SRC python
+
+config.load_autoconfig(False)
 nord = {
     0: "#2E3440",
     1: "#3B4252",
@@ -42,6 +44,10 @@ fg_color = nord[4]
 #+END_SRC
 ** Colors
 
+*** Dark Theme
+#+BEGIN_SRC python
+c.colors.webpage.preferred_color_scheme = "dark"
+#+END_SRC
 *** Completion
 Completion is everything in =:=
 **** Header color

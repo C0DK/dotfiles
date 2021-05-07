@@ -17,7 +17,6 @@ done
 
 issync ~/.dotfiles
 issync ~/.password-store
-issync ~/Documents
 
 if [ ! -z "$repos" ]
 then

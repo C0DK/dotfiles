@@ -99,10 +99,15 @@
 	aacmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 
 [user]
-	email = master@thecdk.net
+	email = c@cwb.dk
 	name = Casper Weiss Bang
+	signingKey = 2E1DC0FF50920EDDDE1757D9881239F715822BB7
 
 [pull]
 	rebase = true
 [init]
 	defaultBranch = main
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2

@@ -1,3 +1,4 @@
+config.load_autoconfig(False)
 nord = {
     0: "#2E3440",
     1: "#3B4252",
@@ -18,6 +19,8 @@ nord = {
 }
 bg_color = nord[0]
 fg_color = nord[4]
+
+c.colors.webpage.preferred_color_scheme = "dark"
 
 c.colors.completion.category.bg = bg_color
 c.colors.completion.category.fg = fg_color

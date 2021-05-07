@@ -9,7 +9,7 @@ set $ws_misc_3 "8:MISC 3"
 
 set $locker slock
 set $term alacritty
-set $browser qutebrowser
+set $browser firefox
 
 set $mod Mod4
 
@@ -126,7 +126,7 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-set $mode_open (e)ditor, (t)erm, (b)rowser, (s)potify, (Shift+s)kype, (m)essenger, (k)eybase, (p)dfreader, (Shift+p)ass, (Shift+m)ail, (c)hrome, (r)ecorder
+set $mode_open (e)ditor, (t)erm, (b)rowser, (s)potify, (Shift+s)kype, (m)essenger, (k)eybase, (p)dfreader, (Shift+p)ass, (Shift+m)ail, (c)hrome, (o)tp, (r)ecorder
 mode "$mode_open" {
     bindsym e exec --no-startup-id emacs, mode "default"
     bindsym t exec --no-startup-id $term -e sh -c "fresh && zsh", mode "default"
@@ -136,6 +136,7 @@ mode "$mode_open" {
     bindsym m exec --no-startup-id caprine, mode "default"
     bindsym k exec --no-startup-id run_keybase, mode "default"
     bindsym p exec --no-startup-id epdfview, mode "default"
+    bindsym o exec --no-startup-id yubioath-desktop, mode "default"
     bindsym r exec --no-startup-id kazam, mode "default"
     bindsym Shift+p exec --no-startup-id passmenu, mode "default"
     bindsym Shift+s exec --no-startup-id skypeforlinux, mode "default"
@@ -259,12 +260,12 @@ assign [class="Slack"] $ws_com
 assign [class="Thunderbird"] $ws_com
 assign [class="Mailspring"] $ws_com
 assign [class="discord"] $ws_com
-#assign [class="qutebrowser"] $ws_web
 assign [class="Keybase"] $ws_com
 assign [class="Caprine"] $ws_com
 assign [class="whatsapp-web"] $ws_com
 assign [instance="w1term"] $ws_dev
 for_window [instance="w1term"] move to workspace $ws_shell
+for_window [class="yubioath-desktop"] floating enable sticky enable border normal
 for_window [class="Spotify"] move to workspace $ws_mus
 for_window [class="discord"] move to workspace $ws_com
 for_window [class="jetbrains"] move to workspace $ws_dev
@@ -289,15 +290,15 @@ for_window [class="Skype"] floating disable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [title="nmtui"] floating enable border normal
 
-exec --no-startup-id alacritty --class=w1term -e "tmux_ws"
 exec --no-startup-id i3-msg 'workspace $ws_dev; exec /usr/bin/emacs'
-exec --no-startup-id i3-msg 'workspace $ws_web; exec /usr/bin/qutebrowser'
+exec --no-startup-id i3-msg 'workspace $ws_web; exec /usr/bin/firefox'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/mailspring'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/slack'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/caprine'
+exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/signal-desktop-beta'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/discord'
-exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/qutebrowser :open -w https://web.whatsapp.com/'
-exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/qutebrowser :open -w https://mail.protonmail.com/login'
+exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/qutebrowser ":open -w https://web.whatsapp.com/"'
+exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/qutebrowser ":open -w https://mail.protonmail.com/login"'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec run_keybase'
 exec --no-startup-id i3-msg 'workspace $ws_mus; exec /usr/bin/spotify'
 exec alacritty --class='forceFloat' -e 'tmux_scratchpad'
@@ -314,6 +315,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
+exec --no-startup-id pcloud
+exec --no-startup-id dunst
 exec --no-startup-id xautolock -time 10 -locker $locker
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor

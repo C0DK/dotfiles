@@ -14,7 +14,7 @@
 # Font
 
 # [[file:README.org::*Font][Font:1]]
-    font = SauceCodePro Nerd Font 10
+    font = SauceCodePro Nerd Font 12
 # Font:1 ends here
 
 # Size
@@ -25,7 +25,7 @@
 
 # [[file:README.org::*Size][Size:1]]
     frame_width = 1
-    geometry = "500x4-25+25"
+    geometry = "500x4+25+25"
 # Size:1 ends here
 
 # Message format

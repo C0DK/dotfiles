@@ -4,6 +4,7 @@
 
 * Table Of Content :toc:
 - [[#zsh][Zsh]]
+  - [[#message-of-the-day][Message of the day]]
   - [[#instant-prompt][Instant prompt]]
   - [[#source-profile][Source .profile]]
   - [[#various-exports][various exports]]
@@ -31,6 +32,11 @@
 :PROPERTIES:
 :header-args: :tangle .zshrc :comments both :padline yes
 :END:
+** Message of the day
+I like getting a small message when i open a new terminal. it's fun
+#+BEGIN_SRC sh
+fortune 20% ~/Documents/fortune/own ~/Documents/fortune/misc
+#+END_SRC
 ** Instant prompt
 Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 Initialization code that may require console input (password prompts, [y/n]
@@ -231,10 +237,12 @@ todo cleanup here.
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export EDITOR=/usr/bin/vim
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export BROWSER=/usr/bin/qutebrowser
+export BROWSER=/usr/bin/firefox
 export GOPATH=$HOME/.cache/go
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.config/emacs/bin/:$PATH
 export ZSH=/usr/share/oh-my-zsh
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 #+END_SRC
 * Powerlevel10k
 :PROPERTIES:
