@@ -292,13 +292,10 @@ for_window [title="nmtui"] floating enable border normal
 
 exec --no-startup-id i3-msg 'workspace $ws_dev; exec /usr/bin/emacs'
 exec --no-startup-id i3-msg 'workspace $ws_web; exec /usr/bin/firefox'
-exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/mailspring'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/slack'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/caprine'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/signal-desktop-beta'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/discord'
-exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/qutebrowser ":open -w https://web.whatsapp.com/"'
-exec --no-startup-id i3-msg 'workspace $ws_com; exec /usr/bin/qutebrowser ":open -w https://mail.protonmail.com/login"'
 exec --no-startup-id i3-msg 'workspace $ws_com; exec run_keybase'
 exec --no-startup-id i3-msg 'workspace $ws_mus; exec /usr/bin/spotify'
 exec alacritty --class='forceFloat' -e 'tmux_scratchpad'
