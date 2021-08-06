@@ -60,7 +60,7 @@
 
 # Sorting
 # Sort messages by urgency.
-
+%
 # [[file:README.org::*Sorting][Sorting:1]]
     sort = yes
 # Sorting:1 ends here
