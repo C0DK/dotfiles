@@ -34,8 +34,10 @@
 	master = !git checkout master && git pull origin
 	rb = rebase
 	rbc = rebase --continue
+	rbe = rebase --edit-todo
 	rba = rebase --abort
 	arbc = !git aa && git rbc
+	aarbc = arbc
 	po = push origin
 	pod = push origin dev
 	pos = push origin staging
@@ -94,20 +96,20 @@
 	# Show who contributed, in descending order by number of commits
 	whorank = shortlog --summary --numbered --no-merges
 
-	# git flow /staging name/
-    hotfix = !"f() { git rebase --onto master \"$@\" && git rebase --onto staging master}; f"
-	aacmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
-
-[user]
-	email = c@cwb.dk
-	name = Casper Weiss Bang
-	signingKey = 2E1DC0FF50920EDDDE1757D9881239F715822BB7
-
+	lg = log --color --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit
+[credential]
+	helper = cache --timeout=600
+[core]
+	editor = vim
 [pull]
+	ff = only
 	rebase = true
-[init]
-	defaultBranch = main
-[commit]
-	gpgsign = true
-[gpg]
-	program = gpg2
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+# BEGIN ANSIBLE MANAGED BLOCK
+[includeIf "gitdir:~/dev/neurospace/"]
+  path = ~/dev/neurospace/.gitconfig
+# END ANSIBLE MANAGED BLOCK
+
+[includeIf "gitdir:~/dev/personal/"]
+  path = ~/dev/personal/.gitconfig
