@@ -103,7 +103,7 @@
 	helper = cache --timeout=600
 [core]
 	editor = vim
-	pager = cat
+	pager = less -FX
 [pull]
 	ff = only
 	rebase = true
