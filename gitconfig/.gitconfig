@@ -1,5 +1,6 @@
 [alias]
 	co = checkout
+	com = checkout main
 	cob = checkout -b
 	coo = !git fetch && git checkout
 	br = branch
@@ -23,6 +24,8 @@
 	aacmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 	cp = cherry-pick
 
+	makeMainMaster = !git branch --set-upstream-to=origin/master main
+
 	back = checkout -
 	amend = commit --amend --no-edit
 	aamend = !git add -A . && git amend
@@ -30,9 +33,11 @@
 	aamendp = !git add -A . && git amend && git push --force
 	aaamendp = !git add -A . && git amend && git push --force
 	amend-edit = commit --amend
-	staging = !git checkout staging && git pull origin staging
-	master = !git checkout master && git pull origin
+
 	rb = rebase
+	rbm = rebase main
+	rbi = rebase -i
+	rbim = rebase -i main
 	rbc = rebase --continue
 	rbe = rebase --edit-todo
 	rba = rebase --abort
@@ -81,9 +86,6 @@
 	tags = tag -n1 --list
 	stashes = stash list
 
-	rbi = rebase -i
-	rbis = rebase -i staging
-
 	reset-commit = reset --soft HEAD~1
 	reset-commit-hard = reset --hard HEAD~1
 	reset-commit-soft = reset-commit
@@ -101,6 +103,7 @@
 	helper = cache --timeout=600
 [core]
 	editor = vim
+	pager = cat
 [pull]
 	ff = only
 	rebase = true
