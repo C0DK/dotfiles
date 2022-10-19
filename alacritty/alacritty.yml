@@ -1,3 +1,9 @@
+window:
+  opacity: 0.8
+  decorations: full
+  dynamic_title: true
+
+
 colors:
   primary:
     background: '0x2E3440'
@@ -24,16 +30,17 @@ colors:
     cyan: '0x8FBCBB'
     white: '0xECEFF4'
 
-background_opacity: 1
-
 font:
   normal:
-     family: SauceCodePro Nerd Font
+     family: MesloLGS NF
      style: Regular
   bold:
-     family: SauceCodePro Nerd Font
+     family: MesloLGS NF
      style: Bold
   italic:
-     family: SourceCode Pro
+     family: MesloLGS NF
      style: Italic
-  size: 10
+  size: 12
+
+selection:
+  save_to_clipboard: true
