@@ -18,6 +18,7 @@
 	aaacm = aacm
 	pl = pull
 	ps = push
+	psm = git ps origin HEAD:master
 	pushf = push --force
 	pf = pushf
 	psf = pushf
@@ -116,3 +117,7 @@
 
 [includeIf "gitdir:~/dev/personal/"]
   path = ~/dev/personal/.gitconfig
+[rebase]
+	autoStash = true
+[init]
+	defaultBranch = main
