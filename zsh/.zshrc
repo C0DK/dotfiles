@@ -5,6 +5,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+alias python=python3
+alias py=python
+alias pip=pip3
+
 source ~/.profile
 
 # If you come from bash you might have to change your $PATH.
@@ -62,3 +66,10 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH=$PATH:/home/cdk/.spicetify
+
+# Vim mode please
+bindkey -v
+
+# restart 
+alias pipewire-restart='systemctl --user restart pipewire pipewire-pulse && systemctl --user daemon-reload'
