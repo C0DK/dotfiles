@@ -57,7 +57,7 @@
 	plom = pull origin master
 	ploh = pull origin HEAD
 	unstage = reset --soft HEAD^
-	drop = reset --hard HEAD^
+	drop = reset --hard HEAD
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
 	logbrief = log --pretty=oneline --abbrev-commit
