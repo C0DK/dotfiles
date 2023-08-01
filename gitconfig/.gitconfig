@@ -1,6 +1,6 @@
 [alias]
 	co = checkout
-	com = checkout main
+	com = "!f(){ git checkout $(git main-branch) $@;}; f"
 	cob = checkout -b
 	coo = !git fetch && git checkout
 	br = branch
@@ -25,7 +25,8 @@
 	aacmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 	cp = cherry-pick
 
-	makeMainMaster = !git branch --set-upstream-to=origin/master main
+	main-branch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+	remotesh = remote set-head origin --auto
 
 	back = checkout -
 	amend = commit --amend --no-edit
@@ -36,9 +37,9 @@
 	amend-edit = commit --amend
 
 	rb = rebase
-	rbm = rebase main
+	rbm = rebase master
 	rbi = rebase -i
-	rbim = rebase -i main
+	rbim = rebase -i master
 	rbc = rebase --continue
 	rbe = rebase --edit-todo
 	rba = rebase --abort
