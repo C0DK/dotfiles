@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-cd ~/bin/
-COMMANDS=("python3 quote.py" "fortune -s")
-$(shuf -n1 -e "${COMMANDS[@]}")

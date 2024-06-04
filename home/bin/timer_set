@@ -1,7 +1,0 @@
-#/bin/sh
-
-
-d=$(date -d "now + $*")
-
-echo $d > ~/.cache/timer
-echo "Timer set for: $d"

@@ -1,6 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nv}{after!} \PYG{n+nv}{org}
-  \PYG{p}{(}\PYG{n+nv}{auto\PYGZhy{}fill\PYGZhy{}mode} \PYG{l+m+mi}{1}\PYG{p}{)}
-  \PYG{p}{)}
-\PYG{p}{(}\PYG{n+nv}{add\PYGZhy{}hook} \PYG{l+s+ss}{\PYGZsq{}text\PYGZhy{}mode\PYGZhy{}hook} \PYG{l+s+ss}{\PYGZsq{}turn\PYGZhy{}on\PYGZhy{}auto\PYGZhy{}fill}\PYG{p}{)}
-\end{Verbatim}

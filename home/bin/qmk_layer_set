@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-
-echo $* > ~/.qmk_layer
-echo "Layer: $*"

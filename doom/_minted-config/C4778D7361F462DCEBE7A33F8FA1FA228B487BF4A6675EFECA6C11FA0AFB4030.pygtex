@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}agenda\PYGZhy{}files} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZti{}/Documents/org/inbox.org\PYGZdq{}}
-                         \PYG{l+s}{\PYGZdq{}\PYGZti{}/Documents/org/gtd.org\PYGZdq{}}
-                         \PYG{l+s}{\PYGZdq{}\PYGZti{}/Documents/org/wishlist.org\PYGZdq{}}
-                         \PYG{l+s}{\PYGZdq{}\PYGZti{}/Documents/org/gcal.org\PYGZdq{}}
-                         \PYG{l+s}{\PYGZdq{}\PYGZti{}/Documents/org/tickler.org\PYGZdq{}}\PYG{p}{))}
-\end{Verbatim}

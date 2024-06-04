@@ -1,6 +1,6 @@
 [alias]
 	co = checkout
-	com = checkout main
+	com = "!f(){ git checkout $(git main-branch) $@;}; f"
 	cob = checkout -b
 	coo = !git fetch && git checkout
 	br = branch
@@ -25,7 +25,8 @@
 	aacmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 	cp = cherry-pick
 
-	makeMainMaster = !git branch --set-upstream-to=origin/master main
+	main-branch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+	remotesh = remote set-head origin --auto
 
 	back = checkout -
 	amend = commit --amend --no-edit
@@ -36,9 +37,9 @@
 	amend-edit = commit --amend
 
 	rb = rebase
-	rbm = rebase main
+	rbm = rebase master
 	rbi = rebase -i
-	rbim = rebase -i main
+	rbim = rebase -i master
 	rbc = rebase --continue
 	rbe = rebase --edit-todo
 	rba = rebase --abort
@@ -57,6 +58,7 @@
 	plom = pull origin master
 	ploh = pull origin HEAD
 	unstage = reset --soft HEAD^
+	drop = reset --hard HEAD
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
 	logbrief = log --pretty=oneline --abbrev-commit
@@ -110,14 +112,17 @@
 	rebase = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
-# BEGIN ANSIBLE MANAGED BLOCK
-[includeIf "gitdir:~/dev/neurospace/"]
-  path = ~/dev/neurospace/.gitconfig
-# END ANSIBLE MANAGED BLOCK
-
-[includeIf "gitdir:~/dev/personal/"]
-  path = ~/dev/personal/.gitconfig
-[rebase]
+		
 	autoStash = true
 [init]
 	defaultBranch = main
+[push]
+	autoSetupRemote = 1
+[user]
+	email = c@cwb.dk
+	name = Casper Weiss Bang
+	signingKey = 2E1DC0FF50920EDDDE1757D9881239F715822BB7
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2

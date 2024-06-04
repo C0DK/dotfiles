@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{k}{setq} \PYG{n+nv}{org\PYGZhy{}refile\PYGZhy{}targets} \PYG{o}{\PYGZsq{}}\PYG{p}{((}\PYG{l+s}{\PYGZdq{}\PYGZti{}/Documents/org/gtd.org\PYGZdq{}} \PYG{l+s+ss}{:maxlevel} \PYG{o}{.} \PYG{l+m+mi}{3}\PYG{p}{)}
-                           \PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZti{}/Documents/org/someday.org\PYGZdq{}} \PYG{l+s+ss}{:level} \PYG{o}{.} \PYG{l+m+mi}{1}\PYG{p}{)}
-                           \PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZti{}/Documents/org/archive.org\PYGZdq{}} \PYG{l+s+ss}{:level} \PYG{o}{.} \PYG{l+m+mi}{1}\PYG{p}{)}
-                           \PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZti{}/Documents/org/wishlist.org\PYGZdq{}} \PYG{l+s+ss}{:level} \PYG{o}{.} \PYG{l+m+mi}{1}\PYG{p}{)}
-                           \PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZti{}/Documents/org/tickler.org\PYGZdq{}} \PYG{l+s+ss}{:maxlevel} \PYG{o}{.} \PYG{l+m+mi}{2}\PYG{p}{)))}
-\end{Verbatim}
