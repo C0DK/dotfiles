@@ -34,14 +34,20 @@
 
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    # Install firefox.
+    firefox.enable = true;
+
   };
 
+
+  # disable all the default gnome apps
+  services.gnome.core-utilities.enable = false;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -85,4 +91,5 @@
 
   # TODOs:
   # - setup gnome shortcuts  https://discourse.nixos.org/t/nixos-options-to-configure-gnome-keyboard-shortcuts/7275
+  # - Starship theme https://starship.rs/config/ 
 }
