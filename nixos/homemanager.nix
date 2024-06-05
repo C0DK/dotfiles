@@ -97,6 +97,31 @@ in
           ms-python.python
           vscodevim.vim
           yzhang.markdown-all-in-one
+        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "toml";
+            publisher = "be5invis";
+            version = "0.6.0";
+            sha256 = "yk7buEyQIw6aiUizAm+sgalWxUibIuP9crhyBaOjC2E=";
+          }
+          {
+            name = "trailing-spaces";
+            publisher = "shardulm94";
+            version = "0.3.1";
+            sha256 = "0h30zmg5rq7cv7kjdr5yzqkkc1bs20d72yz9rjqag32gwf46s8b8";
+          }
+          {
+            name = "vscode-docker";
+            publisher = "ms-azuretools";
+            version = "1.18.0";
+            sha256 = "UPUfTOc5xJhI5ACm2oyWqtZ4zNxZjy16D6Mf30eHFEI=";
+          }
+          {
+            name = "shift-shift";
+            publisher = "ahgood";
+            version = "0.0.5";
+            sha256 = "r6qzsQTQrTbZiloFdyH5XtT2P2Mf3uOV70iCNuJa6HQ=";
+          }
         ];
       };
 
