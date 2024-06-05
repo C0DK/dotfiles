@@ -82,12 +82,15 @@ in
       vscode = {
         enable = true;
         package = pkgs.vscodium;
+
+        mutableExtensionsDir = false;
         userSettings = {
           "workbench.colorTheme"= "Nord";
           "files.autoSave"= "afterDelay";
           "security.workspace.trust.untrustedFiles"= "open";
           "vim.vimrc.enable"= false;
         };
+        
         extensions = with pkgs.vscode-extensions; [
           bbenoist.nix
           arcticicestudio.nord-visual-studio-code

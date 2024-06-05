@@ -76,17 +76,6 @@
     # terminal completor
     carapace 
     starship
-    (vscode-with-extensions.override {  
-    vscode = vscodium;
-    vscodeExtensions = with vscode-extensions; [
-      bbenoist.nix
-      arcticicestudio.nord-visual-studio-code
-      ms-python.python
-      vscodevim.vim
-      yzhang.markdown-all-in-one
-    ]
-    ;
-  })
   ];
 
   # TODOs:
