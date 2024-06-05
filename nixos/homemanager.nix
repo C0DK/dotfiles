@@ -90,7 +90,7 @@ in
           "security.workspace.trust.untrustedFiles"= "open";
           "vim.vimrc.enable"= false;
         };
-        
+
         extensions = with pkgs.vscode-extensions; [
           bbenoist.nix
           arcticicestudio.nord-visual-studio-code
@@ -128,15 +128,15 @@ in
       vim = {
         enable = true;
         defaultEditor = true;
-        plugins = with pkgs.vimPlugins; [ 
-          vim-airline 
-          vim-misc 
+        plugins = with pkgs.vimPlugins; [
+          vim-airline
+          vim-misc
           vim-markdown
           tabular
           nord-vim
         ];
-        settings = { 
-          ignorecase = true; 
+        settings = {
+          ignorecase = true;
           number = true;
           tabstop = 4;
 

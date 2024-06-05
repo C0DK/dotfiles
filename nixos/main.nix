@@ -3,7 +3,7 @@
 
 {
   imports =
-    [ 
+    [
       ./homemanager.nix
       ./nushell.nix
       ./host.nix
@@ -74,12 +74,12 @@
     chromium
 
     # terminal completor
-    carapace 
+    carapace
     starship
   ];
 
   # TODOs:
   # - setup gnome shortcuts  https://discourse.nixos.org/t/nixos-options-to-configure-gnome-keyboard-shortcuts/7275
-  # - Starship theme https://starship.rs/config/ 
+  # - Starship theme https://starship.rs/config/
   # - nix format
 }
