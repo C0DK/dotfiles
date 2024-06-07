@@ -80,6 +80,10 @@
     # terminal completor
     carapace
     starship
+
+    #Python stuff
+    python3
+    pipenv
   ];
 
   # TODOs:
