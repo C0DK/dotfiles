@@ -61,6 +61,10 @@
     yubikey-manager
     yubioath-flutter
 
+
+    # https://taskfile.dev/
+    go-task
+
     gnupg
 
     # The best terminal
