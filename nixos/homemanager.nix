@@ -91,6 +91,7 @@ in
           "editor.fontLigatures"= true;
           "security.workspace.trust.untrustedFiles"= "open";
           "vim.vimrc.enable"= false;
+          "editor.formatOnSave"= true;
         };
 
         extensions = with pkgs.vscode-extensions; [
