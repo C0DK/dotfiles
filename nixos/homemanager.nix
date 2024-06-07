@@ -87,6 +87,8 @@ in
         userSettings = {
           "workbench.colorTheme"= "Nord";
           "files.autoSave"= "afterDelay";
+          "editor.fontFamily"= "'FuraCode Nerd Font Mono', 'FiraCode Nerd Font Mono', 'Fira Code'";
+          "editor.fontLigatures"= true;
           "security.workspace.trust.untrustedFiles"= "open";
           "vim.vimrc.enable"= false;
         };
