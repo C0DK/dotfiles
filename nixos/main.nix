@@ -83,6 +83,7 @@
 
     #Python stuff
     python3
+    virtualenv
     pdm
     pipenv
     black
