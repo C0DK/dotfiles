@@ -83,7 +83,10 @@
 
     #Python stuff
     python3
+    pdm
     pipenv
+    black
+    ruff
   ];
 
   # TODOs:
