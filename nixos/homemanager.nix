@@ -92,6 +92,7 @@ in
           "security.workspace.trust.untrustedFiles"= "open";
           "vim.vimrc.enable"= false;
           "editor.formatOnSave"= true;
+          "vim.useSystemClipboard"= true;
           "python.autoComplete.extraPaths"= [
             "\${workspaceFolder}/__pypackages__/3.11/lib"
           ];
