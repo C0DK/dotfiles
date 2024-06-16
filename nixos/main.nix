@@ -1,6 +1,7 @@
 
 { config, pkgs, ... }:
 
+
 {
   imports =
     [
@@ -8,6 +9,7 @@
       ./nushell.nix
       ./host.nix
       ./yubikey.nix
+      ./nix-alien.nix
     ];
 
     fonts.packages = with pkgs; [
@@ -89,6 +91,8 @@
     black
     ruff
   ];
+
+
 
   # TODOs:
   # - setup gnome shortcuts  https://discourse.nixos.org/t/nixos-options-to-configure-gnome-keyboard-shortcuts/7275

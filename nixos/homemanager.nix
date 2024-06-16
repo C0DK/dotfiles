@@ -92,6 +92,13 @@ in
           "security.workspace.trust.untrustedFiles"= "open";
           "vim.vimrc.enable"= false;
           "editor.formatOnSave"= true;
+          "python.autoComplete.extraPaths"= [
+            "\${workspaceFolder}/__pypackages__/3.11/lib"
+          ];
+          "python.analysis.extraPaths"= [
+            "\${workspaceFolder}/__pypackages__/3.11/lib"
+          ];
+
         };
 
         extensions = with pkgs.vscode-extensions; [
