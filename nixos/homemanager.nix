@@ -108,6 +108,7 @@ in
           ms-python.python
           vscodevim.vim
           yzhang.markdown-all-in-one
+          charliermarsh.ruff
         ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
             name = "toml";

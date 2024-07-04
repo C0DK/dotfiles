@@ -79,6 +79,9 @@
     # For GMeet and Chromecast
     chromium
 
+    # Gihub CLI
+    gh
+
     # terminal completor
     carapace
     starship
