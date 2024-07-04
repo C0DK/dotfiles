@@ -79,6 +79,8 @@
     # For GMeet and Chromecast
     chromium
 
+    hugo
+
     # Gihub CLI
     gh
 
