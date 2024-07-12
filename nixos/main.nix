@@ -81,6 +81,8 @@
 
     hugo
 
+    nodejs
+
     # Gihub CLI
     gh
 
