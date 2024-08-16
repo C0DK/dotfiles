@@ -76,12 +76,23 @@
 
     killall
 
+    unzip
+    zip
+
     # For GMeet and Chromecast
     chromium
 
     hugo
 
     nodejs
+
+    # Not very nix-ish but it's easier this way
+    # and nix doesn't have the latest rust-rover version.
+    jetbrains-toolbox
+
+    rustup
+    rustc
+    gcc
 
     # Gihub CLI
     gh

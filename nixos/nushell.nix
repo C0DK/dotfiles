@@ -38,6 +38,7 @@
             '';
             shellAliases = {
                 nixup = "sudo nixos-rebuild switch";
+                nixchanup ="sudo nix-channel --update";
                 nixupgrade = "sudo nixos-rebuild switch --upgrade";
                 code = "codium";
             };
