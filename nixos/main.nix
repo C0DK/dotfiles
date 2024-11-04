@@ -24,6 +24,14 @@
         proggyfonts
     ];
 
+  # to utilize Nautilus etc Gnome is nice maybe
+  services.gvfs.enable = true;
+
+
+  services.xserver = {
+    excludePackages = [ pkgs.xterm ];
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.defaultUserShell = pkgs.nushell;
   users.users.cabang = {
@@ -62,6 +70,9 @@
     yubikey-touch-detector
     yubikey-manager
     yubioath-flutter
+
+    # A visual file explorer is nice for removable disks
+    gnome.nautilus
 
 
     # https://taskfile.dev/
@@ -108,6 +119,10 @@
     pipenv
     black
     ruff
+
+
+    #socials
+    discord
   ];
 
 

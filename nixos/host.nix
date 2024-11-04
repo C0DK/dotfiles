@@ -9,9 +9,9 @@
   time.timeZone = "Europe/Copenhagen";
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "dk";
-    xkbVariant = "winkeys";
+    variant = "winkeys";
   };
 
   # Configure console keymap
