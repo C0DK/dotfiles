@@ -61,6 +61,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Test issues with wifi
+  hardware.enableRedistributableFirmware = true;
+
 
   # Enable sound with pipewire.
   sound.enable = true;
