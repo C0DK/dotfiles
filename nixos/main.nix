@@ -95,6 +95,9 @@
 
     hugo
 
+    # Dotnet
+    dotnetCorePackages.sdk_9_0
+
     nodejs
 
     # Not very nix-ish but it's easier this way
